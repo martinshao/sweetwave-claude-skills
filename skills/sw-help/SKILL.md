@@ -1,4 +1,5 @@
 ---
+name: sw-help
 description: 展示 SweetWave 个人级 skills 工作流和命令使用说明。
 disable-model-invocation: true
 allowed-tools:

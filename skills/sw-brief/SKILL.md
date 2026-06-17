@@ -1,6 +1,8 @@
 ---
+name: sw-brief
 description: 根据粗略想法创建或更新 SweetWave 产品简报。
-argument-hint: [产品想法或上下文]
+argument-hint: >-
+  产品想法或上下文
 disable-model-invocation: true
 allowed-tools:
   - Read

@@ -1,5 +1,8 @@
 ---
+name: sw-design
 description: 根据 PRD 生成用户流程、页面地图和交互说明。
+argument-hint: >-
+  可选：设计约束、目标用户补充或交互偏好
 disable-model-invocation: true
 allowed-tools:
   - Read

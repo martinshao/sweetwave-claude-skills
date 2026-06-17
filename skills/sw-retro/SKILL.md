@@ -1,6 +1,8 @@
 ---
+name: sw-retro
 description: 生成 SweetWave 上线后复盘，沉淀问题、经验和下一轮改进方向。
-argument-hint: [version-or-release-name]
+argument-hint: >-
+  version-or-release-name
 disable-model-invocation: true
 allowed-tools:
   - Read

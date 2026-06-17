@@ -1,6 +1,8 @@
 ---
+name: sw-init
 description: 在当前项目中初始化 SweetWave 文档结构和 CLAUDE.md。适合项目第一次接入 SweetWave 时使用。
-argument-hint: [可选：项目类型或上下文]
+argument-hint: >-
+  可选：项目类型或上下文
 disable-model-invocation: true
 allowed-tools:
   - Read

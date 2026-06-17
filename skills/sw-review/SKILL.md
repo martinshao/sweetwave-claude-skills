@@ -1,5 +1,8 @@
 ---
+name: sw-review
 description: 审查当前 git diff 是否满足 SweetWave 文档、任务和工程质量要求。
+argument-hint: >-
+  可选：审查重点、任务 ID 或风险关注点
 disable-model-invocation: true
 allowed-tools:
   - Read

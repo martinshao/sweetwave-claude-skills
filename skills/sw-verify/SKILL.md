@@ -1,6 +1,8 @@
 ---
+name: sw-verify
 description: 使用测试、类型检查、lint、构建和验收标准验证 SweetWave 任务实现。
-argument-hint: [TASK-ID]
+argument-hint: >-
+  TASK-ID
 disable-model-invocation: true
 allowed-tools:
   - Read

@@ -1,5 +1,8 @@
 ---
+name: sw-spec
 description: 根据 PRD、设计和架构文档生成开发规格文档。
+argument-hint: >-
+  可选：实现约束、模块范围或补充上下文
 disable-model-invocation: true
 allowed-tools:
   - Read

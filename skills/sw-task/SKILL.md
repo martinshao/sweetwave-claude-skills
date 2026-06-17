@@ -1,5 +1,8 @@
 ---
+name: sw-task
 description: 根据开发规格文档拆解 SweetWave 可执行任务。
+argument-hint: >-
+  可选：任务拆分范围、优先级或交付约束
 disable-model-invocation: true
 allowed-tools:
   - Read

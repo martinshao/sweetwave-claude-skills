@@ -1,6 +1,8 @@
 ---
+name: sw-work
 description: 只实现 TASKS.md 中的一个 SweetWave 任务。必须先计划，再编辑。
-argument-hint: [TASK-ID]
+argument-hint: >-
+  TASK-ID
 disable-model-invocation: true
 allowed-tools:
   - Read

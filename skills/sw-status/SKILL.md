@@ -1,4 +1,5 @@
 ---
+name: sw-status
 description: 检查当前项目的 SweetWave 文档进度、git 状态和下一步建议。
 disable-model-invocation: true
 allowed-tools:

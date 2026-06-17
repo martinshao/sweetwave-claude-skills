@@ -1,5 +1,8 @@
 ---
+name: sw-arch
 description: 根据 PRD 和设计文档生成技术架构、API 契约和数据模型。
+argument-hint: >-
+  可选：技术约束、架构偏好或补充上下文
 disable-model-invocation: true
 allowed-tools:
   - Read

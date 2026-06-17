@@ -1,6 +1,8 @@
 ---
+name: sw-release
 description: 为 SweetWave 项目准备发布清单、变更日志和回滚方案。默认不执行生产部署。
-argument-hint: [version]
+argument-hint: >-
+  version
 disable-model-invocation: true
 allowed-tools:
   - Read
