@@ -1,4 +1,4 @@
-# SweetWave Claude Skills 中文版 V0
+#    中文版 V0
 
 SweetWave 是一套基于 Claude Code `~/.claude/skills` 的个人级 AI Coding Workflow。
 
@@ -60,13 +60,26 @@ claude
 
 如果可以看到 SweetWave 帮助说明，说明安装成功。
 
-## 3. 卸载
+## 3. 更新
+
+SweetWave Claude Skills 由 git 管理。团队成员拉取最新仓库后，可以执行：
+
+```bash
+git pull
+./update-global.sh
+```
+
+`update-global.sh` 会复用 `install-global.sh update`，覆盖更新 `~/.claude/skills/sw-*` 和 `~/.claude/sweetwave/templates/*`。
+
+`install-global.sh` 本身也是幂等的；重复执行也会刷新本机已安装的 SweetWave skills。
+
+## 4. 卸载
 
 ```bash
 ./uninstall-global.sh
 ```
 
-## 4. 推荐使用流程
+## 5. 推荐使用流程
 
 在任意项目根目录启动 Claude Code：
 
@@ -92,7 +105,7 @@ claude
 /sw-retro v0.1.0
 ```
 
-## 5. 每个项目中的产物目录
+## 6. 每个项目中的产物目录
 
 `/sw-init` 会在当前项目创建或更新：
 
@@ -117,7 +130,7 @@ docs/sweetwave/
   LESSONS.md
 ```
 
-## 6. 设计原则
+## 7. 设计原则
 
 1. **文档先行**：PRD、开发规格、任务清单是 AI Coding 的核心上下文。
 2. **单任务执行**：`/sw-work` 一次只处理一个 `TASK`，避免改动范围失控。
@@ -128,7 +141,7 @@ docs/sweetwave/
 7. **发布谨慎**：`/sw-release` 默认只生成发布清单、变更日志和回滚方案，不执行生产部署。
 8. **个人级复用**：skills 安装在 `~/.claude/skills`，项目产物留在当前 repo。
 
-## 7. V0 边界
+## 8. V0 边界
 
 这一版是个人级 skills 工作流，适合跨项目复用和个人方法论验证。后续可以升级为：
 
@@ -139,7 +152,7 @@ V2：项目级 .claude/settings.json + hooks
 V3：SweetWave plugin，支持 /sw:prd /sw:work /sw:release
 ```
 
-## 8. 核心理念
+## 9. 核心理念
 
 SweetWave 的目标不是让 AI 随意写更多代码，而是把 AI 放入一套可控的软件工程闭环中：
 
