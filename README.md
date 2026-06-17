@@ -29,7 +29,7 @@ SweetWave 是一套基于 Claude Code `~/.claude/skills` 的个人级 AI Coding 
 ## 1. 安装
 
 ```bash
-cd sweetwave-personal-skills-zh-v0
+cd sweetwave-claude-skills
 ./install-global.sh
 ```
 
