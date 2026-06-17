@@ -47,6 +47,7 @@ $ARGUMENTS
 - `CLAUDE.md`
 - `.wave/MODULE_MAP.md`
 - `.wave/specs/{module}/MODULE.md`
+- `.wave/specs/{module}/UI.md`
 - `.wave/specs/{module}/SPEC.md`
 - `.wave/specs/{module}/TASKS.md`
 - `.wave/specs/{module}/ARCH.md`

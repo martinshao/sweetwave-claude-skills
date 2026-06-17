@@ -102,17 +102,17 @@
   <text class="path" x="952" y="459">.wave/specs/product-detail/</text>
   <text class="path" x="972" y="486">MODULE.md</text>
   <text class="path" x="972" y="510">DESIGN.md</text>
-  <text class="path" x="972" y="534">ARCH.md</text>
-  <text class="path" x="972" y="558">SPEC.md</text>
-  <text class="path" x="972" y="582">TASKS.md</text>
-  <text class="path" x="972" y="606">TEST_REPORT.md</text>
+  <text class="path" x="972" y="534">UI.md / prototype/</text>
+  <text class="path" x="972" y="558">ARCH.md</text>
+  <text class="path" x="972" y="582">SPEC.md</text>
+  <text class="path" x="972" y="606">TASKS.md / TEST_REPORT.md</text>
 
   <rect class="node doc" x="1280" y="412" width="240" height="220"/>
   <text class="node-title" x="1302" y="440">模块级规格生成</text>
   <text class="cmd" x="1302" y="467">/sw-design [module]</text>
-  <text class="cmd" x="1302" y="493">/sw-arch [module]</text>
-  <text class="cmd" x="1302" y="519">/sw-spec [module]</text>
-  <text class="cmd" x="1302" y="545">/sw-task [module]</text>
+  <text class="cmd" x="1302" y="493">/sw-ui [module]</text>
+  <text class="cmd" x="1302" y="519">/sw-arch [module]</text>
+  <text class="cmd" x="1302" y="545">/sw-spec /sw-task</text>
   <text class="node-sub" x="1302" y="578">无参数：处理所有</text>
   <text class="node-sub" x="1302" y="600">planned / active 模块</text>
 
@@ -194,5 +194,5 @@
   <rect class="label" x="910" y="1218" width="210" height="30"/>
   <text class="label-text" x="930" y="1238">还有任务：继续下一个</text>
 
-  <text class="small" x="72" y="1260">核心产物：.wave/brief、.wave/prd、.wave/MODULE_MAP.md、.wave/specs/{module}/MODULE.md / DESIGN.md / ARCH.md / SPEC.md / TASKS.md / TEST_REPORT.md、.wave/LESSONS.md。</text>
+  <text class="small" x="72" y="1260">核心产物：.wave/brief、.wave/prd、.wave/MODULE_MAP.md、.wave/specs/{module}/MODULE.md / DESIGN.md / UI.md / ARCH.md / SPEC.md / TASKS.md / TEST_REPORT.md、.wave/LESSONS.md。</text>
 </svg>

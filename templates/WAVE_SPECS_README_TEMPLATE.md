@@ -1,6 +1,6 @@
 # Module Specs
 
-模块级规格目录。每个模块使用一个子目录承载设计、架构、开发规格、任务和验证报告。
+模块级规格目录。每个模块使用一个子目录承载设计、界面与原型、架构、开发规格、任务和验证报告。
 
 ## 目录约定
 
@@ -8,6 +8,8 @@
 .wave/specs/{module-id}/
   MODULE.md
   DESIGN.md
+  UI.md
+  prototype/
   ARCH.md
   SPEC.md
   TASKS.md

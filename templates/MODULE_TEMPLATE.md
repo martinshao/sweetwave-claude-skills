@@ -35,6 +35,7 @@
 ## 待生成文档
 
 - DESIGN.md
+- UI.md
 - ARCH.md
 - SPEC.md
 - TASKS.md

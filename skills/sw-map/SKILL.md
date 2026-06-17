@@ -61,6 +61,8 @@ PRD 选择规则：
 .wave/specs/{module-id}/
   MODULE.md
   DESIGN.md
+  UI.md
+  prototype/
   ARCH.md
   SPEC.md
   TASKS.md
@@ -140,6 +142,7 @@ PRD 选择规则：
 ## 待生成文档
 
 - DESIGN.md
+- UI.md
 - ARCH.md
 - SPEC.md
 - TASKS.md

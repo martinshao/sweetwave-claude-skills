@@ -2,7 +2,7 @@
 
 ## TASK-001：<任务标题>
 
-状态：- [ ] TASK-001
+- [ ] TASK-001
 预估：30min
 依赖：无
 涉及范围：
@@ -12,6 +12,7 @@
 ### 输入文档
 
 - .wave/specs/{module}/MODULE.md
+- .wave/specs/{module}/UI.md
 - .wave/specs/{module}/SPEC.md
 - .wave/specs/{module}/ARCH.md
 
@@ -37,7 +38,7 @@
 
 ## TASK-002：<任务标题>
 
-状态：- [ ] TASK-002
+- [ ] TASK-002
 预估：30min
 依赖：TASK-001
 涉及范围：
@@ -45,6 +46,11 @@
 ### 目标
 
 ### 输入文档
+
+- .wave/specs/{module}/MODULE.md
+- .wave/specs/{module}/UI.md
+- .wave/specs/{module}/SPEC.md
+- .wave/specs/{module}/ARCH.md
 
 ### 允许修改范围
 

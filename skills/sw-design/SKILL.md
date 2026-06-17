@@ -64,6 +64,7 @@ $ARGUMENTS
    - responsive behavior
 5. 标注模块 UX 风险、跨模块交互依赖和待确认设计问题。
 6. 写入 `.wave/specs/{module}/DESIGN.md`。
+7. 建议下一步运行 `/sw-ui {module}`，将产品交互设计转成界面与原型设计。
 
 ## 规则
 

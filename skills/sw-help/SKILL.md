@@ -18,6 +18,7 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 → /sw-prd
 → /sw-map
 → /sw-design
+→ /sw-ui
 → /sw-arch
 → /sw-spec
 → /sw-task
@@ -44,6 +45,7 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 | `/sw-prd` | 生成产品需求文档 PRD |
 | `/sw-map` | 根据 PRD 拆分模块，生成 `.wave/MODULE_MAP.md` 和模块目录 |
 | `/sw-design [module]` | 生成模块用户流程、页面地图、交互说明 |
+| `/sw-ui [module]` | 生成模块界面与原型设计，产出 `UI.md` |
 | `/sw-arch [module]` | 生成模块技术架构、API 契约、数据模型 |
 | `/sw-spec [module]` | 生成模块开发规格文档 |
 | `/sw-task [module]` | 把模块开发规格拆成可执行任务 |

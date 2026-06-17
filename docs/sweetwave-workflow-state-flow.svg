@@ -88,14 +88,14 @@
   <text class="node-sub" x="927" y="498">DESIGN.md</text>
 
   <rect class="node spec" x="1195" y="425" width="220" height="86"/>
-  <text class="node-title" x="1217" y="454">模块架构</text>
-  <text class="cmd" x="1217" y="477">/sw-arch [module]</text>
-  <text class="node-sub" x="1217" y="498">ARCH.md</text>
+  <text class="node-title" x="1217" y="454">界面原型</text>
+  <text class="cmd" x="1217" y="477">/sw-ui [module]</text>
+  <text class="node-sub" x="1217" y="498">UI.md</text>
 
   <rect class="node spec" x="1465" y="425" width="110" height="86"/>
-  <text class="node-title" x="1485" y="454">规格任务</text>
-  <text class="cmd" x="1485" y="477">/sw-spec</text>
-  <text class="node-sub" x="1485" y="498">/sw-task</text>
+  <text class="node-title" x="1485" y="454">架构规格</text>
+  <text class="cmd" x="1485" y="477">/sw-arch</text>
+  <text class="node-sub" x="1485" y="498">/sw-spec/task</text>
 
   <rect class="node gate" x="350" y="526" width="300" height="38"/>
   <text class="small" x="372" y="550">高风险歧义：先确认，再继续</text>

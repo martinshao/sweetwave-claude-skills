@@ -14,13 +14,14 @@ SweetWave 是一套基于 Claude Code `~/.claude/skills` 的个人级 AI Coding 
 /sw-prd
 /sw-map
 /sw-design
+/sw-ui
 /sw-arch
 /sw-spec
 /sw-task
-/sw-work TASK-001
-/sw-verify TASK-001
+/sw-work [module] TASK-001
+/sw-verify [module] TASK-001
 /sw-review
-/sw-run TASK-001
+/sw-run [module] TASK-001
 /sw-run --all
 /sw-release v0.1.0
 /sw-retro v0.1.0
@@ -96,11 +97,12 @@ claude
 /sw-prd
 /sw-map
 /sw-design
+/sw-ui
 /sw-arch
 /sw-spec
 /sw-task
-/sw-work TASK-001
-/sw-verify TASK-001
+/sw-work [module] TASK-001
+/sw-verify [module] TASK-001
 /sw-review
 /sw-run --all
 /sw-release v0.1.0
@@ -135,6 +137,8 @@ CLAUDE.md
 .wave/specs/product-detail/
   MODULE.md
   DESIGN.md
+  UI.md
+  prototype/
   ARCH.md
   SPEC.md
   TASKS.md
@@ -147,6 +151,7 @@ CLAUDE.md
 
 ```txt
 /sw-design product-detail
+/sw-ui product-detail
 /sw-arch product-detail
 /sw-spec product-detail
 /sw-task product-detail
@@ -179,7 +184,7 @@ V3：SweetWave plugin，支持 /sw:prd /sw:work /sw:release
 SweetWave 的目标不是让 AI 随意写更多代码，而是把 AI 放入一套可控的软件工程闭环中：
 
 ```txt
-想法 → PRD → 设计 → 架构 → 开发规格 → 任务 → 实现 → 验证 → 审查 → 经验沉淀 → 发布 → 复盘
+想法 → PRD → 模块地图 → 产品设计 → 界面与原型设计 → 架构 → 开发规格 → 任务 → 实现 → 验证 → 审查 → 经验沉淀 → 发布 → 复盘
 ```
 
 真正提升质量的不是一次性生成，而是：

@@ -33,6 +33,7 @@ $ARGUMENTS
 
 - `.wave/MODULE_MAP.md`
 - `.wave/specs/{module}/MODULE.md`
+- `.wave/specs/{module}/UI.md`
 - `.wave/specs/{module}/ARCH.md`
 - `.wave/specs/{module}/SPEC.md`
 

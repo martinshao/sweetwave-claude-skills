@@ -97,6 +97,7 @@ MODULE_MAP_TEMPLATE.md -> .wave/MODULE_MAP.md
 BRIEF_TEMPLATE.md -> .wave/brief/INIT-BRIEF.md
 PRD_TEMPLATE.md -> .wave/prd/INIT-PRD.md
 WAVE_SPECS_README_TEMPLATE.md -> .wave/specs/README.md
+UI_TEMPLATE.md -> .wave/specs/{module}/UI.md，由 /sw-ui 在模块目录中生成
 WAVE_RELEASE_README_TEMPLATE.md -> .wave/release/README.md
 WAVE_RETRO_README_TEMPLATE.md -> .wave/retro/README.md
 ```

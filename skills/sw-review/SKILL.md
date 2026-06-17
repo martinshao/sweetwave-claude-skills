@@ -29,6 +29,7 @@ $ARGUMENTS
 - `CLAUDE.md`
 - `.wave/MODULE_MAP.md`
 - `.wave/specs/{module}/MODULE.md`
+- `.wave/specs/{module}/UI.md`
 - `.wave/specs/{module}/SPEC.md`
 - `.wave/specs/{module}/TASKS.md`
 - `.wave/specs/{module}/TEST_REPORT.md`，如果存在
@@ -40,12 +41,12 @@ $ARGUMENTS
 ## 审查维度
 
 1. 是否满足相关任务的验收标准。
-2. 是否符合 PRD 和开发规格。
+2. 是否符合 PRD、界面原型和开发规格。
 3. 是否有无关文件或无关逻辑修改。
 4. 是否破坏架构边界。
 5. 是否有类型安全问题。
 6. 是否有错误处理缺失。
-7. 是否漏掉 loading / empty / error 状态。
+7. 是否漏掉 `UI.md` 中要求的 loading / empty / error / success 状态。
 8. 是否有测试覆盖缺口。
 9. 是否有安全风险或敏感信息风险。
 10. 是否需要补充文档或 changelog。
