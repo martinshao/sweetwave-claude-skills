@@ -60,6 +60,7 @@ docs/sweetwave/07-release/RELEASE_CHECKLIST.md
 docs/sweetwave/07-release/CHANGELOG.md
 docs/sweetwave/07-release/ROLLBACK_PLAN.md
 docs/sweetwave/08-retro/RETRO.md
+docs/sweetwave/LESSONS.md
 ```
 
 ## 工作流程
@@ -74,6 +75,7 @@ docs/sweetwave/08-retro/RETRO.md
    - 禁止操作
 4. 如果已有文档，不要粗暴覆盖；保留用户已有内容，并补充缺失章节。
 5. 最后总结创建或更新了哪些文件，并给出下一步命令。
+6. `LESSONS.md` 用于沉淀跨任务仍然有效的架构决策、踩坑记录和业务规则确认，不写常规流水账。
 
 ## 规则
 

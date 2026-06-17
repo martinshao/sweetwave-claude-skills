@@ -73,6 +73,10 @@ $ARGUMENTS
 ```txt
 docs/sweetwave/06-qa/TEST_REPORT.md
 ```
+8. 给出质量门结论：
+   - `PASSED`：验收标准和验证命令通过，可进入 `/sw-review`。
+   - `FAILED`：存在失败项，不得标记任务完成。
+   - `NEEDS_MANUAL`：存在必须人工确认的验收项。
 
 ## 报告结构
 
@@ -80,6 +84,8 @@ docs/sweetwave/06-qa/TEST_REPORT.md
 # 测试报告
 
 ## 任务
+
+## 质量门结论
 
 ## 已检查的验收标准
 
@@ -102,4 +108,5 @@ docs/sweetwave/06-qa/TEST_REPORT.md
 - 不要做无关代码修改。
 - 如果需要大范围修复，先征求用户确认。
 - 验证证据比乐观总结更重要。
+- 验证未通过时，不要建议把任务标记为 `[x]`。
 - 输出语言使用中文。

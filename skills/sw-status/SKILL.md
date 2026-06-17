@@ -9,6 +9,7 @@ allowed-tools:
   - Bash(git diff *)
   - Bash(find docs/sweetwave -maxdepth 3 -type f 2>/dev/null | sort)
   - Bash(test *)
+  - Bash(grep -n "^- \\[\\|^状态：" docs/sweetwave/05-task/TASKS.md 2>/dev/null)
 ---
 
 # SweetWave 状态检查
@@ -22,6 +23,10 @@ allowed-tools:
 ## SweetWave 文档文件
 
 !`find docs/sweetwave -maxdepth 3 -type f 2>/dev/null | sort || true`
+
+## SweetWave 任务状态
+
+!`grep -n "^- \\[\|^状态：" docs/sweetwave/05-task/TASKS.md 2>/dev/null || true`
 
 ## 检查内容
 
@@ -39,7 +44,17 @@ allowed-tools:
    - `docs/sweetwave/03-architecture/DATA_MODEL.md`
    - `docs/sweetwave/04-spec/DEV_SPEC.md`
    - `docs/sweetwave/05-task/TASKS.md`
+   - `docs/sweetwave/LESSONS.md`
 5. 根据当前状态建议下一条 SweetWave 命令。
+6. 如果 `TASKS.md` 已存在，统计：
+   - 已完成任务 `[x]`
+   - 待执行任务 `[ ]`
+   - 新增任务 `[NEW]`
+   - 变更任务 `[CHANGED]`
+   - 废弃任务 `[DROPPED]`
+7. 如果存在未完成任务，建议用户选择：
+   - 手动推进：`/sw-work TASK-ID`
+   - 状态机推进：`/sw-run TASK-ID` 或 `/sw-run --all`
 
 ## 输出格式
 

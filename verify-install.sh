@@ -2,7 +2,7 @@
 set -euo pipefail
 
 missing=0
-for name in sw-help sw-status sw-init sw-brief sw-prd sw-design sw-arch sw-spec sw-task sw-work sw-verify sw-review sw-release sw-retro; do
+for name in sw-help sw-status sw-init sw-brief sw-prd sw-design sw-arch sw-spec sw-task sw-work sw-verify sw-review sw-run sw-release sw-retro; do
   file="$HOME/.claude/skills/$name/SKILL.md"
   if [ -f "$file" ]; then
     echo "OK：/$name -> $file"

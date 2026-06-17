@@ -19,6 +19,8 @@ SweetWave 是一套基于 Claude Code `~/.claude/skills` 的个人级 AI Coding 
 /sw-work TASK-001
 /sw-verify TASK-001
 /sw-review
+/sw-run TASK-001
+/sw-run --all
 /sw-release v0.1.0
 /sw-retro v0.1.0
 ```
@@ -85,6 +87,7 @@ claude
 /sw-work TASK-001
 /sw-verify TASK-001
 /sw-review
+/sw-run --all
 /sw-release v0.1.0
 /sw-retro v0.1.0
 ```
@@ -111,6 +114,7 @@ docs/sweetwave/
   07-release/CHANGELOG.md
   07-release/ROLLBACK_PLAN.md
   08-retro/RETRO.md
+  LESSONS.md
 ```
 
 ## 6. 设计原则
@@ -120,8 +124,9 @@ docs/sweetwave/
 3. **先计划后实现**：复杂开发必须先输出实现计划，再进行代码修改。
 4. **验证闭环**：开发完成必须报告 typecheck / lint / test / build 的执行结果。
 5. **审查独立**：`/sw-review` 默认只审查当前 diff，不直接修改代码。
-6. **发布谨慎**：`/sw-release` 默认只生成发布清单、变更日志和回滚方案，不执行生产部署。
-7. **个人级复用**：skills 安装在 `~/.claude/skills`，项目产物留在当前 repo。
+6. **状态机可选**：`/sw-run` 可以按 `TASKS.md` 状态连续推进，提供断点恢复、验证质量门、审查质量门和 `LESSONS.md` 长期记忆。
+7. **发布谨慎**：`/sw-release` 默认只生成发布清单、变更日志和回滚方案，不执行生产部署。
+8. **个人级复用**：skills 安装在 `~/.claude/skills`，项目产物留在当前 repo。
 
 ## 7. V0 边界
 
@@ -139,7 +144,7 @@ V3：SweetWave plugin，支持 /sw:prd /sw:work /sw:release
 SweetWave 的目标不是让 AI 随意写更多代码，而是把 AI 放入一套可控的软件工程闭环中：
 
 ```txt
-想法 → PRD → 设计 → 架构 → 开发规格 → 任务 → 实现 → 验证 → 审查 → 发布 → 复盘
+想法 → PRD → 设计 → 架构 → 开发规格 → 任务 → 实现 → 验证 → 审查 → 经验沉淀 → 发布 → 复盘
 ```
 
 真正提升质量的不是一次性生成，而是：
