@@ -1,0 +1,78 @@
+---
+description: 审查当前 git diff 是否满足 SweetWave 文档、任务和工程质量要求。
+disable-model-invocation: true
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - Bash(git status)
+  - Bash(git diff *)
+  - Bash(git log *)
+---
+
+# SweetWave 代码审查
+
+用户输入：
+
+```txt
+$ARGUMENTS
+```
+
+## 输入
+
+读取：
+
+- 当前 git diff
+- `CLAUDE.md`
+- `docs/sweetwave/01-prd/PRD.md`
+- `docs/sweetwave/04-spec/DEV_SPEC.md`
+- `docs/sweetwave/05-task/TASKS.md`
+- `docs/sweetwave/06-qa/TEST_REPORT.md`，如果存在
+
+## 当前 git diff
+
+!`git diff --stat HEAD`
+
+## 审查维度
+
+1. 是否满足相关任务的验收标准。
+2. 是否符合 PRD 和开发规格。
+3. 是否有无关文件或无关逻辑修改。
+4. 是否破坏架构边界。
+5. 是否有类型安全问题。
+6. 是否有错误处理缺失。
+7. 是否漏掉 loading / empty / error 状态。
+8. 是否有测试覆盖缺口。
+9. 是否有安全风险或敏感信息风险。
+10. 是否需要补充文档或 changelog。
+
+## 输出格式
+
+```md
+# SweetWave Review
+
+## 结论
+
+- 建议：通过 / 有条件通过 / 不建议通过
+
+## Must Fix
+
+## Should Fix
+
+## Optional
+
+## 无关改动
+
+## 测试与验证缺口
+
+## 安全与发布风险
+
+## 建议下一步
+```
+
+## 规则
+
+- 默认只审查，不直接修改代码。
+- 不要纠结纯主观命名偏好。
+- 优先关注 correctness、架构边界、测试、风险。
+- 输出语言使用中文。
