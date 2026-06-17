@@ -1,4 +1,4 @@
-#    中文版 V0
+# SweetWave Claude Skills 中文版 V0
 
 SweetWave 是一套基于 Claude Code `~/.claude/skills` 的个人级 AI Coding Workflow。
 
@@ -111,24 +111,35 @@ claude
 
 ```txt
 CLAUDE.md
-docs/sweetwave/
-  00-brief/BRIEF.md
-  01-prd/PRD.md
-  02-design/USER_FLOW.md
-  02-design/PAGE_MAP.md
-  02-design/INTERACTION.md
-  03-architecture/ARCHITECTURE.md
-  03-architecture/API_CONTRACT.md
-  03-architecture/DATA_MODEL.md
-  04-spec/DEV_SPEC.md
-  05-task/TASKS.md
-  06-qa/TEST_REPORT.md
-  07-release/RELEASE_CHECKLIST.md
-  07-release/CHANGELOG.md
-  07-release/ROLLBACK_PLAN.md
-  08-retro/RETRO.md
+.wave/
   LESSONS.md
+  STATUS.md
+  MODULE_MAP.md
+  brief/
+    INIT-BRIEF.md
+  prd/
+    INIT-PRD.md
+  specs/
+    README.md
+  release/
+    README.md
+  retro/
+    README.md
 ```
+
+`.wave/` 是 SweetWave 在项目内的工作区。后续模块化规格会挂在 `.wave/specs/{module}/` 下，例如：
+
+```txt
+.wave/specs/product-detail/
+  MODULE.md
+  DESIGN.md
+  ARCH.md
+  SPEC.md
+  TASKS.md
+  TEST_REPORT.md
+```
+
+文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-BRIEF.md`、`INIT-PRD.md`、`CHECKOUT-PRD.md`。
 
 ## 7. 设计原则
 
@@ -137,7 +148,7 @@ docs/sweetwave/
 3. **先计划后实现**：复杂开发必须先输出实现计划，再进行代码修改。
 4. **验证闭环**：开发完成必须报告 typecheck / lint / test / build 的执行结果。
 5. **审查独立**：`/sw-review` 默认只审查当前 diff，不直接修改代码。
-6. **状态机可选**：`/sw-run` 可以按 `TASKS.md` 状态连续推进，提供断点恢复、验证质量门、审查质量门和 `LESSONS.md` 长期记忆。
+6. **状态机可选**：`/sw-run` 可以按 `TASKS.md` 状态连续推进，提供断点恢复、验证质量门、审查质量门和 `.wave/LESSONS.md` 长期记忆。
 7. **发布谨慎**：`/sw-release` 默认只生成发布清单、变更日志和回滚方案，不执行生产部署。
 8. **个人级复用**：skills 安装在 `~/.claude/skills`，项目产物留在当前 repo。
 

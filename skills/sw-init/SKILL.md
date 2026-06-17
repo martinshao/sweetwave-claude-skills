@@ -45,37 +45,62 @@ Git 状态：
 
 ```txt
 CLAUDE.md
-docs/sweetwave/00-brief/BRIEF.md
-docs/sweetwave/01-prd/PRD.md
-docs/sweetwave/02-design/USER_FLOW.md
-docs/sweetwave/02-design/PAGE_MAP.md
-docs/sweetwave/02-design/INTERACTION.md
-docs/sweetwave/03-architecture/ARCHITECTURE.md
-docs/sweetwave/03-architecture/API_CONTRACT.md
-docs/sweetwave/03-architecture/DATA_MODEL.md
-docs/sweetwave/04-spec/DEV_SPEC.md
-docs/sweetwave/05-task/TASKS.md
-docs/sweetwave/06-qa/TEST_REPORT.md
-docs/sweetwave/07-release/RELEASE_CHECKLIST.md
-docs/sweetwave/07-release/CHANGELOG.md
-docs/sweetwave/07-release/ROLLBACK_PLAN.md
-docs/sweetwave/08-retro/RETRO.md
-docs/sweetwave/LESSONS.md
+.wave/
+  LESSONS.md
+  STATUS.md
+  MODULE_MAP.md
+  brief/
+    INIT-BRIEF.md
+  prd/
+    INIT-PRD.md
+  specs/
+    README.md
+  release/
+    README.md
+  retro/
+    README.md
 ```
 
 ## 工作流程
 
 1. 分析当前项目类型、包管理器、框架、已有脚本、测试和构建方式。
-2. 创建缺失的 `docs/sweetwave/*` 目录和初始文档。
+2. 创建缺失的 `.wave/*` 目录和初始文档。
 3. 创建或更新 `CLAUDE.md`，保持简洁，只写长期有效的项目规则：
    - 包管理器
    - dev / typecheck / lint / test / build 命令
    - 架构边界
    - AI Coding 规则
    - 禁止操作
-4. 如果已有文档，不要粗暴覆盖；保留用户已有内容，并补充缺失章节。
-5. 最后总结创建或更新了哪些文件，并给出下一步命令。
-6. `LESSONS.md` 用于沉淀跨任务仍然有效的架构决策、踩坑记录和业务规则确认，不写常规流水账。
+4. 如果发现旧版 `docs/sweetwave/`，不要删除或迁移；只在总结中提示“检测到旧版目录，后续可单独迁移”。
+5. 如果已有文档，不要粗暴覆盖；保留用户已有内容，并补充缺失章节。
+6. 最后总结创建或更新了哪些文件，并给出下一步命令。
+7. `.wave/LESSONS.md` 用于沉淀跨任务仍然有效的架构决策、踩坑记录和业务规则确认，不写常规流水账。
+
+## 新目录规范
+
+- `.wave/` 是 SweetWave 在项目内的工作区，承载 AI workflow 产物。
+- `.wave/brief/` 存放产品简报，初始简报命名为 `INIT-BRIEF.md`。
+- `.wave/prd/` 存放 PRD，初始 PRD 命名为 `INIT-PRD.md`。
+- `.wave/specs/` 预留给后续模块化规格目录，例如 `.wave/specs/product-detail/`。
+- `.wave/MODULE_MAP.md` 预留给后续 `/sw-map` 生成模块拆分和依赖关系。
+- `.wave/release/` 和 `.wave/retro/` 按版本或发布对象继续分目录或文件管理。
+- 文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-BRIEF.md`、`CHECKOUT-PRD.md`。
+
+## 模板映射
+
+如可读取全局模板，按以下关系初始化：
+
+```txt
+CLAUDE_TEMPLATE.md -> CLAUDE.md
+LESSONS_TEMPLATE.md -> .wave/LESSONS.md
+STATUS_TEMPLATE.md -> .wave/STATUS.md
+MODULE_MAP_TEMPLATE.md -> .wave/MODULE_MAP.md
+BRIEF_TEMPLATE.md -> .wave/brief/INIT-BRIEF.md
+PRD_TEMPLATE.md -> .wave/prd/INIT-PRD.md
+WAVE_SPECS_README_TEMPLATE.md -> .wave/specs/README.md
+WAVE_RELEASE_README_TEMPLATE.md -> .wave/release/README.md
+WAVE_RETRO_README_TEMPLATE.md -> .wave/retro/README.md
+```
 
 ## 规则
 

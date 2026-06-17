@@ -59,6 +59,6 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 3. 开始编码前必须先输出实现计划。
 4. 声称完成前必须给出验证证据。
 5. 使用 `/sw-run` 时，任务必须通过验证质量门和审查质量门后才能标记为 `[x]`。
-6. 重要经验写入 `docs/sweetwave/LESSONS.md`，供后续任务读取。
+6. 重要经验写入 `.wave/LESSONS.md`，供后续任务读取。
 7. 发布类 skill 默认不执行生产部署命令。
 8. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。
