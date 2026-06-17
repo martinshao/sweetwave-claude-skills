@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="1280" viewBox="0 0 1680 1280" role="img" aria-labelledby="title desc">
+  <title id="title">SweetWave 模块化 Workflow 工作状态流转图</title>
+  <desc id="desc">展示 SweetWave 从 .wave 工作区初始化、PRD、模块地图、模块级设计架构规格任务，到 sw-run 状态机、质量门、长期记忆、发布复盘的完整工作状态流转。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #18212f; }
+      .subtitle { font: 400 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #52616b; }
+      .lane { fill: #ffffff; stroke: #d8dee9; stroke-width: 1.5; rx: 16; }
+      .lane-title { font: 700 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #243b53; }
+      .node { fill: #ffffff; stroke: #9fb3c8; stroke-width: 2; rx: 12; }
+      .workspace { fill: #fff8e6; stroke: #d69e2e; }
+      .doc { fill: #eef7ff; stroke: #2f80ed; }
+      .module { fill: #effcf6; stroke: #2f9e44; }
+      .run { fill: #f3f0ff; stroke: #7048e8; }
+      .gate { fill: #fff0f0; stroke: #e03131; }
+      .memory { fill: #edf7f2; stroke: #087f5b; }
+      .release { fill: #f8f0fc; stroke: #9c36b5; }
+      .side { fill: #edf2f7; stroke: #829ab1; }
+      .node-title { font: 700 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2933; }
+      .node-sub { font: 400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #52616b; }
+      .cmd { font: 700 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #334e68; }
+      .path { font: 700 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #334e68; }
+      .small { font: 400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #627d98; }
+      .label { fill: #f8fafc; stroke: #d8dee9; stroke-width: 1; rx: 8; }
+      .label-text { font: 600 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #334e68; }
+      .arrow { fill: none; stroke: #486581; stroke-width: 2.3; marker-end: url(#arrow); }
+      .soft { fill: none; stroke: #829ab1; stroke-width: 2; stroke-dasharray: 8 7; marker-end: url(#soft); }
+      .ok { fill: none; stroke: #2f9e44; stroke-width: 2.3; marker-end: url(#ok); }
+      .warn { fill: none; stroke: #e03131; stroke-width: 2.3; marker-end: url(#warn); }
+    </style>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#486581"/>
+    </marker>
+    <marker id="soft" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#829ab1"/>
+    </marker>
+    <marker id="ok" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2f9e44"/>
+    </marker>
+    <marker id="warn" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#e03131"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1680" height="1280"/>
+
+  <text class="title" x="72" y="70">SweetWave 模块化 Workflow 工作状态流转图</text>
+  <text class="subtitle" x="72" y="102">从 .wave 工作区到模块规格，再由 /sw-run 按 TASKS.md 状态推进，实现断点恢复、质量门和长期记忆。</text>
+
+  <rect class="lane" x="54" y="138" width="1572" height="164"/>
+  <text class="lane-title" x="84" y="176">0. 工作区接入与观察</text>
+
+  <rect class="node side" x="100" y="210" width="190" height="64"/>
+  <text class="node-title" x="122" y="235">帮助入口</text>
+  <text class="cmd" x="122" y="257">/sw-help</text>
+
+  <rect class="node workspace" x="380" y="200" width="250" height="84"/>
+  <text class="node-title" x="402" y="226">初始化工作区</text>
+  <text class="cmd" x="402" y="249">/sw-init</text>
+  <text class="path" x="402" y="270">.wave/</text>
+
+  <rect class="node side" x="735" y="200" width="280" height="84"/>
+  <text class="node-title" x="757" y="226">规则与长期记忆</text>
+  <text class="path" x="757" y="249">CLAUDE.md</text>
+  <text class="path" x="757" y="270">.wave/LESSONS.md</text>
+
+  <rect class="node side" x="1130" y="200" width="265" height="84"/>
+  <text class="node-title" x="1152" y="226">状态观察</text>
+  <text class="cmd" x="1152" y="249">/sw-status</text>
+  <text class="node-sub" x="1152" y="270">检查 .wave 与模块进度</text>
+
+  <path class="arrow" d="M290 242 C322 242, 348 242, 380 242"/>
+  <path class="arrow" d="M630 242 C665 242, 700 242, 735 242"/>
+  <path class="soft" d="M1015 242 C1050 242, 1090 242, 1130 242"/>
+
+  <rect class="lane" x="54" y="338" width="1572" height="316"/>
+  <text class="lane-title" x="84" y="376">1. 文档先行：从 PRD 到模块地图</text>
+
+  <rect class="node doc" x="90" y="430" width="190" height="86"/>
+  <text class="node-title" x="112" y="457">产品简报</text>
+  <text class="cmd" x="112" y="480">/sw-brief</text>
+  <text class="path" x="112" y="501">.wave/brief/*</text>
+
+  <rect class="node doc" x="350" y="430" width="190" height="86"/>
+  <text class="node-title" x="372" y="457">产品 PRD</text>
+  <text class="cmd" x="372" y="480">/sw-prd</text>
+  <text class="path" x="372" y="501">.wave/prd/*</text>
+
+  <rect class="node module" x="610" y="420" width="230" height="106"/>
+  <text class="node-title" x="632" y="447">模块拆分</text>
+  <text class="cmd" x="632" y="470">/sw-map [PRD]</text>
+  <text class="path" x="632" y="492">.wave/MODULE_MAP.md</text>
+  <text class="path" x="632" y="512">.wave/specs/{module}/</text>
+
+  <rect class="node gate" x="610" y="557" width="230" height="52"/>
+  <text class="node-title" x="632" y="579">边界歧义?</text>
+  <text class="node-sub" x="632" y="600">高风险问题先确认</text>
+
+  <rect class="node module" x="930" y="404" width="250" height="240"/>
+  <text class="node-title" x="952" y="432">模块目录产物</text>
+  <text class="path" x="952" y="459">.wave/specs/product-detail/</text>
+  <text class="path" x="972" y="486">MODULE.md</text>
+  <text class="path" x="972" y="510">DESIGN.md</text>
+  <text class="path" x="972" y="534">ARCH.md</text>
+  <text class="path" x="972" y="558">SPEC.md</text>
+  <text class="path" x="972" y="582">TASKS.md</text>
+  <text class="path" x="972" y="606">TEST_REPORT.md</text>
+
+  <rect class="node doc" x="1280" y="412" width="240" height="220"/>
+  <text class="node-title" x="1302" y="440">模块级规格生成</text>
+  <text class="cmd" x="1302" y="467">/sw-design [module]</text>
+  <text class="cmd" x="1302" y="493">/sw-arch [module]</text>
+  <text class="cmd" x="1302" y="519">/sw-spec [module]</text>
+  <text class="cmd" x="1302" y="545">/sw-task [module]</text>
+  <text class="node-sub" x="1302" y="578">无参数：处理所有</text>
+  <text class="node-sub" x="1302" y="600">planned / active 模块</text>
+
+  <path class="arrow" d="M280 473 C305 473, 325 473, 350 473"/>
+  <path class="arrow" d="M540 473 C565 473, 585 473, 610 473"/>
+  <path class="warn" d="M725 526 C725 538, 725 545, 725 557"/>
+  <path class="ok" d="M840 473 C875 473, 895 473, 930 473"/>
+  <path class="arrow" d="M1180 524 C1215 524, 1245 524, 1280 524"/>
+  <path class="warn" d="M610 583 C525 583, 505 525, 540 498"/>
+
+  <rect class="lane" x="54" y="690" width="1572" height="300"/>
+  <text class="lane-title" x="84" y="728">2. /sw-run 状态机：按模块任务推进</text>
+
+  <rect class="node run" x="90" y="790" width="210" height="92"/>
+  <text class="node-title" x="112" y="817">执行范围解析</text>
+  <text class="cmd" x="112" y="840">/sw-run [module]</text>
+  <text class="cmd" x="112" y="862">/sw-run --all</text>
+
+  <rect class="node side" x="370" y="775" width="250" height="122"/>
+  <text class="node-title" x="392" y="803">任务状态源</text>
+  <text class="path" x="392" y="827">.wave/specs/{module}/TASKS.md</text>
+  <text class="node-sub" x="392" y="852">[ ] / [NEW] / [CHANGED]</text>
+  <text class="node-sub" x="392" y="874">[x] / [DROPPED]</text>
+
+  <rect class="node run" x="700" y="790" width="210" height="92"/>
+  <text class="node-title" x="722" y="817">输出计划</text>
+  <text class="node-sub" x="722" y="840">目标 / 范围 / 风险</text>
+  <text class="node-sub" x="722" y="862">必要时暂停确认</text>
+
+  <rect class="node run" x="990" y="790" width="210" height="92"/>
+  <text class="node-title" x="1012" y="817">实现任务</text>
+  <text class="cmd" x="1012" y="840">/sw-work 等价流程</text>
+  <text class="node-sub" x="1012" y="862">最小可工作改动</text>
+
+  <rect class="node side" x="1290" y="775" width="230" height="122"/>
+  <text class="node-title" x="1312" y="803">跳过任务</text>
+  <text class="node-sub" x="1312" y="828">[x] 已完成</text>
+  <text class="node-sub" x="1312" y="851">[DROPPED] 已废弃</text>
+  <text class="node-sub" x="1312" y="874">继续找下一个</text>
+
+  <path class="arrow" d="M300 836 C330 836, 340 836, 370 836"/>
+  <path class="arrow" d="M620 822 C650 822, 670 822, 700 822"/>
+  <path class="ok" d="M910 836 C940 836, 960 836, 990 836"/>
+  <path class="soft" d="M620 862 C805 952, 1110 952, 1290 862"/>
+  <path class="soft" d="M1520 836 C1580 930, 280 960, 195 882"/>
+
+  <rect class="lane" x="54" y="1024" width="1572" height="180"/>
+  <text class="lane-title" x="84" y="1062">3. 质量门、完成标记与下一轮</text>
+
+  <rect class="node gate" x="110" y="1102" width="210" height="72"/>
+  <text class="node-title" x="132" y="1129">验证质量门</text>
+  <text class="cmd" x="132" y="1152">/sw-verify</text>
+
+  <rect class="node gate" x="405" y="1102" width="210" height="72"/>
+  <text class="node-title" x="427" y="1129">审查质量门</text>
+  <text class="cmd" x="427" y="1152">/sw-review</text>
+
+  <rect class="node module" x="700" y="1102" width="230" height="72"/>
+  <text class="node-title" x="722" y="1129">标记完成</text>
+  <text class="node-sub" x="722" y="1152">TASKS.md 写入 [x]</text>
+
+  <rect class="node memory" x="1015" y="1102" width="220" height="72"/>
+  <text class="node-title" x="1037" y="1129">长期记忆</text>
+  <text class="path" x="1037" y="1152">.wave/LESSONS.md</text>
+
+  <rect class="node release" x="1320" y="1102" width="220" height="72"/>
+  <text class="node-title" x="1342" y="1129">发布复盘</text>
+  <text class="cmd" x="1342" y="1152">/sw-release /sw-retro</text>
+
+  <path class="arrow" d="M1095 882 C1095 988, 215 988, 215 1102"/>
+  <path class="ok" d="M320 1138 C350 1138, 375 1138, 405 1138"/>
+  <path class="ok" d="M615 1138 C645 1138, 670 1138, 700 1138"/>
+  <path class="ok" d="M930 1138 C960 1138, 985 1138, 1015 1138"/>
+  <path class="ok" d="M1235 1138 C1265 1138, 1290 1138, 1320 1138"/>
+  <path class="warn" d="M215 1174 C215 1225, 1095 1225, 1095 882"/>
+  <rect class="label" x="275" y="1200" width="250" height="30"/>
+  <text class="label-text" x="295" y="1220">验证失败 / 审查阻塞：返工</text>
+  <path class="soft" d="M1125 1174 C1125 1240, 500 1240, 495 897"/>
+  <rect class="label" x="910" y="1218" width="210" height="30"/>
+  <text class="label-text" x="930" y="1238">还有任务：继续下一个</text>
+
+  <text class="small" x="72" y="1260">核心产物：.wave/brief、.wave/prd、.wave/MODULE_MAP.md、.wave/specs/{module}/MODULE.md / DESIGN.md / ARCH.md / SPEC.md / TASKS.md / TEST_REPORT.md、.wave/LESSONS.md。</text>
+</svg>
