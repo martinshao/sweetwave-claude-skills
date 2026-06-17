@@ -27,8 +27,10 @@ $ARGUMENTS
 
 读取：
 
-- `docs/sweetwave/05-task/TASKS.md`
-- `docs/sweetwave/06-qa/TEST_REPORT.md`
+- `.wave/MODULE_MAP.md`
+- `.wave/specs/*/TASKS.md`
+- `.wave/specs/*/TEST_REPORT.md`
+- `.wave/LESSONS.md`
 - 当前 git log / diff
 - 如存在，读取已有 changelog 或 release notes
 
@@ -37,9 +39,9 @@ $ARGUMENTS
 创建或更新：
 
 ```txt
-docs/sweetwave/07-release/RELEASE_CHECKLIST.md
-docs/sweetwave/07-release/CHANGELOG.md
-docs/sweetwave/07-release/ROLLBACK_PLAN.md
+.wave/release/{version}/RELEASE_CHECKLIST.md
+.wave/release/{version}/CHANGELOG.md
+.wave/release/{version}/ROLLBACK_PLAN.md
 ```
 
 ## 工作流程
@@ -64,4 +66,5 @@ docs/sweetwave/07-release/ROLLBACK_PLAN.md
 - 不要创建 git tag，除非用户明确要求。
 - 不要推送代码。
 - 明确标注需要人工确认的事项。
+- 只使用 `.wave/*` 作为 SweetWave 工作区。
 - 输出语言使用中文。

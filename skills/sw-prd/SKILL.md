@@ -32,10 +32,10 @@ $ARGUMENTS
 
 优先读取：
 
-- `docs/sweetwave/00-brief/BRIEF.md`
+- `.wave/brief/*.md`
 - 用户本次输入的补充信息
 - 用户输入中指向的需求文档或目录
-- 如存在，读取当前已有 `docs/sweetwave/01-prd/PRD.md`
+- 如存在，读取当前已有 `.wave/prd/*-PRD.md`
 
 如果用户提供的是目录路径：
 
@@ -46,7 +46,7 @@ $ARGUMENTS
 如果用户输入以 `--change` 开头：
 
 - 进入需求变更模式。
-- 必须先读取已有 `docs/sweetwave/01-prd/PRD.md`。
+- 必须先读取已有 `.wave/prd/{SCOPE}-PRD.md`。
 - 将变更内容合并进 PRD，并在需求版本、功能需求、验收标准、风险与待确认问题中体现变化。
 - 不要丢失已有仍然有效的需求。
 
@@ -55,7 +55,7 @@ $ARGUMENTS
 创建或更新：
 
 ```txt
-docs/sweetwave/01-prd/PRD.md
+.wave/prd/{SCOPE}-PRD.md
 ```
 
 ## 工作流程
@@ -64,7 +64,7 @@ docs/sweetwave/01-prd/PRD.md
    - 普通模式：根据产品简报、用户输入或需求文档生成 PRD。
    - 变更模式：根据 `--change` 后的说明更新已有 PRD。
 2. 收集需求源：
-   - 阅读 `BRIEF.md`、用户补充信息、用户指定的文档或目录。
+   - 阅读 `.wave/brief/*.md`、用户补充信息、用户指定的文档或目录。
    - 如果有多个需求文件，全部阅读后合并分析。
 3. 获取项目上下文：
    - 从 `package.json`、workspace 配置、目录名等线索提取项目名。
@@ -159,4 +159,6 @@ docs/sweetwave/01-prd/PRD.md
 - 功能需求和验收标准必须有稳定编号，方便后续 `/sw-design`、`/sw-spec`、`/sw-task` 引用。
 - 如果需求很大，必须建议拆成多个独立 feature 或阶段，避免一个 PRD 覆盖过大的交付范围。
 - 明确区分：事实、用户明确要求、合理假设、待确认问题。
+- 默认输出 `.wave/prd/INIT-PRD.md`；如用户输入提供明确范围名，使用 `{SCOPE}-PRD.md`。
+- 只使用 `.wave/*` 作为 SweetWave 工作区。
 - 输出语言使用中文。

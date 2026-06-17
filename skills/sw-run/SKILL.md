@@ -2,7 +2,7 @@
 name: sw-run
 description: 按 SweetWave 状态机连续执行 TASKS.md 中的任务，提供断点恢复、质量门和长期记忆。
 argument-hint: >-
-  可选：TASK-ID、任务范围或 --all
+  可选：module-id、TASK-ID、任务范围或 --all
 disable-model-invocation: true
 allowed-tools:
   - Read
@@ -55,13 +55,14 @@ $ARGUMENTS
 读取：
 
 - `CLAUDE.md`
-- `docs/sweetwave/01-prd/PRD.md`
-- `docs/sweetwave/02-design/*`
-- `docs/sweetwave/03-architecture/*`
-- `docs/sweetwave/04-spec/DEV_SPEC.md`
-- `docs/sweetwave/05-task/TASKS.md`
-- `docs/sweetwave/06-qa/TEST_REPORT.md`，如果存在
-- `docs/sweetwave/LESSONS.md`，如果存在
+- `.wave/MODULE_MAP.md`
+- `.wave/specs/{module}/MODULE.md`
+- `.wave/specs/{module}/DESIGN.md`
+- `.wave/specs/{module}/ARCH.md`
+- `.wave/specs/{module}/SPEC.md`
+- `.wave/specs/{module}/TASKS.md`
+- `.wave/specs/{module}/TEST_REPORT.md`，如果存在
+- `.wave/LESSONS.md`，如果存在
 
 ## 状态标记
 
@@ -131,10 +132,13 @@ flowchart TD
 ## 工作流程
 
 1. 解析执行范围：
-   - 无参数：执行下一个未完成任务。
-   - `TASK-ID`：只执行指定任务。
-   - `--all`：按依赖顺序连续执行所有未完成任务。
-2. 读取任务清单，跳过已完成或废弃任务。
+   - 无参数：执行所有模块中的下一个未完成任务。
+   - `{module}`：执行指定模块中的下一个未完成任务。
+   - `{module} TASK-ID`：只执行指定模块的指定任务。
+   - `TASK-ID`：遍历 `.wave/specs/*/TASKS.md` 查找唯一匹配任务。
+   - `--all`：按依赖顺序连续执行所有模块的所有未完成任务。
+   - `{module} --all`：按依赖顺序连续执行指定模块的所有未完成任务。
+2. 读取 `.wave/specs/{module}/TASKS.md`，跳过已完成或废弃任务。
 3. 分析依赖关系：
    - 有显式依赖、同文件或同模块改动，串行执行。
    - 无依赖且修改范围隔离，可建议并行，但默认仍以串行为主，除非用户明确授权并行。
@@ -146,7 +150,7 @@ flowchart TD
 5. 验证质量门：
    - 执行任务内列出的验证命令。
    - 选择最小相关的 typecheck / lint / test / build。
-   - 更新 `docs/sweetwave/06-qa/TEST_REPORT.md`。
+   - 更新 `.wave/specs/{module}/TEST_REPORT.md`。
    - 失败则修复后重跑；如需要大范围改动，暂停确认。
 6. 审查质量门：
    - 审查当前任务相关 diff。
@@ -157,7 +161,7 @@ flowchart TD
    - 只修改任务状态，不重写任务描述。
    - 修改后重新读取 `TASKS.md`，确认状态已写入。
 8. 记录长期记忆：
-   - 如有架构决策、踩坑、跨任务影响、环境特殊处理，追加到 `docs/sweetwave/LESSONS.md`。
+   - 如有架构决策、踩坑、跨任务影响、环境特殊处理，追加到 `.wave/LESSONS.md`。
    - 不记录常规开发流水账。
 9. 输出进度：
    - 当前任务结果。
@@ -190,4 +194,5 @@ flowchart TD
 - 不要跳过验证质量门。
 - 不要跳过审查质量门。
 - 没有写入 `[x]`，不要声称任务完成。
+- 只使用 `.wave/*` 作为 SweetWave 工作区。
 - 输出语言使用中文。

@@ -2,7 +2,7 @@
 name: sw-verify
 description: 使用测试、类型检查、lint、构建和验收标准验证 SweetWave 任务实现。
 argument-hint: >-
-  TASK-ID
+  可选：module-id TASK-ID；未提供 module 时按 TASK-ID 在所有模块中查找唯一任务
 disable-model-invocation: true
 allowed-tools:
   - Read
@@ -43,8 +43,8 @@ $ARGUMENTS
 读取：
 
 - `CLAUDE.md`
-- `docs/sweetwave/05-task/TASKS.md`
-- `docs/sweetwave/04-spec/DEV_SPEC.md`
+- `.wave/specs/{module}/TASKS.md`
+- `.wave/specs/{module}/SPEC.md`
 - 当前 git diff
 
 ## 当前 git diff 概览
@@ -53,27 +53,28 @@ $ARGUMENTS
 
 ## 工作流程
 
-1. 在 `TASKS.md` 中定位请求的任务。
-2. 阅读验收标准。
-3. 审查当前 git diff。
-4. 识别当前项目中最小且相关的验证命令。
-5. 运行对当前项目安全的验证命令：
+1. 从用户输入解析 `{module}` 和 `TASK-ID`；如果未提供模块，遍历 `.wave/specs/*/TASKS.md` 查找唯一匹配任务。
+2. 在 `.wave/specs/{module}/TASKS.md` 中定位请求的任务。
+3. 阅读验收标准。
+4. 审查当前 git diff。
+5. 识别当前项目中最小且相关的验证命令。
+6. 运行对当前项目安全的验证命令：
    - typecheck
    - lint
    - tests
    - build
    - task-specific commands
-6. 如果命令失败：
+7. 如果命令失败：
    - 报告具体失败信息
    - 判断可能根因
    - 推荐修复方向
    - 不要隐藏或忽略失败
-7. 创建或更新：
+8. 创建或更新：
 
 ```txt
-docs/sweetwave/06-qa/TEST_REPORT.md
+.wave/specs/{module}/TEST_REPORT.md
 ```
-8. 给出质量门结论：
+9. 给出质量门结论：
    - `PASSED`：验收标准和验证命令通过，可进入 `/sw-review`。
    - `FAILED`：存在失败项，不得标记任务完成。
    - `NEEDS_MANUAL`：存在必须人工确认的验收项。
@@ -109,4 +110,5 @@ docs/sweetwave/06-qa/TEST_REPORT.md
 - 如果需要大范围修复，先征求用户确认。
 - 验证证据比乐观总结更重要。
 - 验证未通过时，不要建议把任务标记为 `[x]`。
+- 只使用 `.wave/*` 作为 SweetWave 工作区。
 - 输出语言使用中文。

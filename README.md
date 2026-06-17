@@ -12,6 +12,7 @@ SweetWave 是一套基于 Claude Code `~/.claude/skills` 的个人级 AI Coding 
 /sw-init
 /sw-brief
 /sw-prd
+/sw-map
 /sw-design
 /sw-arch
 /sw-spec
@@ -93,6 +94,7 @@ claude
 /sw-init
 /sw-brief "我要做一个轻量 C 端商城，用于验证前端监控系统"
 /sw-prd
+/sw-map
 /sw-design
 /sw-arch
 /sw-spec
@@ -140,6 +142,15 @@ CLAUDE.md
 ```
 
 文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-BRIEF.md`、`INIT-PRD.md`、`CHECKOUT-PRD.md`。
+
+模块化节点支持显式模块参数；无参数时默认处理 `.wave/MODULE_MAP.md` 中所有 planned/active 模块：
+
+```txt
+/sw-design product-detail
+/sw-arch product-detail
+/sw-spec product-detail
+/sw-task product-detail
+```
 
 ## 7. 设计原则
 

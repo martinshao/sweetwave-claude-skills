@@ -2,7 +2,7 @@
 name: sw-review
 description: 审查当前 git diff 是否满足 SweetWave 文档、任务和工程质量要求。
 argument-hint: >-
-  可选：审查重点、任务 ID 或风险关注点
+  可选：module-id、任务 ID、审查重点或风险关注点
 disable-model-invocation: true
 allowed-tools:
   - Read
@@ -27,10 +27,11 @@ $ARGUMENTS
 
 - 当前 git diff
 - `CLAUDE.md`
-- `docs/sweetwave/01-prd/PRD.md`
-- `docs/sweetwave/04-spec/DEV_SPEC.md`
-- `docs/sweetwave/05-task/TASKS.md`
-- `docs/sweetwave/06-qa/TEST_REPORT.md`，如果存在
+- `.wave/MODULE_MAP.md`
+- `.wave/specs/{module}/MODULE.md`
+- `.wave/specs/{module}/SPEC.md`
+- `.wave/specs/{module}/TASKS.md`
+- `.wave/specs/{module}/TEST_REPORT.md`，如果存在
 
 ## 当前 git diff
 
@@ -82,4 +83,5 @@ $ARGUMENTS
 - 优先关注 correctness、架构边界、测试、风险。
 - Must Fix 未清零时，质量门必须是 `BLOCKED`。
 - 质量门未通过时，不要建议把任务标记为 `[x]`。
+- 只使用 `.wave/*` 作为 SweetWave 工作区。
 - 输出语言使用中文。

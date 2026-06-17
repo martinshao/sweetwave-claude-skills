@@ -7,9 +7,9 @@ allowed-tools:
   - Glob
   - Bash(git status)
   - Bash(git diff *)
-  - Bash(find docs/sweetwave -maxdepth 3 -type f 2>/dev/null | sort)
+  - Bash(find .wave -maxdepth 4 -type f 2>/dev/null | sort)
   - Bash(test *)
-  - Bash(grep -n "^- \\[\\|^状态：" docs/sweetwave/05-task/TASKS.md 2>/dev/null)
+  - Bash(grep -R -n "^- \\[\\|^状态：" .wave/specs 2>/dev/null)
 ---
 
 # SweetWave 状态检查
@@ -22,31 +22,30 @@ allowed-tools:
 
 ## SweetWave 文档文件
 
-!`find docs/sweetwave -maxdepth 3 -type f 2>/dev/null | sort || true`
+!`find .wave -maxdepth 4 -type f 2>/dev/null | sort || true`
 
 ## SweetWave 任务状态
 
-!`grep -n "^- \\[\|^状态：" docs/sweetwave/05-task/TASKS.md 2>/dev/null || true`
+!`grep -R -n "^- \\[\|^状态：" .wave/specs 2>/dev/null || true`
 
 ## 检查内容
 
 1. 是否已经执行 `/sw-init`。
 2. 是否存在 `CLAUDE.md`。
-3. 是否存在 `docs/sweetwave` 目录。
+3. 是否存在 `.wave` 目录。
 4. 检查以下核心产物是否存在且非空：
-   - `docs/sweetwave/00-brief/BRIEF.md`
-   - `docs/sweetwave/01-prd/PRD.md`
-   - `docs/sweetwave/02-design/USER_FLOW.md`
-   - `docs/sweetwave/02-design/PAGE_MAP.md`
-   - `docs/sweetwave/02-design/INTERACTION.md`
-   - `docs/sweetwave/03-architecture/ARCHITECTURE.md`
-   - `docs/sweetwave/03-architecture/API_CONTRACT.md`
-   - `docs/sweetwave/03-architecture/DATA_MODEL.md`
-   - `docs/sweetwave/04-spec/DEV_SPEC.md`
-   - `docs/sweetwave/05-task/TASKS.md`
-   - `docs/sweetwave/LESSONS.md`
+   - `.wave/LESSONS.md`
+   - `.wave/STATUS.md`
+   - `.wave/MODULE_MAP.md`
+   - `.wave/brief/*.md`
+   - `.wave/prd/*-PRD.md`
+   - `.wave/specs/{module}/MODULE.md`
+   - `.wave/specs/{module}/DESIGN.md`
+   - `.wave/specs/{module}/ARCH.md`
+   - `.wave/specs/{module}/SPEC.md`
+   - `.wave/specs/{module}/TASKS.md`
 5. 根据当前状态建议下一条 SweetWave 命令。
-6. 如果 `TASKS.md` 已存在，统计：
+6. 如果模块 `TASKS.md` 已存在，按模块统计：
    - 已完成任务 `[x]`
    - 待执行任务 `[ ]`
    - 新增任务 `[NEW]`
@@ -54,7 +53,7 @@ allowed-tools:
    - 废弃任务 `[DROPPED]`
 7. 如果存在未完成任务，建议用户选择：
    - 手动推进：`/sw-work TASK-ID`
-   - 状态机推进：`/sw-run TASK-ID` 或 `/sw-run --all`
+   - 状态机推进：`/sw-run {module} TASK-ID` 或 `/sw-run --all`
 
 ## 输出格式
 

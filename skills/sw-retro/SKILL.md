@@ -26,10 +26,11 @@ $ARGUMENTS
 
 读取：
 
-- `docs/sweetwave/07-release/RELEASE_CHECKLIST.md`
-- `docs/sweetwave/07-release/CHANGELOG.md`
-- `docs/sweetwave/07-release/ROLLBACK_PLAN.md`
-- `docs/sweetwave/06-qa/TEST_REPORT.md`
+- `.wave/release/{version}/RELEASE_CHECKLIST.md`
+- `.wave/release/{version}/CHANGELOG.md`
+- `.wave/release/{version}/ROLLBACK_PLAN.md`
+- `.wave/specs/*/TEST_REPORT.md`
+- `.wave/LESSONS.md`
 - 用户提供的线上反馈、事故记录、监控摘要或补充信息
 
 ## 输出文件
@@ -37,7 +38,7 @@ $ARGUMENTS
 创建或更新：
 
 ```txt
-docs/sweetwave/08-retro/RETRO.md
+.wave/retro/{version}-RETRO.md
 ```
 
 ## 工作流程
@@ -79,4 +80,5 @@ docs/sweetwave/08-retro/RETRO.md
 - 不要只做流水账。
 - 必须分析机制原因，而不是只归因于个人疏忽。
 - 行动项要可执行、可负责人化、可验证。
+- 只使用 `.wave/*` 作为 SweetWave 工作区。
 - 输出语言使用中文。

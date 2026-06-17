@@ -78,23 +78,24 @@
   <text class="node-sub" x="377" y="498">F/AC 编号</text>
 
   <rect class="node product" x="625" y="425" width="210" height="86"/>
-  <text class="node-title" x="647" y="454">产品设计</text>
-  <text class="cmd" x="647" y="477">/sw-design</text>
-  <text class="node-sub" x="647" y="498">流程与交互</text>
+  <text class="node-title" x="647" y="454">模块地图</text>
+  <text class="cmd" x="647" y="477">/sw-map</text>
+  <text class="node-sub" x="647" y="498">MODULE_MAP / specs</text>
 
   <rect class="node spec" x="905" y="425" width="220" height="86"/>
-  <text class="node-title" x="927" y="454">技术架构</text>
-  <text class="cmd" x="927" y="477">/sw-arch</text>
-  <text class="node-sub" x="927" y="498">API / 数据模型</text>
+  <text class="node-title" x="927" y="454">模块设计</text>
+  <text class="cmd" x="927" y="477">/sw-design [module]</text>
+  <text class="node-sub" x="927" y="498">DESIGN.md</text>
 
   <rect class="node spec" x="1195" y="425" width="220" height="86"/>
-  <text class="node-title" x="1217" y="454">开发规格</text>
-  <text class="cmd" x="1217" y="477">/sw-spec</text>
-  <text class="node-sub" x="1217" y="498">模块与验收</text>
+  <text class="node-title" x="1217" y="454">模块架构</text>
+  <text class="cmd" x="1217" y="477">/sw-arch [module]</text>
+  <text class="node-sub" x="1217" y="498">ARCH.md</text>
 
   <rect class="node spec" x="1465" y="425" width="110" height="86"/>
-  <text class="node-title" x="1485" y="454">任务</text>
-  <text class="cmd" x="1485" y="477">/sw-task</text>
+  <text class="node-title" x="1485" y="454">规格任务</text>
+  <text class="cmd" x="1485" y="477">/sw-spec</text>
+  <text class="node-sub" x="1485" y="498">/sw-task</text>
 
   <rect class="node gate" x="350" y="526" width="300" height="38"/>
   <text class="small" x="372" y="550">高风险歧义：先确认，再继续</text>
@@ -191,5 +192,5 @@
   <path class="arrow" d="M1545 1066 C1610 1120, 1420 1288, 680 1288"/>
   <path class="arrow" d="M680 1288 C715 1288, 745 1288, 780 1288"/>
   <path class="soft" d="M1000 1288 C1320 1288, 1550 1160, 1550 480 C1550 370, 230 350, 191 425"/>
-  <text class="small" x="72" y="1342">项目产物：CLAUDE.md、docs/sweetwave/00-brief 到 08-retro、LESSONS.md。/sw-status 可在任意阶段观察进度和建议下一步。</text>
+  <text class="small" x="72" y="1342">项目产物：CLAUDE.md、.wave/brief、.wave/prd、.wave/MODULE_MAP.md、.wave/specs、.wave/release、.wave/retro、.wave/LESSONS.md。/sw-status 可在任意阶段观察进度和建议下一步。</text>
 </svg>

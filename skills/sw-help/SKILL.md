@@ -16,6 +16,7 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 /sw-init
 → /sw-brief
 → /sw-prd
+→ /sw-map
 → /sw-design
 → /sw-arch
 → /sw-spec
@@ -41,10 +42,11 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 | `/sw-init` | 初始化当前项目的 SweetWave 文档结构和 CLAUDE.md |
 | `/sw-brief` | 把模糊想法收敛成产品简报 |
 | `/sw-prd` | 生成产品需求文档 PRD |
-| `/sw-design` | 生成用户流程、页面地图、交互说明 |
-| `/sw-arch` | 生成技术架构、API 契约、数据模型 |
-| `/sw-spec` | 生成开发规格文档 |
-| `/sw-task` | 把开发规格拆成可执行任务 |
+| `/sw-map` | 根据 PRD 拆分模块，生成 `.wave/MODULE_MAP.md` 和模块目录 |
+| `/sw-design [module]` | 生成模块用户流程、页面地图、交互说明 |
+| `/sw-arch [module]` | 生成模块技术架构、API 契约、数据模型 |
+| `/sw-spec [module]` | 生成模块开发规格文档 |
+| `/sw-task [module]` | 把模块开发规格拆成可执行任务 |
 | `/sw-work TASK-001` | 只实现一个任务 |
 | `/sw-verify TASK-001` | 用测试、构建、类型检查、lint 验证实现 |
 | `/sw-review` | 审查当前 git diff |
@@ -60,5 +62,6 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 4. 声称完成前必须给出验证证据。
 5. 使用 `/sw-run` 时，任务必须通过验证质量门和审查质量门后才能标记为 `[x]`。
 6. 重要经验写入 `.wave/LESSONS.md`，供后续任务读取。
-7. 发布类 skill 默认不执行生产部署命令。
-8. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。
+7. 模块级产物写入 `.wave/specs/{module}/`，只使用 `.wave/*` 作为 SweetWave 工作区。
+8. 发布类 skill 默认不执行生产部署命令。
+9. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。

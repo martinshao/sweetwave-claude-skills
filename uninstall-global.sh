@@ -5,7 +5,7 @@ SKILLS_TARGET="$HOME/.claude/skills"
 TEMPLATES_TARGET="$HOME/.claude/sweetwave/templates"
 
 echo "正在移除 SweetWave skills：$SKILLS_TARGET"
-for name in sw-help sw-status sw-init sw-brief sw-prd sw-design sw-arch sw-spec sw-task sw-work sw-verify sw-review sw-run sw-release sw-retro; do
+for name in sw-help sw-status sw-init sw-brief sw-prd sw-map sw-design sw-arch sw-spec sw-task sw-work sw-verify sw-review sw-run sw-release sw-retro; do
   rm -rf "$SKILLS_TARGET/$name"
   echo "  已移除 /$name"
 done

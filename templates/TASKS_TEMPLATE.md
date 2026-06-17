@@ -11,8 +11,9 @@
 
 ### 输入文档
 
-- docs/sweetwave/01-prd/PRD.md
-- docs/sweetwave/04-spec/DEV_SPEC.md
+- .wave/specs/{module}/MODULE.md
+- .wave/specs/{module}/SPEC.md
+- .wave/specs/{module}/ARCH.md
 
 ### 允许修改范围
 
