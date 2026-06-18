@@ -20,11 +20,15 @@ SweetWave Claude Skills 自身的功能演进记录在 [CHANGELOG.md](./CHANGELO
 /sw-arch
 /sw-spec
 /sw-task
-/sw-work [module] TASK-001
-/sw-verify [module] TASK-001
-/sw-review
 /sw-run [module] TASK-001
 /sw-run --all
+/sw-run [module] TASK-001 --stage implement
+/sw-frontend-engineer
+/sw-backend-engineer
+/sw-database-engineer
+/sw-security-engineer
+/sw-qa-engineer
+/sw-doc-sync
 /sw-release v0.1.0
 /sw-retro v0.1.0
 ```
@@ -104,9 +108,6 @@ claude
 /sw-arch
 /sw-spec
 /sw-task
-/sw-work [module] TASK-001
-/sw-verify [module] TASK-001
-/sw-review
 /sw-run --all
 /sw-release v0.1.0
 /sw-retro v0.1.0
@@ -131,6 +132,8 @@ CLAUDE.md
     INIT-PRD.md
   specs/
     README.md
+  qa/
+  security/
   release/
     README.md
   retro/
@@ -162,12 +165,19 @@ SweetWave 使用三层状态记忆支持跨会话恢复：
 .wave/RUN_STATE.md                 当前任务的执行阶段、Git 基线和恢复现场
 ```
 
-`/sw-task` 完成全部模块任务拆解后，会把工作流标记为 `READY_TO_RUN` 并记录物料指纹。
-即使隔一段时间再执行 `/sw-run`，也会先校验 Git 现场和规格物料，再从
+`/sw-task` 完成任务定义后，首次 `/sw-run` 会把工作流标记为 `READY_TO_RUN`
+并记录物料指纹。即使隔一段时间再执行，也会先校验 Git 现场和规格物料，再从
 `IMPLEMENTING`、`VERIFYING`、`REVIEWING` 或 `BLOCKED` 检查点继续。
 
 完整流转见
 [SweetWave 断点记忆与恢复流程图](./docs/sweetwave-checkpoint-recovery-workflow.svg)。
+
+`/sw-run` 已升级为 N1–N10 节点化自治编排器，会根据任务元数据调用同级
+Engineer Skills，并在验证、审查、风险 QA 和安全门全部满足后写入 `[x]`。
+`/sw-work`、`/sw-verify`、`/sw-review` 仅作为旧命令兼容入口。
+
+自治编排流程见
+[SweetWave 自治工程编排流程图](./docs/sweetwave-autonomous-run-workflow.svg)。
 
 文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-IDEA.md`、`INIT-BRIEF.md`、
 `INIT-PRD.md`、`CHECKOUT-PRD.md`。
@@ -185,16 +195,19 @@ SweetWave 使用三层状态记忆支持跨会话恢复：
 ## 7. 设计原则
 
 1. **文档先行**：PRD、开发规格、任务清单是 AI Coding 的核心上下文。
-2. **单任务执行**：`/sw-work` 一次只处理一个 `TASK`，避免改动范围失控。
+2. **单状态写入者**：初始化和任务定义生成后，只有 `/sw-run` 推进三层运行状态，
+   Engineer Skills 只返回结果。
 3. **先计划后实现**：复杂开发必须先输出实现计划，再进行代码修改。
 4. **验证闭环**：开发完成必须报告 typecheck / lint / test / build 的执行结果。
-5. **审查独立**：`/sw-review` 默认只审查当前 diff，不直接修改代码。
-6. **状态机可选**：`/sw-run` 可以按 `TASKS.md` 状态连续推进，提供断点恢复、验证质量门、审查质量门和 `.wave/LESSONS.md` 长期记忆。
+5. **角色路由**：任务按 frontend、backend、database 等角色进入专业 Engineer Skill。
+6. **自治状态机**：`/sw-run` 节点化推进实现、验证、审查、QA、安全和文档同步。
 7. **三层记忆**：`STATUS.md` 记录全局位置，`TASKS.md` 记录任务生命周期，
    `RUN_STATE.md` 记录执行现场和恢复命令。
 8. **恢复校验**：恢复任务前必须比较 Git 基线和物料指纹，避免使用过期规格继续开发。
-9. **发布谨慎**：`/sw-release` 默认只生成发布清单、变更日志和回滚方案，不执行生产部署。
-10. **个人级复用**：skills 安装在 `~/.claude/skills`，项目产物留在当前 repo。
+9. **风险驱动 QA**：普通任务执行最小质量门，高风险和模块完成场景执行完整 QA。
+10. **安全并行边界**：当前只识别并行候选，仍采用串行执行。
+11. **发布谨慎**：`/sw-release` 默认只生成发布清单、变更日志和回滚方案，不执行生产部署。
+12. **个人级复用**：skills 安装在 `~/.claude/skills`，项目产物留在当前 repo。
 
 ## 8. V0 边界
 
@@ -212,7 +225,7 @@ V3：SweetWave plugin，支持 /sw:prd /sw:work /sw:release
 SweetWave 的目标不是让 AI 随意写更多代码，而是把 AI 放入一套可控的软件工程闭环中：
 
 ```txt
-原始想法 → 产品简报 → PRD → 模块地图 → 产品设计 → 界面与原型设计 → 架构 → 开发规格 → 任务 → 实现 → 验证 → 审查 → 经验沉淀 → 发布 → 复盘
+原始想法 → 产品简报 → PRD → 模块地图 → 产品设计 → 界面与原型设计 → 架构 → 开发规格 → 任务 → 自治执行 → 风险 QA → 文档同步 → 发布 → 复盘
 ```
 
 真正提升质量的不是一次性生成，而是：

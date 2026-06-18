@@ -23,18 +23,18 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 → /sw-arch
 → /sw-spec
 → /sw-task
-→ /sw-work TASK-001
-→ /sw-verify TASK-001
-→ /sw-review
+→ /sw-run --all
 → /sw-release v0.1.0
 → /sw-retro v0.1.0
 ```
 
-如果希望由 SweetWave 按任务状态连续推进，可以使用可选状态机入口：
+如需只推进单个阶段：
 
 ```txt
-/sw-run TASK-001
-/sw-run --all
+/sw-run {module} TASK-001 --stage implement
+/sw-run {module} TASK-001 --stage verify
+/sw-run {module} TASK-001 --stage review
+/sw-run {module} TASK-001 --stage qa
 ```
 
 ## 命令说明
@@ -50,20 +50,26 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 | `/sw-arch [module]` | 生成模块技术架构、API 契约、数据模型 |
 | `/sw-spec [module]` | 生成模块开发规格文档 |
 | `/sw-task [module]` | 把模块开发规格拆成可执行任务 |
-| `/sw-work TASK-001` | 只实现一个任务 |
-| `/sw-verify TASK-001` | 用测试、构建、类型检查、lint 验证实现 |
-| `/sw-review` | 审查当前 git diff |
-| `/sw-run TASK-001` | 按状态机执行任务，包含断点恢复、验证质量门、审查质量门和 LESSONS 沉淀 |
+| `/sw-run TASK-001` | 自治执行任务，包含角色路由、断点恢复、质量门和状态写回 |
+| `/sw-work TASK-001` | 兼容入口，提示改用 `/sw-run --stage implement` |
+| `/sw-verify TASK-001` | 兼容入口，提示改用 `/sw-run --stage verify` |
+| `/sw-review TASK-001` | 兼容入口，提示改用 `/sw-run --stage review` |
+| `/sw-frontend-engineer` | 由 `/sw-run` 调用的前端实现角色 |
+| `/sw-backend-engineer` | 由 `/sw-run` 调用的后端实现角色 |
+| `/sw-database-engineer` | 由 `/sw-run` 调用的数据库实现角色 |
+| `/sw-security-engineer` | 由 `/sw-run` 调用的安全专项角色 |
+| `/sw-qa-engineer` | 由 `/sw-run` 调用的完整 QA 角色 |
+| `/sw-doc-sync` | 全部任务完成后的文档同步能力 |
 | `/sw-release v0.1.0` | 准备发布清单、变更日志、回滚方案 |
 | `/sw-retro v0.1.0` | 进行上线后复盘 |
 
 ## 核心规则
 
 1. 非 trivial 工作不要跳过文档阶段。
-2. `/sw-work` 一次只允许实现一个任务。
+2. `/sw-init` 初始化状态、`/sw-task` 创建任务定义，只有 `/sw-run` 推进运行期状态。
 3. 开始编码前必须先输出实现计划。
 4. 声称完成前必须给出验证证据。
-5. 使用 `/sw-run` 时，任务必须通过验证质量门和审查质量门后才能标记为 `[x]`。
+5. 任务必须通过验证、审查和按需 QA/安全门后才能标记为 `[x]`。
 6. `.wave/STATUS.md` 记录项目级进度和物料，`.wave/RUN_STATE.md` 记录当前执行现场，
    `TASKS.md` 记录任务生命周期。
 7. 恢复任务时先校验 Git 现场和物料指纹，规格变化后不得沿用旧验证结果。
@@ -72,3 +78,4 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 10. 模块级产物写入 `.wave/specs/{module}/`，只使用 `.wave/*` 作为 SweetWave 工作区。
 11. 发布类 skill 默认不执行生产部署命令。
 12. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。
+13. 第一版只识别并行候选，实际任务仍串行执行。

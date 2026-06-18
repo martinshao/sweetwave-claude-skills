@@ -58,6 +58,8 @@ CLAUDE.md
     INIT-PRD.md
   specs/
     README.md
+  qa/
+  security/
   release/
     README.md
   retro/
@@ -91,6 +93,8 @@ CLAUDE.md
 - `.wave/STATUS.md` 记录阶段、模块进度、物料清单和下一步命令。
 - `.wave/RUN_STATE.md` 初始化为 `IDLE`，只记录一个当前任务的执行现场。
 - `.wave/release/` 和 `.wave/retro/` 按版本或发布对象继续分目录或文件管理。
+- `.wave/qa/` 保存任务、模块和发布级完整 QA 报告。
+- `.wave/security/` 保存任务级安全专项报告。
 - 文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-IDEA.md`、`INIT-BRIEF.md`、`CHECKOUT-PRD.md`。
 - `INIT-IDEA.md` 只提供最小提示，保留给用户粘贴原始想法；初始化时不要替用户扩写或结构化。
 

@@ -13,6 +13,13 @@
 
 ### Added
 
+- 新增节点化 `/sw-run`，将恢复、调度、角色路由、实现、验证、审查、风险 QA、
+  检查点、上下文重建和完成同步拆分为 N1–N10。
+- 新增 `/sw-frontend-engineer`、`/sw-backend-engineer`、
+  `/sw-database-engineer`、`/sw-security-engineer`、`/sw-qa-engineer` 和
+  `/sw-doc-sync`。
+- 新增任务角色、涉及项目、风险等级、QA 策略和并行候选元数据。
+- 新增 `.wave/qa/`、`.wave/security/` 报告目录和发布候选摘要。
 - 新增三层断点记忆：`.wave/STATUS.md` 保存项目快照，模块 `TASKS.md` 保存任务
   生命周期，`.wave/RUN_STATE.md` 保存当前执行现场、物料基线和恢复命令。
 - 新增任务中间状态 `[IN_PROGRESS]`、`[VERIFYING]`、`[REVIEWING]`、`[BLOCKED]`，
@@ -32,10 +39,11 @@
 
 ### Changed
 
-- `/sw-task` 完成后同步生成 `READY_TO_RUN` 快照和规格物料指纹；`/sw-run` 启动时
-  优先恢复活动检查点，并校验 Git 现场与物料版本。
-- `/sw-work`、`/sw-verify`、`/sw-review` 现在共同维护任务检查点，手动分阶段执行
-  也可在质量门之间恢复。
+- `/sw-run` 成为三层运行状态的唯一写入者；`/sw-work`、`/sw-verify`、
+  `/sw-review` 改为对应 `--stage` 模式的兼容入口。
+- 任务完成顺序调整为实现、验证、审查、按需 QA/安全门全部通过后再写入 `[x]`。
+- `/sw-task` 只生成任务定义；`/sw-run` 启动时生成 `READY_TO_RUN` 快照和物料
+  指纹，并优先恢复活动检查点。
 - 项目内工作区统一迁移到 `.wave/`，不再使用旧的 `docs/sweetwave/` 产物路径。
 - 文档产物改为按阶段与模块组织：brief、PRD 使用范围前缀命名，模块规格统一存放在
   `.wave/specs/{module}/`。

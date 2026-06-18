@@ -54,6 +54,7 @@ allowed-tools:
 5. 读取 `.wave/STATUS.md` 和 `.wave/RUN_STATE.md`，检查三层状态是否一致：
    - 活动检查点的模块和任务必须存在。
    - `RUN_STATE.md` 阶段必须与 `TASKS.md` 生命周期匹配。
+   - 当前节点必须是 N1–N10，并与阶段和恢复命令一致。
    - `STATUS.md` 的当前任务、模块计数和下一步命令必须可解释。
    - 物料指纹变化时报告为 `STALE`，并建议重新规划或重新运行 `/sw-task`。
    - 比较 `TASKS.md` 时忽略生命周期状态行的标记变化，只检查任务定义是否变化。
@@ -68,9 +69,12 @@ allowed-tools:
    - 新增任务 `[NEW]`
    - 变更任务 `[CHANGED]`
    - 废弃任务 `[DROPPED]`
-8. 如果存在未完成任务且没有活动检查点，建议用户选择：
-   - 手动推进：`/sw-work TASK-ID`
-   - 状态机推进：`/sw-run {module} TASK-ID` 或 `/sw-run --all`
+   - 当前执行角色、风险等级和 QA 策略
+   - 距离上次完整 QA 的完成任务数
+8. 如果存在未完成任务且没有活动检查点，建议：
+   - 完整推进：`/sw-run {module} TASK-ID` 或 `/sw-run --all`
+   - 单阶段推进：`/sw-run {module} TASK-ID --stage implement|verify|review|qa`
+9. 检查 `.wave/qa/`、`.wave/security/` 报告和文档同步状态。
 
 ## 输出格式
 

@@ -30,6 +30,9 @@ $ARGUMENTS
 - `.wave/MODULE_MAP.md`
 - `.wave/specs/*/TASKS.md`
 - `.wave/specs/*/TEST_REPORT.md`
+- `.wave/qa/**/*-QA.md`
+- `.wave/security/**/*-SECURITY.md`
+- `.wave/release/RELEASE-CANDIDATE.md`
 - `.wave/LESSONS.md`
 - 当前 git log / diff
 - 如存在，读取已有 changelog 或 release notes

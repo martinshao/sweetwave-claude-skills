@@ -4,6 +4,11 @@
 
 - [ ] TASK-001
 预估：30min
+执行角色：frontend-engineer
+涉及项目：
+风险等级：medium
+QA 策略：auto
+并行策略：candidate
 依赖：无
 涉及范围：
 
@@ -40,6 +45,11 @@
 
 - [ ] TASK-002
 预估：30min
+执行角色：backend-engineer
+涉及项目：
+风险等级：medium
+QA 策略：auto
+并行策略：serial
 依赖：TASK-001
 涉及范围：
 
@@ -85,3 +95,12 @@
 
 `TASKS.md` 只记录任务生命周期；当前执行步骤、修改文件、验证结果和恢复命令写入
 `.wave/RUN_STATE.md`。
+
+## 任务元数据说明
+
+- `执行角色`：`frontend-engineer`、`backend-engineer`、`database-engineer`、
+  `security-engineer`、`qa-engineer`、`generic`
+- `风险等级`：`low`、`medium`、`high`、`critical`
+- `QA 策略`：`auto`、`required`、`skip`
+- `并行策略`：`serial`、`candidate`
+- 旧任务缺少字段时由 `/sw-run` 临时推断，不要求改写历史内容。

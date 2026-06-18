@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1320" viewBox="0 0 1800 1320" role="img" aria-labelledby="title desc">
+  <title id="title">SweetWave 自治工程编排流程</title>
+  <desc id="desc">展示节点化 sw-run 从断点恢复、任务调度、Engineer 路由、实现、验证、审查、风险 QA、安全门、检查点、上下文重建到文档同步的完整流程。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.lane{fill:#fff;stroke:#d8dee9;stroke-width:1.5;rx:16}
+      .title{font:700 34px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#18212f}
+      .subtitle{font:400 16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#52616b}
+      .lane-title{font:700 18px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#243b53}
+      .node{fill:#fff;stroke:#9fb3c8;stroke-width:2;rx:12}
+      .restore{fill:#eef7ff;stroke:#2f80ed}.dispatch{fill:#f3f0ff;stroke:#7048e8}
+      .work{fill:#effcf6;stroke:#2f9e44}.gate{fill:#fff8e6;stroke:#d69e2e}
+      .risk{fill:#fff0f0;stroke:#e03131}.done{fill:#edf7f2;stroke:#087f5b}
+      .memory{fill:#edf2f7;stroke:#829ab1}
+      .h{font:700 17px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#1f2933}
+      .t{font:400 13px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#52616b}
+      .cmd{font:700 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#334e68}
+      .path{font:700 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#334e68}
+      .small{font:400 12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#627d98}
+      .arrow{fill:none;stroke:#486581;stroke-width:2.3;marker-end:url(#a)}
+      .soft{fill:none;stroke:#829ab1;stroke-width:2;stroke-dasharray:8 7;marker-end:url(#s)}
+      .ok{fill:none;stroke:#2f9e44;stroke-width:2.3;marker-end:url(#o)}
+      .warn{fill:none;stroke:#e03131;stroke-width:2.3;marker-end:url(#w)}
+    </style>
+    <marker id="a" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#486581"/></marker>
+    <marker id="s" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#829ab1"/></marker>
+    <marker id="o" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#2f9e44"/></marker>
+    <marker id="w" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#e03131"/></marker>
+  </defs>
+
+  <rect class="bg" width="1800" height="1320"/>
+  <text class="title" x="72" y="68">SweetWave 自治工程编排流程</text>
+  <text class="subtitle" x="72" y="100">/sw-run 是唯一状态写入者；Engineer Skills 负责专业执行，质量门通过后才推进任务生命周期。</text>
+
+  <rect class="lane" x="50" y="136" width="1700" height="190"/>
+  <text class="lane-title" x="80" y="174">1. 恢复与调度</text>
+
+  <rect class="node restore" x="92" y="216" width="210" height="78"/>
+  <text class="h" x="114" y="244">N1 Restore</text>
+  <text class="cmd" x="114" y="270">/sw-run [scope]</text>
+
+  <rect class="node memory" x="380" y="198" width="270" height="114"/>
+  <text class="h" x="402" y="226">读取三层状态</text>
+  <text class="path" x="402" y="250">STATUS.md / TASKS.md</text>
+  <text class="path" x="402" y="273">RUN_STATE.md / Git</text>
+  <text class="t" x="402" y="296">校验物料指纹与现场</text>
+
+  <rect class="node restore" x="735" y="198" width="270" height="114"/>
+  <text class="h" x="757" y="226">N2 Schedule</text>
+  <text class="t" x="757" y="252">依赖满足的下一任务</text>
+  <text class="t" x="757" y="275">串行组 + 并行候选</text>
+  <text class="t" x="757" y="298">第一版仍串行执行</text>
+
+  <rect class="node memory" x="1090" y="198" width="270" height="114"/>
+  <text class="h" x="1112" y="226">阶段入口</text>
+  <text class="cmd" x="1112" y="250">--stage implement</text>
+  <text class="cmd" x="1112" y="273">verify / review / qa</text>
+  <text class="t" x="1112" y="298">先恢复，再进入指定节点</text>
+
+  <rect class="node risk" x="1445" y="208" width="230" height="94"/>
+  <text class="h" x="1467" y="236">恢复冲突</text>
+  <text class="t" x="1467" y="260">物料过期 / Git 不明</text>
+  <text class="t" x="1467" y="283">BLOCKED + 恢复命令</text>
+
+  <path class="arrow" d="M302 255 C330 255,350 255,380 255"/>
+  <path class="arrow" d="M650 255 C680 255,705 255,735 255"/>
+  <path class="arrow" d="M1005 255 C1035 255,1060 255,1090 255"/>
+  <path class="warn" d="M1360 255 C1390 255,1415 255,1445 255"/>
+
+  <rect class="lane" x="50" y="360" width="1700" height="260"/>
+  <text class="lane-title" x="80" y="398">2. 角色分发与实现</text>
+
+  <rect class="node dispatch" x="92" y="455" width="220" height="112"/>
+  <text class="h" x="114" y="483">N3 Dispatch</text>
+  <text class="t" x="114" y="509">读取执行角色</text>
+  <text class="t" x="114" y="532">缺失时临时推断</text>
+  <text class="t" x="114" y="555">跨主角色任务阻塞拆分</text>
+
+  <rect class="node dispatch" x="395" y="433" width="300" height="156"/>
+  <text class="h" x="417" y="461">Engineer Skills</text>
+  <text class="cmd" x="417" y="487">sw-frontend-engineer</text>
+  <text class="cmd" x="417" y="510">sw-backend-engineer</text>
+  <text class="cmd" x="417" y="533">sw-database-engineer</text>
+  <text class="cmd" x="417" y="556">generic → 通用实现</text>
+  <text class="t" x="417" y="579">只返回结果，不写状态</text>
+
+  <rect class="node work" x="780" y="443" width="260" height="136"/>
+  <text class="h" x="802" y="471">N4 Implement</text>
+  <text class="t" x="802" y="497">[IN_PROGRESS]</text>
+  <text class="t" x="802" y="520">校验修改范围</text>
+  <text class="t" x="802" y="543">记录 Engineer 结果</text>
+  <text class="t" x="802" y="566">完成 → [VERIFYING]</text>
+
+  <rect class="node memory" x="1125" y="443" width="260" height="136"/>
+  <text class="h" x="1147" y="471">单写入者</text>
+  <text class="path" x="1147" y="497">TASKS.md</text>
+  <text class="path" x="1147" y="520">RUN_STATE.md</text>
+  <text class="path" x="1147" y="543">STATUS.md</text>
+  <text class="t" x="1147" y="566">仅 /sw-run 更新</text>
+
+  <rect class="node risk" x="1470" y="455" width="205" height="112"/>
+  <text class="h" x="1492" y="483">实现阻塞</text>
+  <text class="t" x="1492" y="509">越界 / 歧义 / 高风险</text>
+  <text class="t" x="1492" y="532">保存步骤和修改文件</text>
+  <text class="t" x="1492" y="555">精确恢复命令</text>
+
+  <path class="arrow" d="M312 511 C340 511,365 511,395 511"/>
+  <path class="arrow" d="M695 511 C725 511,750 511,780 511"/>
+  <path class="soft" d="M1040 511 C1070 511,1095 511,1125 511"/>
+  <path class="warn" d="M1385 511 C1415 511,1440 511,1470 511"/>
+
+  <rect class="lane" x="50" y="654" width="1700" height="270"/>
+  <text class="lane-title" x="80" y="692">3. 质量门：验证、审查、风险 QA 与安全</text>
+
+  <rect class="node gate" x="92" y="754" width="230" height="118"/>
+  <text class="h" x="114" y="782">N5 Verify</text>
+  <text class="t" x="114" y="808">验收标准 + 最小验证</text>
+  <text class="t" x="114" y="831">更新 TEST_REPORT</text>
+  <text class="t" x="114" y="854">通过 → [REVIEWING]</text>
+
+  <rect class="node gate" x="405" y="754" width="230" height="118"/>
+  <text class="h" x="427" y="782">N6 Review</text>
+  <text class="t" x="427" y="808">当前任务 diff</text>
+  <text class="t" x="427" y="831">Must Fix 返回实现</text>
+  <text class="t" x="427" y="854">安全疑点进入专项门</text>
+
+  <rect class="node risk" x="718" y="738" width="280" height="150"/>
+  <text class="h" x="740" y="766">N7 QA Evaluate</text>
+  <text class="t" x="740" y="792">范围 / 风险 / 累积任务</text>
+  <text class="t" x="740" y="815">契约影响 / 用户流程</text>
+  <text class="cmd" x="740" y="840">sw-qa-engineer</text>
+  <text class="cmd" x="740" y="863">sw-security-engineer</text>
+
+  <rect class="node risk" x="1082" y="748" width="280" height="130"/>
+  <text class="h" x="1104" y="776">专项报告</text>
+  <text class="path" x="1104" y="802">.wave/qa/**</text>
+  <text class="path" x="1104" y="825">.wave/security/**</text>
+  <text class="t" x="1104" y="850">失败不得写 [x]</text>
+
+  <rect class="node done" x="1445" y="754" width="230" height="118"/>
+  <text class="h" x="1467" y="782">N8 Checkpoint</text>
+  <text class="t" x="1467" y="808">所有门禁通过</text>
+  <text class="t" x="1467" y="831">任务写为 [x]</text>
+  <text class="t" x="1467" y="854">同步计数与 LESSONS</text>
+
+  <path class="arrow" d="M322 813 C350 813,375 813,405 813"/>
+  <path class="arrow" d="M635 813 C665 813,688 813,718 813"/>
+  <path class="arrow" d="M998 813 C1028 813,1052 813,1082 813"/>
+  <path class="ok" d="M1362 813 C1392 813,1415 813,1445 813"/>
+  <path class="warn" d="M520 872 C520 930,910 930,910 579"/>
+
+  <rect class="lane" x="50" y="958" width="1700" height="250"/>
+  <text class="lane-title" x="80" y="996">4. 上下文重建与完成同步</text>
+
+  <rect class="node memory" x="92" y="1050" width="270" height="112"/>
+  <text class="h" x="114" y="1078">N9 Context Reload</text>
+  <text class="t" x="114" y="1104">最小恢复摘要</text>
+  <text class="t" x="114" y="1127">下一任务 / 必读规格</text>
+  <text class="t" x="114" y="1150">Git 基线 / 风险 / 命令</text>
+
+  <rect class="node restore" x="465" y="1050" width="250" height="112"/>
+  <text class="h" x="487" y="1078">还有任务?</text>
+  <text class="t" x="487" y="1104">是：回到 N2</text>
+  <text class="t" x="487" y="1127">否：进入 N10</text>
+  <text class="t" x="487" y="1150">活动检查点优先恢复</text>
+
+  <rect class="node done" x="818" y="1040" width="290" height="132"/>
+  <text class="h" x="840" y="1068">N10 Finish</text>
+  <text class="cmd" x="840" y="1094">sw-doc-sync</text>
+  <text class="t" x="840" y="1118">README / CLAUDE / LESSONS</text>
+  <text class="t" x="840" y="1141">Release Candidate 摘要</text>
+  <text class="t" x="840" y="1164">发布级 QA（按需）</text>
+
+  <rect class="node done" x="1210" y="1050" width="260" height="112"/>
+  <text class="h" x="1232" y="1078">READY_TO_RELEASE</text>
+  <text class="t" x="1232" y="1104">RUN_STATE → IDLE</text>
+  <text class="t" x="1232" y="1127">保留最近完成摘要</text>
+  <text class="cmd" x="1232" y="1150">下一步 /sw-release</text>
+
+  <path class="arrow" d="M362 1106 C392 1106,435 1106,465 1106"/>
+  <path class="arrow" d="M715 1106 C745 1106,788 1106,818 1106"/>
+  <path class="ok" d="M1108 1106 C1138 1106,1180 1106,1210 1106"/>
+  <path class="soft" d="M590 1050 C590 990,870 990,870 312"/>
+
+  <text class="small" x="72" y="1270">兼容入口：/sw-work、/sw-verify、/sw-review 只提示对应 /sw-run --stage 命令，不再直接执行或写状态。</text>
+  <text class="small" x="72" y="1292">并行边界：当前版本只输出 parallel candidate；真正多 Agent 并行需独立 worktree、diff 归属与合并协议。</text>
+</svg>
