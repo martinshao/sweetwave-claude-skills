@@ -48,6 +48,7 @@ CLAUDE.md
 .wave/
   LESSONS.md
   STATUS.md
+  RUN_STATE.md
   MODULE_MAP.md
   idea/
     INIT-IDEA.md
@@ -77,6 +78,7 @@ CLAUDE.md
 5. 最后总结创建或更新了哪些文件，并提示用户先填写 `.wave/idea/INIT-IDEA.md`，
    再执行 `/sw-brief`。
 6. `.wave/LESSONS.md` 用于沉淀跨任务仍然有效的架构决策、踩坑记录和业务规则确认，不写常规流水账。
+7. `.wave/STATUS.md` 保存项目级快照；`.wave/RUN_STATE.md` 保存当前任务执行检查点。
 
 ## 新目录规范
 
@@ -86,6 +88,8 @@ CLAUDE.md
 - `.wave/prd/` 存放 PRD，初始 PRD 命名为 `INIT-PRD.md`。
 - `.wave/specs/` 预留给后续模块化规格目录，例如 `.wave/specs/product-detail/`。
 - `.wave/MODULE_MAP.md` 预留给后续 `/sw-map` 生成模块拆分和依赖关系。
+- `.wave/STATUS.md` 记录阶段、模块进度、物料清单和下一步命令。
+- `.wave/RUN_STATE.md` 初始化为 `IDLE`，只记录一个当前任务的执行现场。
 - `.wave/release/` 和 `.wave/retro/` 按版本或发布对象继续分目录或文件管理。
 - 文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-IDEA.md`、`INIT-BRIEF.md`、`CHECKOUT-PRD.md`。
 - `INIT-IDEA.md` 只提供最小提示，保留给用户粘贴原始想法；初始化时不要替用户扩写或结构化。
@@ -98,6 +102,7 @@ CLAUDE.md
 CLAUDE_TEMPLATE.md -> CLAUDE.md
 LESSONS_TEMPLATE.md -> .wave/LESSONS.md
 STATUS_TEMPLATE.md -> .wave/STATUS.md
+RUN_STATE_TEMPLATE.md -> .wave/RUN_STATE.md
 MODULE_MAP_TEMPLATE.md -> .wave/MODULE_MAP.md
 IDEA_TEMPLATE.md -> .wave/idea/INIT-IDEA.md
 BRIEF_TEMPLATE.md -> .wave/brief/INIT-BRIEF.md

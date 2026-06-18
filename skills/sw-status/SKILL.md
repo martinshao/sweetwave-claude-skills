@@ -7,6 +7,8 @@ allowed-tools:
   - Glob
   - Bash(git status)
   - Bash(git diff *)
+  - Bash(git rev-parse *)
+  - Bash(shasum *)
   - Bash(find .wave -maxdepth 4 -type f 2>/dev/null | sort)
   - Bash(test *)
   - Bash(grep -R -n "^- \\[\\|^状态：" .wave/specs 2>/dev/null)
@@ -36,6 +38,7 @@ allowed-tools:
 4. 检查以下核心产物是否存在且非空：
    - `.wave/LESSONS.md`
    - `.wave/STATUS.md`
+   - `.wave/RUN_STATE.md`
    - `.wave/MODULE_MAP.md`
    - `.wave/idea/*-IDEA.md`
    - `.wave/brief/*.md`
@@ -48,14 +51,24 @@ allowed-tools:
    - `.wave/specs/{module}/TASKS.md`
    对 IDEA 文件不能只检查文件大小：忽略标题、空行和 HTML 注释后没有正文时，
    状态应为“待填写”，下一步应提示用户填写 IDEA，而不是执行 `/sw-brief`。
-5. 根据当前状态建议下一条 SweetWave 命令。
-6. 如果模块 `TASKS.md` 已存在，按模块统计：
+5. 读取 `.wave/STATUS.md` 和 `.wave/RUN_STATE.md`，检查三层状态是否一致：
+   - 活动检查点的模块和任务必须存在。
+   - `RUN_STATE.md` 阶段必须与 `TASKS.md` 生命周期匹配。
+   - `STATUS.md` 的当前任务、模块计数和下一步命令必须可解释。
+   - 物料指纹变化时报告为 `STALE`，并建议重新规划或重新运行 `/sw-task`。
+   - 比较 `TASKS.md` 时忽略生命周期状态行的标记变化，只检查任务定义是否变化。
+6. 根据当前状态建议下一条 SweetWave 命令。活动检查点存在时，优先建议其中的恢复命令。
+7. 如果模块 `TASKS.md` 已存在，按模块统计：
    - 已完成任务 `[x]`
    - 待执行任务 `[ ]`
+   - 实现中任务 `[IN_PROGRESS]`
+   - 验证中任务 `[VERIFYING]`
+   - 审查中任务 `[REVIEWING]`
+   - 阻塞任务 `[BLOCKED]`
    - 新增任务 `[NEW]`
    - 变更任务 `[CHANGED]`
    - 废弃任务 `[DROPPED]`
-7. 如果存在未完成任务，建议用户选择：
+8. 如果存在未完成任务且没有活动检查点，建议用户选择：
    - 手动推进：`/sw-work TASK-ID`
    - 状态机推进：`/sw-run {module} TASK-ID` 或 `/sw-run --all`
 
@@ -71,4 +84,6 @@ allowed-tools:
 ## 风险
 
 ## 建议下一步
+
+## 恢复现场
 ```

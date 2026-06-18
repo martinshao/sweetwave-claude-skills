@@ -14,6 +14,8 @@ allowed-tools:
   - Bash(git status)
   - Bash(git diff *)
   - Bash(git log *)
+  - Bash(git rev-parse *)
+  - Bash(shasum *)
   - Bash(pnpm typecheck)
   - Bash(pnpm lint)
   - Bash(pnpm test *)
@@ -46,6 +48,8 @@ $ARGUMENTS
 
 - `CLAUDE.md`
 - `.wave/MODULE_MAP.md`
+- `.wave/STATUS.md`
+- `.wave/RUN_STATE.md`
 - `.wave/specs/{module}/MODULE.md`
 - `.wave/specs/{module}/UI.md`
 - `.wave/specs/{module}/SPEC.md`
@@ -59,9 +63,10 @@ $ARGUMENTS
 
 ## 工作流程
 
-1. 从用户输入解析 `{module}` 和 `TASK-ID`；如果未提供模块，遍历 `.wave/specs/*/TASKS.md` 查找唯一匹配任务。
-2. 在 `.wave/specs/{module}/TASKS.md` 中定位请求的任务 ID。
-3. 提取：
+1. 读取 `.wave/STATUS.md` 和 `.wave/RUN_STATE.md`，检查是否存在其他活动任务现场。
+2. 从用户输入解析 `{module}` 和 `TASK-ID`；如果未提供模块，遍历 `.wave/specs/*/TASKS.md` 查找唯一匹配任务。
+3. 在 `.wave/specs/{module}/TASKS.md` 中定位请求的任务 ID。
+4. 提取：
    - 状态标记
    - 目标
    - 依赖关系
@@ -70,25 +75,37 @@ $ARGUMENTS
    - 禁止修改范围
    - 验收标准
    - 验证命令
-4. 如果任务状态是 `[x]` 或 `[DROPPED]`，不要重复实现，直接说明原因。
-5. 如果任务状态是 `[CHANGED]` 或 `[NEW]`，按当前任务描述执行。
-6. 只检查与当前任务相关的代码。
-7. 在输出实现计划前，不要编辑任何文件。
-8. 先给出：
+5. 如果任务状态是 `[x]` 或 `[DROPPED]`，不要重复实现，直接说明原因。
+6. 如果任务处于 `[VERIFYING]` 或 `[REVIEWING]`，不要重复实现，建议恢复对应质量门。
+7. 如果任务是 `[IN_PROGRESS]` 或 `[BLOCKED]`，校验 `RUN_STATE.md`、Git 现场和物料基线后恢复。
+8. 如果任务状态是 `[CHANGED]` 或 `[NEW]`，按当前任务描述执行。
+9. 只检查与当前任务相关的代码。
+10. 在输出实现计划前，不要编辑业务文件。
+11. 先给出：
    - 对任务的理解
    - 可能修改的文件
    - 实现步骤
    - 测试计划
    - 风险点
-9. 在用户批准计划或明确授权继续后，实施最小可工作的改动。
-10. 先运行与任务最相关的最小验证命令。
-11. 在适用时运行项目级验证命令：
+12. 如果需要等待用户批准，将 `RUN_STATE.md` 写为 `PAUSED / PLANNING`，
+    `STATUS.md` 记录当前模块、任务和恢复命令；此时不修改任务生命周期状态。
+13. 在用户批准计划或明确授权继续后：
+   - 将任务状态写为 `[IN_PROGRESS]`。
+   - 更新 `RUN_STATE.md` 为 `RUNNING / IMPLEMENTING`，记录基准提交、物料指纹、
+     恢复命令和初始 Git 状态。
+   - 更新 `STATUS.md` 为 `RUNNING`。
+14. 实施最小可工作的改动，并持续记录已完成步骤和已修改文件。
+15. 实现结束后将任务写为 `[VERIFYING]`，`RUN_STATE.md` 阶段写为 `VERIFYING`，
+   恢复命令写为 `/sw-verify {module} TASK-ID`。
+16. 先运行与任务最相关的最小验证命令。
+17. 在适用时运行项目级验证命令：
    - typecheck
    - lint
    - tests
    - build
-12. 如果验证失败，分析根因并修复，不要压制错误。
-13. 最后总结：
+18. 如果验证失败，分析根因并修复，不要压制错误；无法在原范围解决时写入
+   `[BLOCKED]` 和阻塞检查点。
+19. 最后总结：
    - 修改了哪些文件
    - 每个修改为什么必要
    - 执行了哪些命令
@@ -104,6 +121,8 @@ $ARGUMENTS
 - 不要编辑 `.env` 文件。
 - 不要削弱测试。
 - 没有验证证据，不要声称完成。
-- `/sw-work` 默认不把任务标记为 `[x]`；任务必须经过 `/sw-verify` 和 `/sw-review` 后，或由 `/sw-run` 的质量门完成后再标记。
+- `/sw-work` 不把任务标记为 `[x]`；实现完成后必须停在 `[VERIFYING]`。
+- 不要启动第二个任务覆盖活动 `RUN_STATE.md`；切换前必须获得用户确认。
+- 状态变化必须同步写入 `TASKS.md`、`RUN_STATE.md` 和 `STATUS.md`。
 - 只使用 `.wave/*` 作为 SweetWave 工作区。
 - 输出语言使用中文。

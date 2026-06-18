@@ -17,6 +17,8 @@ allowed-tools:
   - Bash(find *)
   - Bash(mkdir -p *)
   - Bash(test *)
+  - Bash(git rev-parse *)
+  - Bash(shasum *)
 ---
 
 # SweetWave 任务拆解
@@ -36,6 +38,8 @@ $ARGUMENTS
 - `.wave/specs/{module}/UI.md`
 - `.wave/specs/{module}/ARCH.md`
 - `.wave/specs/{module}/SPEC.md`
+- `.wave/STATUS.md`
+- `.wave/RUN_STATE.md`
 
 模块选择规则：
 
@@ -91,6 +95,10 @@ $ARGUMENTS
 
 ```md
 - [ ] TASK-001：待执行
+- [IN_PROGRESS] TASK-001：正在实现
+- [VERIFYING] TASK-001：正在验证
+- [REVIEWING] TASK-001：正在审查
+- [BLOCKED] TASK-001：存在阻塞
 - [x] TASK-001：已完成
 - [NEW] TASK-001：需求变更新增
 - [CHANGED] TASK-001：需求变更影响，按更新后描述执行
@@ -98,6 +106,9 @@ $ARGUMENTS
 ```
 
 状态行必须紧跟任务标题，便于 `/sw-run` 解析、编辑和复查。已完成任务不要改写正文，除非用户明确要求。
+
+`TASKS.md` 只保存任务生命周期。阶段检查点、已修改文件、验证结果和恢复命令写入
+`.wave/RUN_STATE.md`。
 
 ## 工作流程
 
@@ -108,6 +119,17 @@ $ARGUMENTS
 5. 尽量让每个任务可以独立验证。
 6. 为每个任务标注预估时间、依赖关系和涉及范围。
 7. 如果任务之间无依赖但会修改同一文件或同一模块，仍按串行排列。
+8. 完成目标模块的任务拆解后，更新 `.wave/STATUS.md`：
+   - 模块规格完整且任务可执行时，规格状态写为 `READY`。
+   - 统计该模块已完成任务和总任务数。
+   - 记录 `MODULE.md`、`DESIGN.md`、`UI.md`、`ARCH.md`、`SPEC.md` 的 SHA-256
+     指纹；无法计算时至少记录当前 Git commit。
+   - `TASKS.md` 记录“任务定义指纹”，忽略生命周期状态标记，避免正常状态流转
+     被误判为物料变化。
+   - 所有 planned/active 模块均已生成可执行任务时，将工作流阶段写为
+     `READY_TO_RUN`，下一步写为 `/sw-run --all`。
+9. 如果当前没有活动执行现场，将 `.wave/RUN_STATE.md` 保持或重置为 `IDLE`；
+   不要覆盖仍处于 `RUNNING`、`PAUSED` 或 `BLOCKED` 的现场。
 
 ## 规则
 
@@ -116,6 +138,7 @@ $ARGUMENTS
 - 不要把无关关注点混进同一个任务。
 - 必须写出验证命令；如果暂时未知，标记为 TODO。
 - 每个任务必须有稳定 ID、状态标记、依赖关系、涉及范围和验收标准。
+- 生成任务后必须同步工作流快照和物料基线，不能只创建 `TASKS.md`。
 - 单个任务建议控制在 5min / 15min / 30min / 1h 粒度。
 - 只拆目标模块任务；跨模块事项写成联调或依赖任务。
 - 只使用 `.wave/*` 作为 SweetWave 工作区。

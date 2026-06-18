@@ -6,11 +6,16 @@ argument-hint: >-
 disable-model-invocation: true
 allowed-tools:
   - Read
+  - Write
+  - Edit
+  - MultiEdit
   - Glob
   - Grep
   - Bash(git status)
   - Bash(git diff *)
   - Bash(git log *)
+  - Bash(git rev-parse *)
+  - Bash(shasum *)
 ---
 
 # SweetWave 代码审查
@@ -33,10 +38,19 @@ $ARGUMENTS
 - `.wave/specs/{module}/SPEC.md`
 - `.wave/specs/{module}/TASKS.md`
 - `.wave/specs/{module}/TEST_REPORT.md`，如果存在
+- `.wave/STATUS.md`
+- `.wave/RUN_STATE.md`
 
 ## 当前 git diff
 
 !`git diff --stat HEAD`
+
+## 检查点协议
+
+1. 如果指定任务，确认 `RUN_STATE.md` 指向同一模块和任务。
+2. 确认任务处于 `[REVIEWING]`，且 `TEST_REPORT.md` 的质量门为 `PASSED`。
+3. 将检查点写为 `RUNNING / REVIEWING`，保留基准提交、物料基线和修改文件。
+4. 如果物料或 Git 现场与检查点不一致，暂停审查并写为 `[BLOCKED]`。
 
 ## 审查维度
 
@@ -51,6 +65,16 @@ $ARGUMENTS
 9. 是否有安全风险或敏感信息风险。
 10. 是否需要补充文档或 changelog。
 11. 是否可以通过质量门并标记任务完成。
+
+## 状态写回
+
+- `BLOCKED`：任务写为 `[BLOCKED]`，`RUN_STATE.md` 和 `STATUS.md` 记录 Must Fix、
+  风险及恢复命令。
+- `PASSED`：任务写为 `[x]`；`RUN_STATE.md` 写为 `COMPLETED / FINALIZING`；
+  更新 `STATUS.md` 的模块计数和下一任务。
+- 所有可执行任务完成时，将 `STATUS.md` 阶段写为 `READY_TO_RELEASE`，下一步写为
+  `/sw-release`。
+- 只允许修改 SweetWave 状态文档，不因审查结论直接修改业务代码。
 
 ## 输出格式
 
@@ -84,5 +108,7 @@ $ARGUMENTS
 - 优先关注 correctness、架构边界、测试、风险。
 - Must Fix 未清零时，质量门必须是 `BLOCKED`。
 - 质量门未通过时，不要建议把任务标记为 `[x]`。
+- 没有有效的验证通过证据时，不得写入 `[x]`。
+- 状态写回后重新读取 `TASKS.md`、`RUN_STATE.md` 和 `STATUS.md` 确认落盘。
 - 只使用 `.wave/*` 作为 SweetWave 工作区。
 - 输出语言使用中文。

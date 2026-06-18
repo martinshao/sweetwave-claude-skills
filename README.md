@@ -121,6 +121,7 @@ CLAUDE.md
 .wave/
   LESSONS.md
   STATUS.md
+  RUN_STATE.md
   MODULE_MAP.md
   idea/
     INIT-IDEA.md
@@ -153,6 +154,21 @@ CLAUDE.md
 `.wave/idea/INIT-IDEA.md` 用来保留用户未经加工的最初想法，只需要粘贴几句话；
 `/sw-brief` 会读取它并生成对应的产品简报，不会覆盖原始 IDEA。
 
+SweetWave 使用三层状态记忆支持跨会话恢复：
+
+```txt
+.wave/STATUS.md                    项目级阶段、模块进度、物料清单和下一步
+.wave/specs/{module}/TASKS.md      每个任务的生命周期状态
+.wave/RUN_STATE.md                 当前任务的执行阶段、Git 基线和恢复现场
+```
+
+`/sw-task` 完成全部模块任务拆解后，会把工作流标记为 `READY_TO_RUN` 并记录物料指纹。
+即使隔一段时间再执行 `/sw-run`，也会先校验 Git 现场和规格物料，再从
+`IMPLEMENTING`、`VERIFYING`、`REVIEWING` 或 `BLOCKED` 检查点继续。
+
+完整流转见
+[SweetWave 断点记忆与恢复流程图](./docs/sweetwave-checkpoint-recovery-workflow.svg)。
+
 文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-IDEA.md`、`INIT-BRIEF.md`、
 `INIT-PRD.md`、`CHECKOUT-PRD.md`。
 
@@ -174,8 +190,11 @@ CLAUDE.md
 4. **验证闭环**：开发完成必须报告 typecheck / lint / test / build 的执行结果。
 5. **审查独立**：`/sw-review` 默认只审查当前 diff，不直接修改代码。
 6. **状态机可选**：`/sw-run` 可以按 `TASKS.md` 状态连续推进，提供断点恢复、验证质量门、审查质量门和 `.wave/LESSONS.md` 长期记忆。
-7. **发布谨慎**：`/sw-release` 默认只生成发布清单、变更日志和回滚方案，不执行生产部署。
-8. **个人级复用**：skills 安装在 `~/.claude/skills`，项目产物留在当前 repo。
+7. **三层记忆**：`STATUS.md` 记录全局位置，`TASKS.md` 记录任务生命周期，
+   `RUN_STATE.md` 记录执行现场和恢复命令。
+8. **恢复校验**：恢复任务前必须比较 Git 基线和物料指纹，避免使用过期规格继续开发。
+9. **发布谨慎**：`/sw-release` 默认只生成发布清单、变更日志和回滚方案，不执行生产部署。
+10. **个人级复用**：skills 安装在 `~/.claude/skills`，项目产物留在当前 repo。
 
 ## 8. V0 边界
 

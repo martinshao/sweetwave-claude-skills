@@ -43,6 +43,8 @@ Idea → Brief → PRD → Module Map → Design → UI Prototype → Architectu
 - 未经明确批准，不要新增依赖。
 - 不要通过压制 TypeScript、lint、测试错误来让检查通过，必须先分析根因。
 - 使用 `/sw-run` 时，任务通过验证质量门和审查质量门后才可标记为 `[x]`。
+- 跨会话恢复以 `.wave/STATUS.md`、`.wave/RUN_STATE.md` 和模块 `TASKS.md` 为准，
+  不依赖聊天历史猜测进度。
 - 重要架构决策、踩坑记录和跨任务影响写入 `.wave/LESSONS.md`。
 - 不要读取或编辑 `.env` 文件。
 - 未经明确批准，不要执行生产部署命令。

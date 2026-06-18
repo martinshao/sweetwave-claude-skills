@@ -13,6 +13,10 @@
 
 ### Added
 
+- 新增三层断点记忆：`.wave/STATUS.md` 保存项目快照，模块 `TASKS.md` 保存任务
+  生命周期，`.wave/RUN_STATE.md` 保存当前执行现场、物料基线和恢复命令。
+- 新增任务中间状态 `[IN_PROGRESS]`、`[VERIFYING]`、`[REVIEWING]`、`[BLOCKED]`，
+  支持从实现、验证、审查或阻塞阶段跨会话恢复。
 - 新增 `.wave/idea/{SCOPE}-IDEA.md` 原始想法文件；`/sw-init` 创建
   `INIT-IDEA.md`，`/sw-brief` 读取 IDEA 并生成对应产品简报，同时保留原始输入。
 - 新增 `/sw-ui [module]`，根据 PRD、模块定义和产品设计生成模块级界面规格、
@@ -28,6 +32,10 @@
 
 ### Changed
 
+- `/sw-task` 完成后同步生成 `READY_TO_RUN` 快照和规格物料指纹；`/sw-run` 启动时
+  优先恢复活动检查点，并校验 Git 现场与物料版本。
+- `/sw-work`、`/sw-verify`、`/sw-review` 现在共同维护任务检查点，手动分阶段执行
+  也可在质量门之间恢复。
 - 项目内工作区统一迁移到 `.wave/`，不再使用旧的 `docs/sweetwave/` 产物路径。
 - 文档产物改为按阶段与模块组织：brief、PRD 使用范围前缀命名，模块规格统一存放在
   `.wave/specs/{module}/`。

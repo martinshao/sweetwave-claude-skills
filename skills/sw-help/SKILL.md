@@ -64,8 +64,11 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 3. 开始编码前必须先输出实现计划。
 4. 声称完成前必须给出验证证据。
 5. 使用 `/sw-run` 时，任务必须通过验证质量门和审查质量门后才能标记为 `[x]`。
-6. 重要经验写入 `.wave/LESSONS.md`，供后续任务读取。
-7. `.wave/idea/*-IDEA.md` 保留用户原始输入，后续 skill 不应覆盖。
-8. 模块级产物写入 `.wave/specs/{module}/`，只使用 `.wave/*` 作为 SweetWave 工作区。
-9. 发布类 skill 默认不执行生产部署命令。
-10. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。
+6. `.wave/STATUS.md` 记录项目级进度和物料，`.wave/RUN_STATE.md` 记录当前执行现场，
+   `TASKS.md` 记录任务生命周期。
+7. 恢复任务时先校验 Git 现场和物料指纹，规格变化后不得沿用旧验证结果。
+8. 重要经验写入 `.wave/LESSONS.md`，供后续任务读取。
+9. `.wave/idea/*-IDEA.md` 保留用户原始输入，后续 skill 不应覆盖。
+10. 模块级产物写入 `.wave/specs/{module}/`，只使用 `.wave/*` 作为 SweetWave 工作区。
+11. 发布类 skill 默认不执行生产部署命令。
+12. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。
