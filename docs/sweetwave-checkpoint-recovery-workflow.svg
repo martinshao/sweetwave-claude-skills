@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1680" height="1180" viewBox="0 0 1680 1180" role="img" aria-labelledby="title desc">
   <title id="title">SweetWave 断点记忆与恢复流程</title>
-  <desc id="desc">展示 sw-task 建立 READY_TO_RUN 快照，以及 sw-run 跨会话校验状态、Git 和物料基线后从实现、验证、审查或阻塞阶段恢复的流程。</desc>
+  <desc id="desc">展示 sw-plan 建立 READY_TO_RUN 与前端骨架快照，以及 sw-run 跨会话校验状态、Git 和物料基线后恢复 scaffold 或普通任务的流程。</desc>
   <defs>
     <style>
       .bg { fill: #f8fafc; }
@@ -47,9 +47,9 @@
   <text class="lane-title" x="84" y="176">1. 文档阶段完成：建立可执行快照</text>
 
   <rect class="node prepare" x="100" y="220" width="220" height="94"/>
-  <text class="node-title" x="122" y="248">任务拆解完成</text>
-  <text class="cmd" x="122" y="272">/sw-task</text>
-  <text class="node-sub" x="122" y="294">生成各模块 TASKS.md</text>
+  <text class="node-title" x="122" y="248">规划交接完成</text>
+  <text class="cmd" x="122" y="272">/sw-plan P10</text>
+  <text class="node-sub" x="122" y="294">生成模块与 scaffold 任务</text>
 
   <rect class="node check" x="415" y="204" width="260" height="126"/>
   <text class="node-title" x="437" y="232">物料完整性检查</text>
@@ -61,8 +61,8 @@
   <text class="node-title" x="792" y="222">写入项目快照</text>
   <text class="path" x="792" y="247">.wave/STATUS.md</text>
   <text class="node-sub" x="792" y="271">阶段：READY_TO_RUN</text>
-  <text class="node-sub" x="792" y="293">模块进度 / 物料清单</text>
-  <text class="node-sub" x="792" y="315">下一步：/sw-run --all</text>
+  <text class="node-sub" x="792" y="293">前端骨架：PENDING / NOT_REQUIRED</text>
+  <text class="node-sub" x="792" y="315">下一步：/sw-scaffold 或 /sw-run</text>
 
   <rect class="node memory" x="1155" y="204" width="290" height="126"/>
   <text class="node-title" x="1177" y="232">初始化执行现场</text>
@@ -79,7 +79,7 @@
 
   <rect class="node run" x="90" y="492" width="210" height="86"/>
   <text class="node-title" x="112" y="520">重新启动</text>
-  <text class="cmd" x="112" y="546">/sw-run [scope]</text>
+  <text class="cmd" x="112" y="546">/sw-scaffold 或 /sw-run</text>
 
   <rect class="node memory" x="380" y="470" width="260" height="130"/>
   <text class="node-title" x="402" y="498">读取三层记忆</text>
@@ -92,7 +92,7 @@
   <text class="node-sub" x="747" y="512">当前 Git commit 与工作区</text>
   <text class="node-sub" x="747" y="535">物料指纹是否变化</text>
   <text class="node-sub" x="747" y="558">活动任务是否唯一</text>
-  <text class="node-sub" x="747" y="581">现场改动能否归属任务</text>
+  <text class="node-sub" x="747" y="581">骨架门禁与现场归属</text>
 
   <rect class="node check" x="1110" y="470" width="270" height="130"/>
   <text class="node-title" x="1132" y="498">检查点是否有效?</text>
@@ -145,10 +145,10 @@
   <text class="node-title" x="152" y="1086">审查通过 → [x]</text>
 
   <rect class="node memory" x="500" y="1055" width="300" height="50"/>
-  <text class="node-title" x="522" y="1086">同步三层状态与 LESSONS</text>
+  <text class="node-title" x="522" y="1086">同步三层状态 / 骨架状态</text>
 
   <rect class="node run" x="910" y="1055" width="270" height="50"/>
-  <text class="node-title" x="932" y="1086">选择下一可执行任务</text>
+  <text class="node-title" x="932" y="1086">骨架后人工确认 / 下一任务</text>
 
   <rect class="node done" x="1290" y="1055" width="250" height="50"/>
   <text class="node-title" x="1312" y="1086">全部完成 → READY_TO_RELEASE</text>
@@ -159,5 +159,5 @@
   <path class="ok" d="M1180 1080 C1215 1080, 1255 1080, 1290 1080"/>
   <path class="soft" d="M1045 1055 C1045 980, 195 980, 195 578"/>
 
-  <text class="small" x="72" y="1158">核心原则：STATUS.md 看全局，TASKS.md 看生命周期，RUN_STATE.md 看现场；恢复前必须校验 Git 和规格物料，不能只依赖聊天上下文。</text>
+  <text class="small" x="72" y="1158">核心原则：STATUS.md 额外记录骨架门禁；PENDING/BLOCKED/STALE 不放行普通任务，READY 后仍需用户手动启动。</text>
 </svg>

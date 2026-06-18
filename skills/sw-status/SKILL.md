@@ -71,9 +71,13 @@ allowed-tools:
    - `STATUS.md` 的当前任务、模块计数和下一步命令必须可解释。
    - 物料指纹变化时报告为 `STALE`，并建议重新规划或重新运行 `/sw-task`。
    - 比较 `TASKS.md` 时忽略生命周期状态行的标记变化，只检查任务定义是否变化。
+   - 前端骨架 PENDING/BLOCKED/STALE 时，普通任务不得启动。
+   - 前端骨架 READY 时，`app-shell/APP-SHELL-001` 必须为 `[x]` 且有验证证据。
 8. 根据当前状态建议下一条 SweetWave 命令：
    - 文档未通过质量门：`/sw-plan` 或 PLAN_STATE 恢复命令。
-   - READY_TO_RUN：`/sw-run --all`。
+   - READY_TO_RUN + 前端骨架 PENDING/BLOCKED：`/sw-scaffold`。
+   - READY_TO_RUN + 前端骨架 STALE：`/sw-plan --change`。
+   - READY_TO_RUN + 前端骨架 READY/NOT_REQUIRED：`/sw-run --all`。
    - 活动执行检查点：RUN_STATE 恢复命令。
 9. 如果模块 `TASKS.md` 已存在，按模块统计：
    - 已完成任务 `[x]`
@@ -90,6 +94,7 @@ allowed-tools:
 10. 如果存在未完成任务且没有活动检查点，建议：
    - 完整推进：`/sw-run {module} TASK-ID` 或 `/sw-run --all`
    - 单阶段推进：`/sw-run {module} TASK-ID --stage implement|verify|review|qa`
+   - 前端骨架：`/sw-scaffold` 或 `/sw-run --stage scaffold`
 11. 检查 `.wave/qa/`、`.wave/security/` 报告和文档同步状态。
 
 ## 输出格式

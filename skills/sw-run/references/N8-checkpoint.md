@@ -8,5 +8,10 @@
 4. 将 `RUN_STATE.md` 写为 `COMPLETED / FINALIZING / N8_CHECKPOINT`。
 5. 记录最终验证、审查、QA、安全报告路径。
 6. 有长期价值的决策或踩坑追加到 `.wave/LESSONS.md`。
+7. 如果当前为 `--stage scaffold`：
+   - 将 `STATUS.md` 的前端骨架写为 `READY`，项目阶段恢复为 `READY_TO_RUN`。
+   - 下一步写为“用户检查页面骨架后手动执行 `/sw-run --all`”。
+   - 将 `RUN_STATE.md` 重置为 `IDLE`，保留骨架完成摘要和最终 Git 基线。
+   - 到此停止，不进入 N9/N10，不调度任何普通任务。
 
 任何证据缺失时不得写 `[x]`。

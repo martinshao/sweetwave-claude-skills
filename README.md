@@ -21,6 +21,8 @@ SweetWave Claude Skills 自身的功能演进记录在 [CHANGELOG.md](./CHANGELO
 /sw-arch
 /sw-spec
 /sw-task
+/sw-scaffold
+/sw-run --stage scaffold
 /sw-run [module] TASK-001
 /sw-run --all
 /sw-run [module] TASK-001 --stage implement
@@ -110,7 +112,9 @@ claude
 # 将最初的产品想法粘贴到 .wave/idea/INIT-IDEA.md
 /sw-brief
 /sw-plan
-# 审查规划结果后，由用户手动触发
+# 审查规划结果；存在前端页面时先建立应用壳
+/sw-scaffold  # 仅当 P10 提示时
+# 检查导航、路由和页面骨架后，由用户手动触发
 /sw-run --all
 /sw-release v0.1.0
 /sw-retro v0.1.0
@@ -160,6 +164,9 @@ CLAUDE.md
   TEST_REPORT.md
 ```
 
+存在前端页面时，规划阶段还会生成保留技术模块 `.wave/specs/app-shell/`，
+其中 `TASKS.md` 只包含唯一 scaffold 任务 `APP-SHELL-001`。
+
 `.wave/idea/INIT-IDEA.md` 用来保留用户未经加工的最初想法，只需要粘贴几句话；
 `/sw-brief` 会读取它并生成对应的产品简报，不会覆盖原始 IDEA。
 
@@ -178,14 +185,17 @@ SweetWave 使用双编排检查点支持跨会话恢复：
 `IMPLEMENTING`、`VERIFYING`、`REVIEWING` 或 `BLOCKED` 检查点继续。
 
 `READY_TO_RUN` 只表示规划物料已经就绪。`/sw-plan` 会在 P10 后结束，不会自动调用
-`/sw-run`；用户审查规划结果后，需要手动执行 `/sw-run --all`、模块范围或单任务命令。
+工程命令。存在前端页面时，用户先手动执行 `/sw-scaffold`（等价于
+`/sw-run --stage scaffold`），检查导航、路由和占位页面后再执行 `/sw-run --all`。
+纯后端项目跳过骨架步骤。
 
 完整流转见
 [SweetWave 断点记忆与恢复流程图](./docs/sweetwave-checkpoint-recovery-workflow.svg)。
 
 `/sw-run` 已升级为 N1–N10 节点化自治编排器，会根据任务元数据调用同级
 Engineer Skills，并在验证、审查、风险 QA 和安全门全部满足后写入 `[x]`。
-`/sw-work`、`/sw-verify`、`/sw-review` 仅作为旧命令兼容入口。
+`/sw-scaffold` 是前端骨架友好入口；`/sw-work`、`/sw-verify`、`/sw-review`
+仅作为兼容入口。
 
 自治编排流程见
 [SweetWave 自治工程编排流程图](./docs/sweetwave-autonomous-run-workflow.svg)。
@@ -214,7 +224,8 @@ architecture、spec 和 task Engineer Skills。上游变化会按依赖传播 `S
 1. **双编排器**：`/sw-plan` 负责文档规划，`/sw-run` 负责工程执行。
 2. **状态所有权**：`/sw-plan` 独占规划状态，`/sw-run` 独占运行状态，
    Engineer Skills 只写目标产物或返回结果。
-3. **人工交接**：规划完成只进入 `READY_TO_RUN`，必须由用户手动启动工程执行。
+3. **人工交接**：规划完成只进入 `READY_TO_RUN`；前端项目先人工启动并检查骨架，
+   再人工启动普通工程任务。
 4. **先计划后实现**：复杂开发必须先输出实现计划，再进行代码修改。
 5. **验证闭环**：开发完成必须报告 typecheck / lint / test / build 的执行结果。
 6. **角色路由**：任务按 frontend、backend、database 等角色进入专业 Engineer Skill。
@@ -225,7 +236,8 @@ architecture、spec 和 task Engineer Skills。上游变化会按依赖传播 `S
 11. **风险驱动 QA**：普通任务执行最小质量门，高风险和模块完成场景执行完整 QA。
 12. **安全并行边界**：当前只识别并行候选，仍采用串行执行。
 13. **发布谨慎**：`/sw-release` 默认只生成发布清单、变更日志和回滚方案，不执行生产部署。
-14. **个人级复用**：skills 安装在 `~/.claude/skills`，项目产物留在当前 repo。
+14. **骨架门禁**：前端页面项目必须先完成 `APP-SHELL-001`，普通任务才能运行。
+15. **个人级复用**：skills 安装在 `~/.claude/skills`，项目产物留在当前 repo。
 
 ## 8. V0 边界
 

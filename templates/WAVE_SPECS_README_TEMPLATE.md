@@ -20,3 +20,5 @@
 
 - 模块 ID 使用 kebab-case，例如 `product-detail`、`checkout`、`user-profile`。
 - 模块目录由后续模块拆分节点生成。
+- `app-shell` 是存在前端页面时使用的保留技术模块，只包含全局应用壳和唯一
+  `APP-SHELL-001` scaffold 任务。

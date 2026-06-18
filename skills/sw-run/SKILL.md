@@ -1,8 +1,8 @@
 ---
 name: sw-run
-description: 按节点化状态机编排 SweetWave 任务，负责断点恢复、Engineer 路由、验证审查、风险 QA、安全门、状态写回和文档同步。
+description: 按节点化状态机编排 SweetWave 前端骨架和业务任务，负责断点恢复、Engineer 路由、验证审查、风险 QA、安全门、状态写回和文档同步。
 argument-hint: >-
-  可选：module-id、TASK-ID、--all，或 --stage implement|verify|review|qa
+  可选：module-id、TASK-ID、--all，或 --stage scaffold|implement|verify|review|qa
 disable-model-invocation: true
 allowed-tools:
   - Read
@@ -21,18 +21,34 @@ allowed-tools:
   - Bash(pnpm lint)
   - Bash(pnpm test *)
   - Bash(pnpm build)
+  - Bash(pnpm --filter * typecheck)
+  - Bash(pnpm --filter * lint)
+  - Bash(pnpm --filter * test *)
+  - Bash(pnpm --filter * build)
   - Bash(npm run typecheck)
   - Bash(npm run lint)
   - Bash(npm test *)
   - Bash(npm run build)
+  - Bash(npm --workspace * run typecheck)
+  - Bash(npm --workspace * run lint)
+  - Bash(npm --workspace * test *)
+  - Bash(npm --workspace * run build)
   - Bash(yarn typecheck)
   - Bash(yarn lint)
   - Bash(yarn test *)
   - Bash(yarn build)
+  - Bash(yarn workspace * typecheck)
+  - Bash(yarn workspace * lint)
+  - Bash(yarn workspace * test *)
+  - Bash(yarn workspace * build)
   - Bash(bun run typecheck)
   - Bash(bun run lint)
   - Bash(bun test *)
   - Bash(bun run build)
+  - Bash(bun --filter * run typecheck)
+  - Bash(bun --filter * run lint)
+  - Bash(bun --filter * test *)
+  - Bash(bun --filter * run build)
 ---
 
 # SweetWave 自治工程编排
@@ -70,13 +86,16 @@ Engineer Skills、`/sw-work`、`/sw-verify`、`/sw-review` 不得修改以上文
 /sw-run TASK-001
 /sw-run --all
 /sw-run {module} --all
+/sw-run --stage scaffold
 /sw-run {module} TASK-001 --stage implement
 /sw-run {module} TASK-001 --stage verify
 /sw-run {module} TASK-001 --stage review
 /sw-run {module} TASK-001 --stage qa
 ```
 
-- 无 `--stage`：从有效检查点开始，执行完整流水线。
+- 无 `--stage`：从有效检查点开始，执行完整流水线；存在未完成的条件强制骨架时拒绝启动。
+- `scaffold`：只执行唯一的 `app-shell/APP-SHELL-001` 完整流水线，完成后停止并
+  等待用户检查页面骨架。
 - `implement`：只推进实现阶段，结束时停在 `[VERIFYING]`。
 - `verify`：只推进验证阶段，结束时停在 `[REVIEWING]` 或 `[BLOCKED]`。
 - `review`：只推进审查阶段；如无需额外门禁则完成任务，否则停在 QA 阶段。
@@ -139,10 +158,13 @@ flowchart TD
 | N10 | `references/N10-finish.md` |
 
 阶段模式从对应节点进入，但必须先执行 N1；完成该节点要求的状态写回后停止。
+`scaffold` 是例外：它从 N1 或当前有效生命周期检查点继续，执行至 N8 的完整受限
+流水线，在骨架检查点结束。
 
 ## 全局规则
 
 - 默认串行执行。第一版只识别并行候选，不派发并行修改。
+- 前端骨架是条件强制门；状态为 PENDING、BLOCKED 或 STALE 时不得调度普通任务。
 - Engineer Skill 只返回结构化结果；`/sw-run` 验证结果后再写状态。
 - QA 和安全门禁在 `[x]` 之前执行。
 - 物料过期、Git 现场冲突、业务歧义、高风险破坏性变更必须暂停。

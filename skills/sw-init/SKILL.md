@@ -93,6 +93,7 @@ CLAUDE.md
 - `.wave/brief/` 存放产品简报，初始简报命名为 `INIT-BRIEF.md`。
 - `.wave/prd/` 存放 PRD，初始 PRD 命名为 `INIT-PRD.md`。
 - `.wave/specs/` 预留给后续模块化规格目录，例如 `.wave/specs/product-detail/`。
+- `.wave/specs/app-shell/` 由 `/sw-plan` 在存在前端页面时生成，不由初始化阶段预建。
 - `.wave/MODULE_MAP.md` 预留给后续 `/sw-map` 生成模块拆分和依赖关系。
 - `.wave/STATUS.md` 记录阶段、模块进度、物料清单和下一步命令。
 - `.wave/PLAN_STATE.md` 初始化为 `IDLE`，记录 `/sw-plan` 当前节点和恢复现场。

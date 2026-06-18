@@ -23,6 +23,9 @@ F-xxx → module → DESIGN → UI → ARCH → SPEC → TASK-ID → AC-xxx
 - TASKS 引用的文档、F、AC、角色和范围真实存在。
 - 模块依赖无循环、无遗漏。
 - 每个任务都有角色、项目、风险、QA、并行策略和验证命令。
+- 存在前端页面时，必须有且仅有一个 `app-shell/APP-SHELL-001` scaffold 任务。
+- 所有规划路由均被 `APP-SHELL-001` 覆盖，且不存在重复或冲突路由。
+- 具体前端页面任务依赖 `app-shell/APP-SHELL-001`。
 - 不存在 MISSING、DRAFT、STALE 或高风险未确认问题。
 
 ## 结论

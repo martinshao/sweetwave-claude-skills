@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1320" viewBox="0 0 1800 1320" role="img" aria-labelledby="title desc">
   <title id="title">SweetWave 自治工程编排流程</title>
-  <desc id="desc">展示节点化 sw-run 从断点恢复、任务调度、Engineer 路由、实现、验证、审查、风险 QA、安全门、检查点、上下文重建到文档同步的完整流程。</desc>
+  <desc id="desc">展示节点化 sw-run 对前端 scaffold 与普通任务执行恢复、调度、实现、验证、审查、QA、检查点和完成同步的完整流程。</desc>
   <defs>
     <style>
       .bg{fill:#f8fafc}.lane{fill:#fff;stroke:#d8dee9;stroke-width:1.5;rx:16}
@@ -30,7 +30,7 @@
 
   <rect class="bg" width="1800" height="1320"/>
   <text class="title" x="72" y="68">SweetWave 自治工程编排流程</text>
-  <text class="subtitle" x="72" y="100">/sw-run 是唯一状态写入者；Engineer Skills 负责专业执行，质量门通过后才推进任务生命周期。</text>
+  <text class="subtitle" x="72" y="100">/sw-run 是唯一状态写入者；scaffold 完成后在 N8 停止并等待人工检查，普通任务随后才可运行。</text>
 
   <rect class="lane" x="50" y="136" width="1700" height="190"/>
   <text class="lane-title" x="80" y="174">1. 恢复与调度</text>
@@ -53,7 +53,7 @@
 
   <rect class="node memory" x="1090" y="198" width="270" height="114"/>
   <text class="h" x="1112" y="226">阶段入口</text>
-  <text class="cmd" x="1112" y="250">--stage implement</text>
+  <text class="cmd" x="1112" y="250">--stage scaffold / implement</text>
   <text class="cmd" x="1112" y="273">verify / review / qa</text>
   <text class="t" x="1112" y="298">先恢复，再进入指定节点</text>
 
@@ -82,7 +82,7 @@
   <text class="cmd" x="417" y="510">sw-backend-engineer</text>
   <text class="cmd" x="417" y="533">sw-database-engineer</text>
   <text class="cmd" x="417" y="556">generic → 通用实现</text>
-  <text class="t" x="417" y="579">只返回结果，不写状态</text>
+  <text class="t" x="417" y="579">scaffold / feature；只返回结果</text>
 
   <rect class="node work" x="780" y="443" width="260" height="136"/>
   <text class="h" x="802" y="471">N4 Implement</text>
@@ -141,7 +141,7 @@
   <text class="h" x="1467" y="782">N8 Checkpoint</text>
   <text class="t" x="1467" y="808">所有门禁通过</text>
   <text class="t" x="1467" y="831">任务写为 [x]</text>
-  <text class="t" x="1467" y="854">同步计数与 LESSONS</text>
+  <text class="t" x="1467" y="854">scaffold → READY &amp; 停止</text>
 
   <path class="arrow" d="M322 813 C350 813,375 813,405 813"/>
   <path class="arrow" d="M635 813 C665 813,688 813,718 813"/>
@@ -150,7 +150,7 @@
   <path class="warn" d="M520 872 C520 930,910 930,910 579"/>
 
   <rect class="lane" x="50" y="958" width="1700" height="250"/>
-  <text class="lane-title" x="80" y="996">4. 上下文重建与完成同步</text>
+  <text class="lane-title" x="80" y="996">4. 普通任务的上下文重建与完成同步</text>
 
   <rect class="node memory" x="92" y="1050" width="270" height="112"/>
   <text class="h" x="114" y="1078">N9 Context Reload</text>
@@ -182,6 +182,6 @@
   <path class="ok" d="M1108 1106 C1138 1106,1180 1106,1210 1106"/>
   <path class="soft" d="M590 1050 C590 990,870 990,870 312"/>
 
-  <text class="small" x="72" y="1270">兼容入口：/sw-work、/sw-verify、/sw-review 只提示对应 /sw-run --stage 命令，不再直接执行或写状态。</text>
+  <text class="small" x="72" y="1270">兼容入口：/sw-scaffold 转交 /sw-run --stage scaffold；/sw-work、/sw-verify、/sw-review 转交对应阶段。</text>
   <text class="small" x="72" y="1292">并行边界：当前版本只输出 parallel candidate；真正多 Agent 并行需独立 worktree、diff 归属与合并协议。</text>
 </svg>

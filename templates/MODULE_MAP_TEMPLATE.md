@@ -30,3 +30,4 @@
 
 - 文档状态：`MISSING`、`DRAFT`、`REVIEWING`、`READY`、`BLOCKED`、`STALE`
 - 模块总状态：`planned`、`active`、`ready`、`blocked`、`stale`
+- `app-shell` 是存在前端页面时使用的保留技术模块 ID，业务模块不得复用。

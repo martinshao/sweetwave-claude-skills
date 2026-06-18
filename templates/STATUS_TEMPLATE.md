@@ -13,6 +13,7 @@
 - 上次完整 QA：
 - 距离上次完整 QA 的完成任务数：0
 - 文档同步状态：未开始
+- 前端骨架：NOT_REQUIRED
 - 更新时间：
 
 ## 文档状态
@@ -75,3 +76,4 @@
 - 工作流阶段：`INITIALIZED`、`PLANNING`、`READY_TO_RUN`、`RUNNING`、
   `BLOCKED`、`READY_TO_RELEASE`、`RELEASED`。
 - 物料状态：`MISSING`、`DRAFT`、`REVIEWING`、`READY`、`BLOCKED`、`STALE`。
+- 前端骨架：`NOT_REQUIRED`、`PENDING`、`RUNNING`、`READY`、`BLOCKED`、`STALE`。

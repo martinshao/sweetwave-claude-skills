@@ -21,10 +21,11 @@ allowed-tools:
 2. 将相关 F/AC 映射到主流程、分支、异常和恢复流程。
 3. 定义页面地图、入口、目标、核心状态和跨模块跳转。
 4. 覆盖 loading、empty、error、success、validation 和响应式行为。
-5. 不超出 MVP，不新增未经确认的需求。
-6. 更新时保留人工 UX 决策和已确认问题。
-7. 不写 UI 视觉细节、技术架构或任务。
-8. 不修改 `.wave/PLAN_STATE.md`、`.wave/STATUS.md`、`.wave/RUN_STATE.md`。
+5. 处理 `app-shell` 时汇总全部模块页面地图，定义全局导航、入口、面包屑和跨模块跳转。
+6. 不超出 MVP，不新增未经确认的需求。
+7. 更新时保留人工 UX 决策和已确认问题。
+8. 不写 UI 视觉细节、技术架构或任务。
+9. 不修改 `.wave/PLAN_STATE.md`、`.wave/STATUS.md`、`.wave/RUN_STATE.md`。
 
 ## 输出
 

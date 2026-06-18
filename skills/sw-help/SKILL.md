@@ -18,6 +18,8 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 → /sw-brief
 → /sw-plan
 → 人工确认规划结果
+→ /sw-scaffold（存在前端页面时）
+→ 人工检查页面骨架
 → /sw-run --all
 → /sw-release v0.1.0
 → /sw-retro v0.1.0
@@ -27,6 +29,7 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 
 ```txt
 /sw-plan --stage prd|map|design|ui|architecture|spec|task|quality
+/sw-run --stage scaffold
 /sw-run {module} TASK-001 --stage implement
 /sw-run {module} TASK-001 --stage verify
 /sw-run {module} TASK-001 --stage review
@@ -41,6 +44,7 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 | `/sw-brief` | 读取 `.wave/idea/*-IDEA.md`，把原始想法收敛成产品简报 |
 | `/sw-plan` | 自治生成 PRD、模块地图、设计、UI、架构、规格和任务 |
 | `/sw-prd` 至 `/sw-task` | 兼容入口，提示改用对应 `/sw-plan --stage` |
+| `/sw-scaffold` | 条件强制的前端应用壳入口，转交 `/sw-run --stage scaffold` |
 | `/sw-run TASK-001` | 自治执行任务，包含角色路由、断点恢复、质量门和状态写回 |
 | `/sw-work TASK-001` | 兼容入口，提示改用 `/sw-run --stage implement` |
 | `/sw-verify TASK-001` | 兼容入口，提示改用 `/sw-run --stage verify` |
@@ -64,7 +68,8 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 ## 核心规则
 
 1. 非 trivial 工作不要跳过文档阶段。
-2. `/sw-plan` 独占文档规划状态，`/sw-run` 独占工程运行状态；二者之间必须由用户手动触发。
+2. `/sw-plan` 独占文档规划状态，`/sw-run` 独占工程运行状态；存在前端页面时，
+   用户必须先手动执行 `/sw-scaffold`，检查骨架后再执行普通任务。
 3. 开始编码前必须先输出实现计划。
 4. 声称完成前必须给出验证证据。
 5. 任务必须通过验证、审查和按需 QA/安全门后才能标记为 `[x]`。
@@ -78,3 +83,4 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 12. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。
 13. 第一版只识别并行候选，实际任务仍串行执行。
 14. 文档质量门未通过或物料 STALE 时，不得进入 `/sw-run`。
+15. 前端骨架为 PENDING、BLOCKED 或 STALE 时，不得执行普通 `/sw-run --all`。

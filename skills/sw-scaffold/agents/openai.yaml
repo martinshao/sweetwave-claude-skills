@@ -1,0 +1,4 @@
+interface:
+  display_name: "SweetWave Scaffold"
+  short_description: "Build the planned frontend application shell safely"
+  default_prompt: "Use $sw-scaffold to build and verify the planned frontend application shell before regular implementation."

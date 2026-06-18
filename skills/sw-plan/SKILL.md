@@ -98,7 +98,9 @@ flowchart TD
   P8 --> P9[P9 Quality Gate]
   P9 -->|PASSED| P10[P10 Handoff]
   P9 -->|BLOCKED| Pause[保存检查点]
-  P10 --> End([READY_TO_RUN 等待用户手动启动])
+  P10 --> Scaffold{存在前端骨架任务?}
+  Scaffold -->|是| WaitScaffold([READY_TO_RUN 等待 /sw-scaffold])
+  Scaffold -->|否| End([READY_TO_RUN 等待 /sw-run])
 ```
 
 ## 节点加载
@@ -121,6 +123,7 @@ flowchart TD
 ## 全局规则
 
 - PRD 和 Map 串行；模块阶段按依赖与优先级串行执行。
+- P4–P7 的 `app-shell` 在同阶段其他页面模块完成后聚合；P8 再把它变成工程执行前置任务。
 - 第一版只识别模块并行候选，不执行并行写入。
 - Role Skill 可以写目标产物，但不得写 PLAN_STATE、STATUS 或 RUN_STATE。
 - RUN_STATE 存在活动工程现场时，不启动或恢复文档改造，先处理当前工程检查点。
@@ -128,6 +131,8 @@ flowchart TD
 - 上游变化先做影响分析；涉及 `[x]` 任务或已有代码时暂停确认。
 - 质量门通过前不得写 `READY_TO_RUN`。
 - P10 到 `/sw-run` 是强制人工边界：只输出建议命令，结束当前 `/sw-plan` 调用。
+- 存在前端页面时，P10 将前端骨架写为 PENDING，并优先建议用户手动执行
+  `/sw-scaffold`；纯后端项目直接建议 `/sw-run --all`。
 - 不自动提交、部署、发布或调用 `/sw-run`。
 - 只使用 `.wave/*` 作为 SweetWave 工作区。
 - 输出语言使用中文。

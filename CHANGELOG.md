@@ -13,6 +13,10 @@
 
 ### Added
 
+- 新增 `/sw-scaffold` 和 `/sw-run --stage scaffold`，在正式业务实现前受控建立
+  前端应用壳、导航、路由和模块占位页面。
+- 新增保留技术模块 `app-shell`、唯一骨架任务 `APP-SHELL-001` 和前端骨架状态，
+  支持门禁、验证、审查与跨会话恢复。
 - 新增节点化 `/sw-plan`，将恢复、PRD、模块地图、设计、UI、架构、规格、任务、
   文档质量门和工程交接拆分为 P1–P10。
 - 新增 `/sw-product-engineer`、`/sw-domain-engineer`、`/sw-ux-engineer`、
@@ -48,8 +52,12 @@
 
 ### Changed
 
+- 存在前端页面时，P10 下一步改为 `/sw-scaffold`；骨架完成并由用户检查后，
+  才允许普通 `/sw-run --all`。
+- `/sw-frontend-engineer` 新增 scaffold 模式，采用存量项目增量适配策略，
+  只清理可明确证明为 starter/demo 且无业务引用的代码。
 - `/sw-plan` P10 完成后只进入 `READY_TO_RUN` 并结束，必须由用户手动执行
-  `/sw-run`，不再保留任何自动续跑歧义。
+  `/sw-scaffold` 或 `/sw-run`，不再保留任何自动续跑歧义。
 - `/sw-prd`、`/sw-map`、`/sw-design`、`/sw-ui`、`/sw-arch`、`/sw-spec`、
   `/sw-task` 改为对应 `/sw-plan --stage` 的兼容入口。
 - `/sw-run` 只接受 `/sw-plan` P10 已交接且 PLAN_REPORT 为 `PASSED` 的物料。

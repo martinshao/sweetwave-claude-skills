@@ -4,6 +4,7 @@
 
 - [ ] TASK-001
 预估：30min
+任务类型：feature
 执行角色：frontend-engineer
 涉及项目：
 风险等级：medium
@@ -45,6 +46,7 @@ QA 策略：auto
 
 - [ ] TASK-002
 预估：30min
+任务类型：feature
 执行角色：backend-engineer
 涉及项目：
 风险等级：medium
@@ -100,7 +102,22 @@ QA 策略：auto
 
 - `执行角色`：`frontend-engineer`、`backend-engineer`、`database-engineer`、
   `security-engineer`、`qa-engineer`、`generic`
+- `任务类型`：`scaffold`、`feature`；旧任务缺少时按 `feature` 处理
 - `风险等级`：`low`、`medium`、`high`、`critical`
 - `QA 策略`：`auto`、`required`、`skip`
 - `并行策略`：`serial`、`candidate`
+- `app-shell/APP-SHELL-001` 是唯一 scaffold 任务；具体前端页面任务依赖它。
 - 旧任务缺少字段时由 `/sw-run` 临时推断，不要求改写历史内容。
+
+## app-shell 任务约定
+
+`app-shell/TASKS.md` 只生成：
+
+```txt
+APP-SHELL-001
+任务类型：scaffold
+执行角色：frontend-engineer
+风险等级：medium
+QA 策略：required
+并行策略：serial
+```

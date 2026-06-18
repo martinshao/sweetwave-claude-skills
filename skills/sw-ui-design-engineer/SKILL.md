@@ -26,11 +26,13 @@ allowed-tools:
 1. 读取 MODULE、DESIGN、来源 PRD 和项目现有设计系统线索。
 2. 定义页面、信息架构、布局、视觉层级、组件、表单和反馈状态。
 3. 覆盖响应式、可访问性和 loading/empty/error/success。
-4. 默认生成文档化原型；用户明确要求时才生成静态 HTML 原型。
-5. 外部 Figma/Stitch 链接只作为来源引用，不主动调用外部 MCP。
-6. 不编造品牌规范；缺失信息写为假设。
-7. 不写技术架构或任务。
-8. 不修改 `.wave/PLAN_STATE.md`、`.wave/STATUS.md`、`.wave/RUN_STATE.md`。
+4. 处理 `app-shell` 时定义根布局、导航、面包屑、内容区、404、错误边界和占位页规范，
+   不设计具体业务内容。
+5. 默认生成文档化原型；用户明确要求时才生成静态 HTML 原型。
+6. 外部 Figma/Stitch 链接只作为来源引用，不主动调用外部 MCP。
+7. 不编造品牌规范；缺失信息写为假设。
+8. 不写技术架构或任务。
+9. 不修改 `.wave/PLAN_STATE.md`、`.wave/STATUS.md`、`.wave/RUN_STATE.md`。
 
 ## 输出
 
