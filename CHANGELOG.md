@@ -48,6 +48,8 @@
 
 ### Changed
 
+- `/sw-plan` P10 完成后只进入 `READY_TO_RUN` 并结束，必须由用户手动执行
+  `/sw-run`，不再保留任何自动续跑歧义。
 - `/sw-prd`、`/sw-map`、`/sw-design`、`/sw-ui`、`/sw-arch`、`/sw-spec`、
   `/sw-task` 改为对应 `/sw-plan --stage` 的兼容入口。
 - `/sw-run` 只接受 `/sw-plan` P10 已交接且 PLAN_REPORT 为 `PASSED` 的物料。

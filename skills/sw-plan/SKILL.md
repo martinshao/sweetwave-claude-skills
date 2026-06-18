@@ -98,7 +98,7 @@ flowchart TD
   P8 --> P9[P9 Quality Gate]
   P9 -->|PASSED| P10[P10 Handoff]
   P9 -->|BLOCKED| Pause[保存检查点]
-  P10 --> End([READY_TO_RUN])
+  P10 --> End([READY_TO_RUN 等待用户手动启动])
 ```
 
 ## 节点加载
@@ -127,6 +127,7 @@ flowchart TD
 - 更新已有文档时保留人工内容、已确认决策和状态字段。
 - 上游变化先做影响分析；涉及 `[x]` 任务或已有代码时暂停确认。
 - 质量门通过前不得写 `READY_TO_RUN`。
+- P10 到 `/sw-run` 是强制人工边界：只输出建议命令，结束当前 `/sw-plan` 调用。
 - 不自动提交、部署、发布或调用 `/sw-run`。
 - 只使用 `.wave/*` 作为 SweetWave 工作区。
 - 输出语言使用中文。

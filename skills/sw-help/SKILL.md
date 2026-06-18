@@ -17,6 +17,7 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 → 填写 .wave/idea/INIT-IDEA.md
 → /sw-brief
 → /sw-plan
+→ 人工确认规划结果
 → /sw-run --all
 → /sw-release v0.1.0
 → /sw-retro v0.1.0
@@ -63,7 +64,7 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 ## 核心规则
 
 1. 非 trivial 工作不要跳过文档阶段。
-2. `/sw-plan` 独占文档规划状态，`/sw-run` 独占工程运行状态。
+2. `/sw-plan` 独占文档规划状态，`/sw-run` 独占工程运行状态；二者之间必须由用户手动触发。
 3. 开始编码前必须先输出实现计划。
 4. 声称完成前必须给出验证证据。
 5. 任务必须通过验证、审查和按需 QA/安全门后才能标记为 `[x]`。

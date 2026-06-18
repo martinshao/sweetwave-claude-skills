@@ -36,6 +36,7 @@ Idea → Brief → Plan → Run → QA → Release → Retro
 - 未经明确批准，不要新增依赖。
 - 不要通过压制 TypeScript、lint、测试错误来让检查通过，必须先分析根因。
 - `/sw-plan` 是文档规划状态的唯一写入者；`/sw-run` 是工程运行状态的唯一写入者。
+- `/sw-plan` 完成后必须停止，等待用户手动执行 `/sw-run`，不得自动续跑。
 - `PLAN_REPORT.md` 未通过或规划物料 STALE 时，不进入 `/sw-run`。
 - 任务通过验证、审查和按需 QA/安全门后才可标记为 `[x]`。
 - 跨会话恢复以 `.wave/STATUS.md`、`.wave/RUN_STATE.md` 和模块 `TASKS.md` 为准，

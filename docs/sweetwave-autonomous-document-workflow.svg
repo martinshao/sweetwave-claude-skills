@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1360" viewBox="0 0 1800 1360" role="img" aria-labelledby="title desc">
   <title id="title">SweetWave 自治文档编排流程</title>
-  <desc id="desc">展示 sw-plan 从断点恢复、PRD、模块地图、产品设计、UI、架构、规格、任务、文档质量门到 READY_TO_RUN 交接的完整流程。</desc>
+  <desc id="desc">展示 sw-plan 从断点恢复、PRD、模块地图、产品设计、UI、架构、规格、任务、文档质量门到 READY_TO_RUN，并在用户手动确认后启动 sw-run 的完整流程。</desc>
   <defs>
     <style>
       .bg{fill:#f8fafc}.lane{fill:#fff;stroke:#d8dee9;stroke-width:1.5;rx:16}
@@ -30,7 +30,7 @@
 
   <rect class="bg" width="1800" height="1360"/>
   <text class="title" x="72" y="68">SweetWave 自治文档编排流程</text>
-  <text class="subtitle" x="72" y="100">/sw-plan 独占规划状态；Document Engineer Skills 写目标产物，P9 质量门通过后才交接 /sw-run。</text>
+  <text class="subtitle" x="72" y="100">/sw-plan 独占规划状态；P9 通过后完成 P10 并停止，必须由用户审查规划结果后手动启动 /sw-run。</text>
 
   <rect class="lane" x="50" y="136" width="1700" height="210"/>
   <text class="lane-title" x="80" y="174">1. 恢复、变更分析与全局产品产物</text>
@@ -159,35 +159,46 @@
   <path class="ok" d="M1160 900 C1310 970,1510 970,1570 868"/>
 
   <rect class="lane" x="50" y="1008" width="1700" height="250"/>
-  <text class="lane-title" x="80" y="1046">4. P10 工程交接</text>
+  <text class="lane-title" x="80" y="1046">4. P10 规划完成与人工启动边界</text>
 
-  <rect class="node done" x="120" y="1100" width="260" height="110"/>
-  <text class="h" x="142" y="1128">P10 Handoff</text>
-  <text class="t" x="142" y="1154">PLAN_STATE → COMPLETED</text>
-  <text class="t" x="142" y="1177">STATUS → READY_TO_RUN</text>
-  <text class="t" x="142" y="1200">RUN_STATE → IDLE</text>
+  <rect class="node done" x="90" y="1090" width="250" height="130"/>
+  <text class="h" x="112" y="1118">P10 Handoff</text>
+  <text class="t" x="112" y="1144">PLAN_STATE → COMPLETED</text>
+  <text class="t" x="112" y="1167">STATUS → READY_TO_RUN</text>
+  <text class="t" x="112" y="1190">RUN_STATE → IDLE</text>
+  <text class="t" x="112" y="1212">/sw-plan 到此结束</text>
 
-  <rect class="node memory" x="475" y="1090" width="300" height="130"/>
-  <text class="h" x="497" y="1118">交接摘要</text>
-  <text class="t" x="497" y="1144">PRD / 模块 / 规格 / 任务统计</text>
-  <text class="t" x="497" y="1167">物料指纹 / 质量报告</text>
-  <text class="cmd" x="497" y="1192">下一步 /sw-run --all</text>
+  <rect class="node memory" x="390" y="1090" width="270" height="130"/>
+  <text class="h" x="412" y="1118">交接摘要与建议命令</text>
+  <text class="t" x="412" y="1144">PRD / 模块 / 规格 / 任务统计</text>
+  <text class="t" x="412" y="1167">物料指纹 / 质量报告</text>
+  <text class="cmd" x="412" y="1192">/sw-run --all</text>
+  <text class="t" x="412" y="1212">只展示命令，不自动续跑</text>
 
-  <rect class="node restore" x="870" y="1090" width="300" height="130"/>
-  <text class="h" x="892" y="1118">/sw-run N1</text>
-  <text class="t" x="892" y="1144">要求 PLAN_REPORT = PASSED</text>
-  <text class="t" x="892" y="1167">拒绝 STALE 或未交接物料</text>
-  <text class="t" x="892" y="1190">开始自治工程执行</text>
+  <rect class="node gate" x="710" y="1080" width="270" height="150"/>
+  <text class="h" x="732" y="1108">强制人工边界</text>
+  <text class="t" x="732" y="1134">用户审查规划结果</text>
+  <text class="t" x="732" y="1157">手动选择全部 / 模块 / 单任务</text>
+  <text class="cmd" x="732" y="1182">用户执行 /sw-run ...</text>
+  <text class="t" x="732" y="1206">无自动调用或模拟调用</text>
 
-  <rect class="node done" x="1265" y="1100" width="260" height="110"/>
-  <text class="h" x="1287" y="1128">双编排器闭环</text>
-  <text class="cmd" x="1287" y="1154">/sw-plan → /sw-run</text>
-  <text class="t" x="1287" y="1177">规划状态与运行状态分离</text>
-  <text class="t" x="1287" y="1200">磁盘物料负责跨会话恢复</text>
+  <rect class="node restore" x="1030" y="1090" width="280" height="130"/>
+  <text class="h" x="1052" y="1118">/sw-run N1</text>
+  <text class="t" x="1052" y="1144">要求 PLAN_REPORT = PASSED</text>
+  <text class="t" x="1052" y="1167">拒绝 STALE 或未交接物料</text>
+  <text class="t" x="1052" y="1190">开始自治工程执行</text>
 
-  <path class="ok" d="M380 1155 C410 1155,445 1155,475 1155"/>
-  <path class="ok" d="M775 1155 C805 1155,840 1155,870 1155"/>
-  <path class="ok" d="M1170 1155 C1200 1155,1235 1155,1265 1155"/>
+  <rect class="node done" x="1360" y="1090" width="300" height="130"/>
+  <text class="h" x="1382" y="1118">双编排器闭环</text>
+  <text class="cmd" x="1382" y="1144">/sw-plan ｜人工｜ /sw-run</text>
+  <text class="t" x="1382" y="1167">规划状态与运行状态分离</text>
+  <text class="t" x="1382" y="1190">磁盘物料负责跨会话恢复</text>
+  <text class="t" x="1382" y="1212">用户拥有工程启动决定权</text>
+
+  <path class="ok" d="M340 1155 C355 1155,375 1155,390 1155"/>
+  <path class="arrow" d="M660 1155 C675 1155,695 1155,710 1155"/>
+  <path class="arrow" d="M980 1155 C995 1155,1015 1155,1030 1155"/>
+  <path class="ok" d="M1310 1155 C1325 1155,1345 1155,1360 1155"/>
 
   <text class="small" x="72" y="1305">兼容入口：/sw-prd、/sw-map、/sw-design、/sw-ui、/sw-arch、/sw-spec、/sw-task 只提示对应 /sw-plan --stage 命令。</text>
   <text class="small" x="72" y="1328">保护原则：未完成下游可自动重生成；涉及完成任务或已有代码时必须先输出影响清单并获得确认。</text>
