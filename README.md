@@ -4,6 +4,8 @@ SweetWave 是一套基于 Claude Code `~/.claude/skills` 的个人级 AI Coding 
 
 这一版的特点是：**Skill 命令跨项目复用，文档产物沉淀到当前项目。**
 
+SweetWave Claude Skills 自身的功能演进记录在 [CHANGELOG.md](./CHANGELOG.md)。
+
 安装后，你可以在任意项目中使用：
 
 ```txt
