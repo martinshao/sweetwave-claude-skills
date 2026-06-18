@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="1320" viewBox="0 0 1680 1320" role="img" aria-labelledby="title desc">
+  <title id="title">SweetWave 敏捷迭代 Workflow 流转图</title>
+  <desc id="desc">展示大型项目进入敏捷迭代后，SweetWave 从变更入口、影响分析、Sprint 计划、增量规格更新、任务执行、发布复盘到长期记忆的完整流转。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #18212f; }
+      .subtitle { font: 400 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #52616b; }
+      .lane { fill: #ffffff; stroke: #d8dee9; stroke-width: 1.5; rx: 16; }
+      .lane-title { font: 700 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #243b53; }
+      .node { fill: #ffffff; stroke: #9fb3c8; stroke-width: 2; rx: 12; }
+      .change { fill: #fff8e6; stroke: #d69e2e; }
+      .impact { fill: #eef7ff; stroke: #2f80ed; }
+      .sprint { fill: #f3f0ff; stroke: #7048e8; }
+      .spec { fill: #effcf6; stroke: #2f9e44; }
+      .gate { fill: #fff0f0; stroke: #e03131; }
+      .run { fill: #edf7f2; stroke: #087f5b; }
+      .release { fill: #f8f0fc; stroke: #9c36b5; }
+      .side { fill: #edf2f7; stroke: #829ab1; }
+      .node-title { font: 700 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2933; }
+      .node-sub { font: 400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #52616b; }
+      .cmd { font: 700 13px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #334e68; }
+      .path { font: 700 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #334e68; }
+      .small { font: 400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #627d98; }
+      .label { fill: #f8fafc; stroke: #d8dee9; stroke-width: 1; rx: 8; }
+      .label-text { font: 600 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #334e68; }
+      .arrow { fill: none; stroke: #486581; stroke-width: 2.3; marker-end: url(#arrow); }
+      .soft { fill: none; stroke: #829ab1; stroke-width: 2; stroke-dasharray: 8 7; marker-end: url(#soft); }
+      .ok { fill: none; stroke: #2f9e44; stroke-width: 2.3; marker-end: url(#ok); }
+      .warn { fill: none; stroke: #e03131; stroke-width: 2.3; marker-end: url(#warn); }
+    </style>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#486581"/>
+    </marker>
+    <marker id="soft" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#829ab1"/>
+    </marker>
+    <marker id="ok" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2f9e44"/>
+    </marker>
+    <marker id="warn" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#e03131"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1680" height="1320"/>
+
+  <text class="title" x="72" y="70">SweetWave 敏捷迭代 Workflow 流转图</text>
+  <text class="subtitle" x="72" y="102">在已有大型项目中，以 Change 为入口，先做影响分析和 Sprint 计划，再增量更新模块规格并进入 /sw-run 执行闭环。</text>
+
+  <rect class="lane" x="54" y="138" width="1572" height="180"/>
+  <text class="lane-title" x="84" y="176">0. 迭代输入与长期上下文</text>
+
+  <rect class="node side" x="95" y="210" width="230" height="76"/>
+  <text class="node-title" x="117" y="238">迭代输入</text>
+  <text class="node-sub" x="117" y="261">用户故事 / Bug / 反馈</text>
+
+  <rect class="node side" x="425" y="200" width="260" height="96"/>
+  <text class="node-title" x="447" y="228">已有系统上下文</text>
+  <text class="path" x="447" y="253">.wave/MODULE_MAP.md</text>
+  <text class="path" x="447" y="275">.wave/specs/*</text>
+
+  <rect class="node side" x="785" y="200" width="260" height="96"/>
+  <text class="node-title" x="807" y="228">历史决策与经验</text>
+  <text class="path" x="807" y="253">CLAUDE.md</text>
+  <text class="path" x="807" y="275">.wave/LESSONS.md</text>
+
+  <rect class="node side" x="1145" y="200" width="250" height="96"/>
+  <text class="node-title" x="1167" y="228">状态观察</text>
+  <text class="cmd" x="1167" y="253">/sw-status</text>
+  <text class="node-sub" x="1167" y="275">查看 changes / sprints / tasks</text>
+
+  <path class="arrow" d="M325 248 C355 248, 390 248, 425 248"/>
+  <path class="arrow" d="M685 248 C715 248, 750 248, 785 248"/>
+  <path class="soft" d="M1045 248 C1080 248, 1110 248, 1145 248"/>
+
+  <rect class="lane" x="54" y="354" width="1572" height="250"/>
+  <text class="lane-title" x="84" y="392">1. Change 入口：把迭代需求变成可追踪变更单</text>
+
+  <rect class="node change" x="95" y="445" width="230" height="92"/>
+  <text class="node-title" x="117" y="473">创建变更单</text>
+  <text class="cmd" x="117" y="496">/sw-change</text>
+  <text class="path" x="117" y="518">.wave/changes/{id}/CHANGE.md</text>
+
+  <rect class="node change" x="430" y="426" width="270" height="130"/>
+  <text class="node-title" x="452" y="454">CHANGE.md 内容</text>
+  <text class="node-sub" x="452" y="480">类型 / 背景 / 用户故事</text>
+  <text class="node-sub" x="452" y="504">变更范围 / 非目标</text>
+  <text class="node-sub" x="452" y="528">验收标准 / 风险 / 待确认</text>
+
+  <rect class="node gate" x="810" y="430" width="240" height="122"/>
+  <text class="node-title" x="832" y="458">变更是否清晰?</text>
+  <text class="node-sub" x="832" y="484">范围不清：补充问题</text>
+  <text class="node-sub" x="832" y="508">验收不清：先确认</text>
+  <text class="node-sub" x="832" y="532">高风险：暂停决策</text>
+
+  <rect class="node impact" x="1165" y="445" width="250" height="92"/>
+  <text class="node-title" x="1187" y="473">影响分析</text>
+  <text class="cmd" x="1187" y="496">/sw-impact {change}</text>
+  <text class="path" x="1187" y="518">IMPACT.md</text>
+
+  <path class="arrow" d="M325 491 C355 491, 395 491, 430 491"/>
+  <path class="arrow" d="M700 491 C735 491, 775 491, 810 491"/>
+  <path class="ok" d="M1050 491 C1085 491, 1130 491, 1165 491"/>
+  <path class="warn" d="M930 552 C930 585, 555 585, 555 556"/>
+
+  <rect class="lane" x="54" y="640" width="1572" height="245"/>
+  <text class="lane-title" x="84" y="678">2. Impact 与 Sprint：确定变更半径和迭代计划</text>
+
+  <rect class="node impact" x="95" y="724" width="280" height="116"/>
+  <text class="node-title" x="117" y="752">IMPACT.md</text>
+  <text class="node-sub" x="117" y="778">影响模块 / 影响文件</text>
+  <text class="node-sub" x="117" y="802">需更新规格 / 回归范围</text>
+  <text class="node-sub" x="117" y="826">[NEW] / [CHANGED] / [DROPPED]</text>
+
+  <rect class="node gate" x="485" y="724" width="250" height="116"/>
+  <text class="node-title" x="507" y="752">影响半径可控?</text>
+  <text class="node-sub" x="507" y="778">跨模块过多：拆 Change</text>
+  <text class="node-sub" x="507" y="802">架构风险：先决策</text>
+  <text class="node-sub" x="507" y="826">回归过大：调整范围</text>
+
+  <rect class="node sprint" x="845" y="714" width="270" height="136"/>
+  <text class="node-title" x="867" y="742">纳入 Sprint</text>
+  <text class="cmd" x="867" y="765">/sw-sprint {sprint}</text>
+  <text class="path" x="867" y="788">.wave/sprints/{id}/SPRINT.md</text>
+  <text class="node-sub" x="867" y="812">Sprint Goal / Changes</text>
+  <text class="node-sub" x="867" y="834">Definition of Done</text>
+
+  <rect class="node side" x="1230" y="724" width="250" height="116"/>
+  <text class="node-title" x="1252" y="752">不进当前 Sprint</text>
+  <text class="node-sub" x="1252" y="778">留在 changes backlog</text>
+  <text class="node-sub" x="1252" y="802">等待下轮评估</text>
+  <text class="path" x="1252" y="826">.wave/changes/{id}/</text>
+
+  <path class="arrow" d="M1290 537 C1290 610, 235 610, 235 724"/>
+  <path class="arrow" d="M375 782 C410 782, 450 782, 485 782"/>
+  <path class="ok" d="M735 782 C770 782, 810 782, 845 782"/>
+  <path class="soft" d="M735 820 C910 890, 1090 815, 1230 790"/>
+
+  <rect class="lane" x="54" y="920" width="1572" height="225"/>
+  <text class="lane-title" x="84" y="958">3. 增量规格更新：只改受影响模块</text>
+
+  <rect class="node spec" x="95" y="1000" width="250" height="94"/>
+  <text class="node-title" x="117" y="1028">更新模块规格</text>
+  <text class="cmd" x="117" y="1051">/sw-design --change</text>
+  <text class="cmd" x="117" y="1073">/sw-ui --change</text>
+
+  <rect class="node spec" x="435" y="1000" width="250" height="94"/>
+  <text class="node-title" x="457" y="1028">更新技术规格</text>
+  <text class="cmd" x="457" y="1051">/sw-arch --change</text>
+  <text class="cmd" x="457" y="1073">/sw-spec --change</text>
+
+  <rect class="node spec" x="775" y="1000" width="250" height="94"/>
+  <text class="node-title" x="797" y="1028">更新任务清单</text>
+  <text class="cmd" x="797" y="1051">/sw-task --change</text>
+  <text class="node-sub" x="797" y="1073">标记 NEW / CHANGED / DROPPED</text>
+
+  <rect class="node gate" x="1115" y="1000" width="250" height="94"/>
+  <text class="node-title" x="1137" y="1028">文档质量门</text>
+  <text class="node-sub" x="1137" y="1051">规格一致性</text>
+  <text class="node-sub" x="1137" y="1073">任务可执行 / 可验证</text>
+
+  <path class="arrow" d="M980 850 C980 920, 220 920, 220 1000"/>
+  <path class="arrow" d="M345 1047 C380 1047, 400 1047, 435 1047"/>
+  <path class="arrow" d="M685 1047 C720 1047, 740 1047, 775 1047"/>
+  <path class="arrow" d="M1025 1047 C1060 1047, 1080 1047, 1115 1047"/>
+  <path class="warn" d="M1240 1094 C1240 1130, 220 1130, 220 1094"/>
+
+  <rect class="lane" x="54" y="1180" width="1572" height="100"/>
+  <text class="lane-title" x="84" y="1218">4. 执行、发布、复盘与回写</text>
+
+  <rect class="node run" x="120" y="1238" width="230" height="42"/>
+  <text class="cmd" x="142" y="1265">/sw-run --change</text>
+
+  <rect class="node gate" x="440" y="1238" width="230" height="42"/>
+  <text class="cmd" x="462" y="1265">verify / review</text>
+
+  <rect class="node release" x="760" y="1238" width="230" height="42"/>
+  <text class="cmd" x="782" y="1265">/sw-release --sprint</text>
+
+  <rect class="node release" x="1080" y="1238" width="230" height="42"/>
+  <text class="cmd" x="1102" y="1265">/sw-retro --sprint</text>
+
+  <path class="arrow" d="M1240 1094 C1240 1160, 235 1160, 235 1238"/>
+  <path class="ok" d="M350 1259 C380 1259, 410 1259, 440 1259"/>
+  <path class="ok" d="M670 1259 C700 1259, 730 1259, 760 1259"/>
+  <path class="ok" d="M990 1259 C1020 1259, 1050 1259, 1080 1259"/>
+  <path class="soft" d="M1310 1259 C1500 1259, 1540 910, 1290 537"/>
+
+  <text class="small" x="72" y="1306">建议目录：.wave/changes/{change}/CHANGE.md、IMPACT.md；.wave/sprints/{sprint}/SPRINT.md；长期规格仍沉淀在 .wave/specs/{module}/，经验回写 .wave/LESSONS.md。</text>
+</svg>
