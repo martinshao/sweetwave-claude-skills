@@ -13,6 +13,8 @@
 
 ### Added
 
+- 新增 `.wave/idea/{SCOPE}-IDEA.md` 原始想法文件；`/sw-init` 创建
+  `INIT-IDEA.md`，`/sw-brief` 读取 IDEA 并生成对应产品简报，同时保留原始输入。
 - 新增 `/sw-ui [module]`，根据 PRD、模块定义和产品设计生成模块级界面规格、
   原型文件与设计交付说明。
 - 新增 `/sw-map`，根据 PRD 建立 `.wave/MODULE_MAP.md`、模块依赖关系和

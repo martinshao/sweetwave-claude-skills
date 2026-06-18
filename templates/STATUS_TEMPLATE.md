@@ -13,6 +13,7 @@
 
 | 文档 | 状态 | 说明 |
 |---|---|---|
+| Idea | 待填写 | `.wave/idea/INIT-IDEA.md` |
 | Brief | 未开始 |  |
 | PRD | 未开始 |  |
 | Module Map | 未开始 |  |

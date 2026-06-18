@@ -14,6 +14,7 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 
 ```txt
 /sw-init
+→ 填写 .wave/idea/INIT-IDEA.md
 → /sw-brief
 → /sw-prd
 → /sw-map
@@ -40,8 +41,8 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 
 | Skill | 用途 |
 |---|---|
-| `/sw-init` | 初始化当前项目的 SweetWave 文档结构和 CLAUDE.md |
-| `/sw-brief` | 把模糊想法收敛成产品简报 |
+| `/sw-init` | 初始化文档结构、CLAUDE.md 和原始想法文件 |
+| `/sw-brief` | 读取 `.wave/idea/*-IDEA.md`，把原始想法收敛成产品简报 |
 | `/sw-prd` | 生成产品需求文档 PRD |
 | `/sw-map` | 根据 PRD 拆分模块，生成 `.wave/MODULE_MAP.md` 和模块目录 |
 | `/sw-design [module]` | 生成模块用户流程、页面地图、交互说明 |
@@ -64,6 +65,7 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 4. 声称完成前必须给出验证证据。
 5. 使用 `/sw-run` 时，任务必须通过验证质量门和审查质量门后才能标记为 `[x]`。
 6. 重要经验写入 `.wave/LESSONS.md`，供后续任务读取。
-7. 模块级产物写入 `.wave/specs/{module}/`，只使用 `.wave/*` 作为 SweetWave 工作区。
-8. 发布类 skill 默认不执行生产部署命令。
-9. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。
+7. `.wave/idea/*-IDEA.md` 保留用户原始输入，后续 skill 不应覆盖。
+8. 模块级产物写入 `.wave/specs/{module}/`，只使用 `.wave/*` 作为 SweetWave 工作区。
+9. 发布类 skill 默认不执行生产部署命令。
+10. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。

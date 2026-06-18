@@ -49,6 +49,8 @@ CLAUDE.md
   LESSONS.md
   STATUS.md
   MODULE_MAP.md
+  idea/
+    INIT-IDEA.md
   brief/
     INIT-BRIEF.md
   prd/
@@ -72,18 +74,21 @@ CLAUDE.md
    - AI Coding 规则
    - 禁止操作
 4. 如果已有文档，不要粗暴覆盖；保留用户已有内容，并补充缺失章节。
-5. 最后总结创建或更新了哪些文件，并给出下一步命令。
+5. 最后总结创建或更新了哪些文件，并提示用户先填写 `.wave/idea/INIT-IDEA.md`，
+   再执行 `/sw-brief`。
 6. `.wave/LESSONS.md` 用于沉淀跨任务仍然有效的架构决策、踩坑记录和业务规则确认，不写常规流水账。
 
 ## 新目录规范
 
 - `.wave/` 是 SweetWave 在项目内的工作区，承载 AI workflow 产物。
+- `.wave/idea/` 存放用户未经加工的原始想法，初始文件命名为 `INIT-IDEA.md`。
 - `.wave/brief/` 存放产品简报，初始简报命名为 `INIT-BRIEF.md`。
 - `.wave/prd/` 存放 PRD，初始 PRD 命名为 `INIT-PRD.md`。
 - `.wave/specs/` 预留给后续模块化规格目录，例如 `.wave/specs/product-detail/`。
 - `.wave/MODULE_MAP.md` 预留给后续 `/sw-map` 生成模块拆分和依赖关系。
 - `.wave/release/` 和 `.wave/retro/` 按版本或发布对象继续分目录或文件管理。
-- 文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-BRIEF.md`、`CHECKOUT-PRD.md`。
+- 文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-IDEA.md`、`INIT-BRIEF.md`、`CHECKOUT-PRD.md`。
+- `INIT-IDEA.md` 只提供最小提示，保留给用户粘贴原始想法；初始化时不要替用户扩写或结构化。
 
 ## 模板映射
 
@@ -94,6 +99,7 @@ CLAUDE_TEMPLATE.md -> CLAUDE.md
 LESSONS_TEMPLATE.md -> .wave/LESSONS.md
 STATUS_TEMPLATE.md -> .wave/STATUS.md
 MODULE_MAP_TEMPLATE.md -> .wave/MODULE_MAP.md
+IDEA_TEMPLATE.md -> .wave/idea/INIT-IDEA.md
 BRIEF_TEMPLATE.md -> .wave/brief/INIT-BRIEF.md
 PRD_TEMPLATE.md -> .wave/prd/INIT-PRD.md
 WAVE_SPECS_README_TEMPLATE.md -> .wave/specs/README.md

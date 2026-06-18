@@ -4,7 +4,7 @@
 
 对于非 trivial 的产品或工程任务，遵循：
 
-Brief → PRD → Module Map → Design → UI Prototype → Architecture → Dev Spec → Tasks → Work → Verify → Review → Release → Retro
+Idea → Brief → PRD → Module Map → Design → UI Prototype → Architecture → Dev Spec → Tasks → Work → Verify → Review → Release → Retro
 
 可使用以下 SweetWave 个人级 skills：
 

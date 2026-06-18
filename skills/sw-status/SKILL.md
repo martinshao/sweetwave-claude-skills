@@ -37,6 +37,7 @@ allowed-tools:
    - `.wave/LESSONS.md`
    - `.wave/STATUS.md`
    - `.wave/MODULE_MAP.md`
+   - `.wave/idea/*-IDEA.md`
    - `.wave/brief/*.md`
    - `.wave/prd/*-PRD.md`
    - `.wave/specs/{module}/MODULE.md`
@@ -45,6 +46,8 @@ allowed-tools:
    - `.wave/specs/{module}/ARCH.md`
    - `.wave/specs/{module}/SPEC.md`
    - `.wave/specs/{module}/TASKS.md`
+   对 IDEA 文件不能只检查文件大小：忽略标题、空行和 HTML 注释后没有正文时，
+   状态应为“待填写”，下一步应提示用户填写 IDEA，而不是执行 `/sw-brief`。
 5. 根据当前状态建议下一条 SweetWave 命令。
 6. 如果模块 `TASKS.md` 已存在，按模块统计：
    - 已完成任务 `[x]`

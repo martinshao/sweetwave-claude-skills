@@ -95,7 +95,8 @@ claude
 
 ```txt
 /sw-init
-/sw-brief "我要做一个轻量 C 端商城，用于验证前端监控系统"
+# 将最初的产品想法粘贴到 .wave/idea/INIT-IDEA.md
+/sw-brief
 /sw-prd
 /sw-map
 /sw-design
@@ -121,6 +122,8 @@ CLAUDE.md
   LESSONS.md
   STATUS.md
   MODULE_MAP.md
+  idea/
+    INIT-IDEA.md
   brief/
     INIT-BRIEF.md
   prd/
@@ -147,7 +150,11 @@ CLAUDE.md
   TEST_REPORT.md
 ```
 
-文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-BRIEF.md`、`INIT-PRD.md`、`CHECKOUT-PRD.md`。
+`.wave/idea/INIT-IDEA.md` 用来保留用户未经加工的最初想法，只需要粘贴几句话；
+`/sw-brief` 会读取它并生成对应的产品简报，不会覆盖原始 IDEA。
+
+文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-IDEA.md`、`INIT-BRIEF.md`、
+`INIT-PRD.md`、`CHECKOUT-PRD.md`。
 
 模块化节点支持显式模块参数；无参数时默认处理 `.wave/MODULE_MAP.md` 中所有 planned/active 模块：
 
@@ -186,7 +193,7 @@ V3：SweetWave plugin，支持 /sw:prd /sw:work /sw:release
 SweetWave 的目标不是让 AI 随意写更多代码，而是把 AI 放入一套可控的软件工程闭环中：
 
 ```txt
-想法 → PRD → 模块地图 → 产品设计 → 界面与原型设计 → 架构 → 开发规格 → 任务 → 实现 → 验证 → 审查 → 经验沉淀 → 发布 → 复盘
+原始想法 → 产品简报 → PRD → 模块地图 → 产品设计 → 界面与原型设计 → 架构 → 开发规格 → 任务 → 实现 → 验证 → 审查 → 经验沉淀 → 发布 → 复盘
 ```
 
 真正提升质量的不是一次性生成，而是：
