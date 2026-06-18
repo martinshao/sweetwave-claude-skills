@@ -58,6 +58,9 @@ $ARGUMENTS
 
 Engineer Skills、`/sw-work`、`/sw-verify`、`/sw-review` 不得修改以上文件。
 
+`/sw-run` 只接受 `/sw-plan` P10 已交接的物料：`STATUS.md` 必须为
+`READY_TO_RUN`，且 `.wave/PLAN_REPORT.md` 必须为 `PASSED`。
+
 ## 参数
 
 ```txt

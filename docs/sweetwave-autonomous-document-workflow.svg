@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1360" viewBox="0 0 1800 1360" role="img" aria-labelledby="title desc">
+  <title id="title">SweetWave 自治文档编排流程</title>
+  <desc id="desc">展示 sw-plan 从断点恢复、PRD、模块地图、产品设计、UI、架构、规格、任务、文档质量门到 READY_TO_RUN 交接的完整流程。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.lane{fill:#fff;stroke:#d8dee9;stroke-width:1.5;rx:16}
+      .title{font:700 34px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#18212f}
+      .subtitle{font:400 16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#52616b}
+      .lane-title{font:700 18px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#243b53}
+      .node{fill:#fff;stroke:#9fb3c8;stroke-width:2;rx:12}
+      .restore{fill:#eef7ff;stroke:#2f80ed}.product{fill:#f3f0ff;stroke:#7048e8}
+      .module{fill:#effcf6;stroke:#2f9e44}.gate{fill:#fff8e6;stroke:#d69e2e}
+      .risk{fill:#fff0f0;stroke:#e03131}.done{fill:#edf7f2;stroke:#087f5b}
+      .memory{fill:#edf2f7;stroke:#829ab1}
+      .h{font:700 17px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#1f2933}
+      .t{font:400 13px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#52616b}
+      .cmd{font:700 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#334e68}
+      .path{font:700 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#334e68}
+      .small{font:400 12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#627d98}
+      .arrow{fill:none;stroke:#486581;stroke-width:2.3;marker-end:url(#a)}
+      .soft{fill:none;stroke:#829ab1;stroke-width:2;stroke-dasharray:8 7;marker-end:url(#s)}
+      .ok{fill:none;stroke:#2f9e44;stroke-width:2.3;marker-end:url(#o)}
+      .warn{fill:none;stroke:#e03131;stroke-width:2.3;marker-end:url(#w)}
+    </style>
+    <marker id="a" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#486581"/></marker>
+    <marker id="s" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#829ab1"/></marker>
+    <marker id="o" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#2f9e44"/></marker>
+    <marker id="w" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#e03131"/></marker>
+  </defs>
+
+  <rect class="bg" width="1800" height="1360"/>
+  <text class="title" x="72" y="68">SweetWave 自治文档编排流程</text>
+  <text class="subtitle" x="72" y="100">/sw-plan 独占规划状态；Document Engineer Skills 写目标产物，P9 质量门通过后才交接 /sw-run。</text>
+
+  <rect class="lane" x="50" y="136" width="1700" height="210"/>
+  <text class="lane-title" x="80" y="174">1. 恢复、变更分析与全局产品产物</text>
+
+  <rect class="node restore" x="90" y="220" width="210" height="88"/>
+  <text class="h" x="112" y="248">P1 Restore</text>
+  <text class="cmd" x="112" y="274">/sw-plan [scope]</text>
+  <text class="t" x="112" y="296">恢复 / 指纹 / STALE</text>
+
+  <rect class="node memory" x="365" y="204" width="270" height="120"/>
+  <text class="h" x="387" y="232">规划检查点</text>
+  <text class="path" x="387" y="257">STATUS.md</text>
+  <text class="path" x="387" y="280">PLAN_STATE.md</text>
+  <text class="t" x="387" y="303">Scope / 节点 / 模块 / 恢复命令</text>
+
+  <rect class="node product" x="700" y="204" width="270" height="120"/>
+  <text class="h" x="722" y="232">P2 PRD</text>
+  <text class="cmd" x="722" y="257">sw-product-engineer</text>
+  <text class="t" x="722" y="281">Idea / Brief → F / AC</text>
+  <text class="path" x="722" y="303">.wave/prd/{SCOPE}-PRD.md</text>
+
+  <rect class="node product" x="1035" y="204" width="280" height="120"/>
+  <text class="h" x="1057" y="232">P3 Map</text>
+  <text class="cmd" x="1057" y="257">sw-domain-engineer</text>
+  <text class="t" x="1057" y="281">模块边界 / 依赖 / 优先级</text>
+  <text class="path" x="1057" y="303">MODULE_MAP + MODULE</text>
+
+  <rect class="node risk" x="1380" y="210" width="280" height="108"/>
+  <text class="h" x="1402" y="238">变更保护</text>
+  <text class="t" x="1402" y="264">涉及 [x] 或已有实现</text>
+  <text class="t" x="1402" y="287">影响清单 + 暂停确认</text>
+  <text class="t" x="1402" y="310">不覆盖完成成果</text>
+
+  <path class="arrow" d="M300 264 C330 264,335 264,365 264"/>
+  <path class="arrow" d="M635 264 C665 264,670 264,700 264"/>
+  <path class="arrow" d="M970 264 C1000 264,1005 264,1035 264"/>
+  <path class="warn" d="M1315 264 C1345 264,1350 264,1380 264"/>
+
+  <rect class="lane" x="50" y="380" width="1700" height="290"/>
+  <text class="lane-title" x="80" y="418">2. 模块级文档流水线</text>
+
+  <rect class="node module" x="90" y="495" width="220" height="120"/>
+  <text class="h" x="112" y="523">P4 Design</text>
+  <text class="cmd" x="112" y="548">sw-ux-engineer</text>
+  <text class="t" x="112" y="572">流程 / 页面地图</text>
+  <text class="path" x="112" y="596">DESIGN.md</text>
+
+  <rect class="node module" x="375" y="495" width="220" height="120"/>
+  <text class="h" x="397" y="523">P5 UI</text>
+  <text class="cmd" x="397" y="548">sw-ui-design-engineer</text>
+  <text class="t" x="397" y="572">界面 / 组件 / 原型</text>
+  <text class="path" x="397" y="596">UI.md</text>
+
+  <rect class="node module" x="660" y="485" width="240" height="140"/>
+  <text class="h" x="682" y="513">P6 Architecture</text>
+  <text class="cmd" x="682" y="538">sw-architecture-engineer</text>
+  <text class="t" x="682" y="562">API / Data / Security</text>
+  <text class="t" x="682" y="585">性能 / 可观测性</text>
+  <text class="path" x="682" y="608">ARCH.md</text>
+
+  <rect class="node module" x="965" y="495" width="220" height="120"/>
+  <text class="h" x="987" y="523">P7 Spec</text>
+  <text class="cmd" x="987" y="548">sw-spec-engineer</text>
+  <text class="t" x="987" y="572">可执行开发规格</text>
+  <text class="path" x="987" y="596">SPEC.md</text>
+
+  <rect class="node module" x="1250" y="485" width="250" height="140"/>
+  <text class="h" x="1272" y="513">P8 Task</text>
+  <text class="cmd" x="1272" y="538">sw-task-engineer</text>
+  <text class="t" x="1272" y="562">角色 / 风险 / QA</text>
+  <text class="t" x="1272" y="585">依赖 / 范围 / 验证</text>
+  <text class="path" x="1272" y="608">TASKS.md</text>
+
+  <rect class="node memory" x="1540" y="495" width="145" height="120"/>
+  <text class="h" x="1562" y="523">模块状态</text>
+  <text class="t" x="1562" y="549">MISSING</text>
+  <text class="t" x="1562" y="572">DRAFT → READY</text>
+  <text class="t" x="1562" y="595">BLOCKED / STALE</text>
+
+  <path class="arrow" d="M310 555 C340 555,345 555,375 555"/>
+  <path class="arrow" d="M595 555 C625 555,630 555,660 555"/>
+  <path class="arrow" d="M900 555 C930 555,935 555,965 555"/>
+  <path class="arrow" d="M1185 555 C1215 555,1220 555,1250 555"/>
+  <path class="soft" d="M1500 555 C1515 555,1525 555,1540 555"/>
+
+  <text class="small" x="92" y="650">按模块依赖和优先级串行推进；无依赖模块只标记 parallel candidate，当前版本不并行写入。</text>
+
+  <rect class="lane" x="50" y="704" width="1700" height="270"/>
+  <text class="lane-title" x="80" y="742">3. STALE 传播与文档质量门</text>
+
+  <rect class="node risk" x="90" y="810" width="300" height="116"/>
+  <text class="h" x="112" y="838">上游变化传播</text>
+  <text class="t" x="112" y="864">PRD → 全部下游</text>
+  <text class="t" x="112" y="887">Design → UI / Arch / Spec / Tasks</text>
+  <text class="t" x="112" y="910">Arch → Spec / Tasks</text>
+
+  <rect class="node gate" x="470" y="790" width="310" height="156"/>
+  <text class="h" x="492" y="818">P9 Quality Gate</text>
+  <text class="t" x="492" y="844">F → Module → Design → UI</text>
+  <text class="t" x="492" y="867">→ Arch → Spec → Task → AC</text>
+  <text class="t" x="492" y="890">页面 / 状态 / API / 数据一致性</text>
+  <text class="t" x="492" y="913">依赖循环 / 断裂引用 / 高风险问题</text>
+  <text class="cmd" x="492" y="936">PASSED / BLOCKED / NEEDS_CONFIRMATION</text>
+
+  <rect class="node memory" x="860" y="800" width="300" height="136"/>
+  <text class="h" x="882" y="828">质量证据</text>
+  <text class="path" x="882" y="854">.wave/TRACEABILITY.md</text>
+  <text class="path" x="882" y="877">.wave/PLAN_REPORT.md</text>
+  <text class="t" x="882" y="901">未覆盖需求 / 断裂引用</text>
+  <text class="t" x="882" y="924">跨文档一致性与阻塞项</text>
+
+  <rect class="node risk" x="1240" y="810" width="250" height="116"/>
+  <text class="h" x="1262" y="838">未通过</text>
+  <text class="t" x="1262" y="864">回到对应节点修复</text>
+  <text class="t" x="1262" y="887">保存 PLAN_STATE</text>
+  <text class="t" x="1262" y="910">精确恢复命令</text>
+
+  <rect class="node done" x="1570" y="810" width="150" height="116"/>
+  <text class="h" x="1592" y="838">PASSED</text>
+  <text class="t" x="1592" y="864">进入 P10</text>
+  <text class="t" x="1592" y="887">仅此路径可交接</text>
+
+  <path class="arrow" d="M390 868 C420 868,440 868,470 868"/>
+  <path class="arrow" d="M780 868 C810 868,830 868,860 868"/>
+  <path class="warn" d="M1160 868 C1190 868,1210 868,1240 868"/>
+  <path class="ok" d="M1160 900 C1310 970,1510 970,1570 868"/>
+
+  <rect class="lane" x="50" y="1008" width="1700" height="250"/>
+  <text class="lane-title" x="80" y="1046">4. P10 工程交接</text>
+
+  <rect class="node done" x="120" y="1100" width="260" height="110"/>
+  <text class="h" x="142" y="1128">P10 Handoff</text>
+  <text class="t" x="142" y="1154">PLAN_STATE → COMPLETED</text>
+  <text class="t" x="142" y="1177">STATUS → READY_TO_RUN</text>
+  <text class="t" x="142" y="1200">RUN_STATE → IDLE</text>
+
+  <rect class="node memory" x="475" y="1090" width="300" height="130"/>
+  <text class="h" x="497" y="1118">交接摘要</text>
+  <text class="t" x="497" y="1144">PRD / 模块 / 规格 / 任务统计</text>
+  <text class="t" x="497" y="1167">物料指纹 / 质量报告</text>
+  <text class="cmd" x="497" y="1192">下一步 /sw-run --all</text>
+
+  <rect class="node restore" x="870" y="1090" width="300" height="130"/>
+  <text class="h" x="892" y="1118">/sw-run N1</text>
+  <text class="t" x="892" y="1144">要求 PLAN_REPORT = PASSED</text>
+  <text class="t" x="892" y="1167">拒绝 STALE 或未交接物料</text>
+  <text class="t" x="892" y="1190">开始自治工程执行</text>
+
+  <rect class="node done" x="1265" y="1100" width="260" height="110"/>
+  <text class="h" x="1287" y="1128">双编排器闭环</text>
+  <text class="cmd" x="1287" y="1154">/sw-plan → /sw-run</text>
+  <text class="t" x="1287" y="1177">规划状态与运行状态分离</text>
+  <text class="t" x="1287" y="1200">磁盘物料负责跨会话恢复</text>
+
+  <path class="ok" d="M380 1155 C410 1155,445 1155,475 1155"/>
+  <path class="ok" d="M775 1155 C805 1155,840 1155,870 1155"/>
+  <path class="ok" d="M1170 1155 C1200 1155,1235 1155,1265 1155"/>
+
+  <text class="small" x="72" y="1305">兼容入口：/sw-prd、/sw-map、/sw-design、/sw-ui、/sw-arch、/sw-spec、/sw-task 只提示对应 /sw-plan --stage 命令。</text>
+  <text class="small" x="72" y="1328">保护原则：未完成下游可自动重生成；涉及完成任务或已有代码时必须先输出影响清单并获得确认。</text>
+</svg>

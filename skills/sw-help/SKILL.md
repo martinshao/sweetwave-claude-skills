@@ -16,13 +16,7 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 /sw-init
 → 填写 .wave/idea/INIT-IDEA.md
 → /sw-brief
-→ /sw-prd
-→ /sw-map
-→ /sw-design
-→ /sw-ui
-→ /sw-arch
-→ /sw-spec
-→ /sw-task
+→ /sw-plan
 → /sw-run --all
 → /sw-release v0.1.0
 → /sw-retro v0.1.0
@@ -31,6 +25,7 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 如需只推进单个阶段：
 
 ```txt
+/sw-plan --stage prd|map|design|ui|architecture|spec|task|quality
 /sw-run {module} TASK-001 --stage implement
 /sw-run {module} TASK-001 --stage verify
 /sw-run {module} TASK-001 --stage review
@@ -43,13 +38,8 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 |---|---|
 | `/sw-init` | 初始化文档结构、CLAUDE.md 和原始想法文件 |
 | `/sw-brief` | 读取 `.wave/idea/*-IDEA.md`，把原始想法收敛成产品简报 |
-| `/sw-prd` | 生成产品需求文档 PRD |
-| `/sw-map` | 根据 PRD 拆分模块，生成 `.wave/MODULE_MAP.md` 和模块目录 |
-| `/sw-design [module]` | 生成模块用户流程、页面地图、交互说明 |
-| `/sw-ui [module]` | 生成模块界面与原型设计，产出 `UI.md` |
-| `/sw-arch [module]` | 生成模块技术架构、API 契约、数据模型 |
-| `/sw-spec [module]` | 生成模块开发规格文档 |
-| `/sw-task [module]` | 把模块开发规格拆成可执行任务 |
+| `/sw-plan` | 自治生成 PRD、模块地图、设计、UI、架构、规格和任务 |
+| `/sw-prd` 至 `/sw-task` | 兼容入口，提示改用对应 `/sw-plan --stage` |
 | `/sw-run TASK-001` | 自治执行任务，包含角色路由、断点恢复、质量门和状态写回 |
 | `/sw-work TASK-001` | 兼容入口，提示改用 `/sw-run --stage implement` |
 | `/sw-verify TASK-001` | 兼容入口，提示改用 `/sw-run --stage verify` |
@@ -60,13 +50,20 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 | `/sw-security-engineer` | 由 `/sw-run` 调用的安全专项角色 |
 | `/sw-qa-engineer` | 由 `/sw-run` 调用的完整 QA 角色 |
 | `/sw-doc-sync` | 全部任务完成后的文档同步能力 |
+| `/sw-product-engineer` | 由 `/sw-plan` 调用的 PRD 角色 |
+| `/sw-domain-engineer` | 由 `/sw-plan` 调用的模块领域角色 |
+| `/sw-ux-engineer` | 由 `/sw-plan` 调用的产品体验角色 |
+| `/sw-ui-design-engineer` | 由 `/sw-plan` 调用的界面设计角色 |
+| `/sw-architecture-engineer` | 由 `/sw-plan` 调用的架构角色 |
+| `/sw-spec-engineer` | 由 `/sw-plan` 调用的规格角色 |
+| `/sw-task-engineer` | 由 `/sw-plan` 调用的任务拆解角色 |
 | `/sw-release v0.1.0` | 准备发布清单、变更日志、回滚方案 |
 | `/sw-retro v0.1.0` | 进行上线后复盘 |
 
 ## 核心规则
 
 1. 非 trivial 工作不要跳过文档阶段。
-2. `/sw-init` 初始化状态、`/sw-task` 创建任务定义，只有 `/sw-run` 推进运行期状态。
+2. `/sw-plan` 独占文档规划状态，`/sw-run` 独占工程运行状态。
 3. 开始编码前必须先输出实现计划。
 4. 声称完成前必须给出验证证据。
 5. 任务必须通过验证、审查和按需 QA/安全门后才能标记为 `[x]`。
@@ -79,3 +76,4 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 11. 发布类 skill 默认不执行生产部署命令。
 12. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。
 13. 第一版只识别并行候选，实际任务仍串行执行。
+14. 文档质量门未通过或物料 STALE 时，不得进入 `/sw-run`。

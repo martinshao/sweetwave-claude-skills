@@ -38,8 +38,11 @@ allowed-tools:
 4. 检查以下核心产物是否存在且非空：
    - `.wave/LESSONS.md`
    - `.wave/STATUS.md`
+   - `.wave/PLAN_STATE.md`
    - `.wave/RUN_STATE.md`
    - `.wave/MODULE_MAP.md`
+   - `.wave/TRACEABILITY.md`
+   - `.wave/PLAN_REPORT.md`
    - `.wave/idea/*-IDEA.md`
    - `.wave/brief/*.md`
    - `.wave/prd/*-PRD.md`
@@ -51,15 +54,28 @@ allowed-tools:
    - `.wave/specs/{module}/TASKS.md`
    对 IDEA 文件不能只检查文件大小：忽略标题、空行和 HTML 注释后没有正文时，
    状态应为“待填写”，下一步应提示用户填写 IDEA，而不是执行 `/sw-brief`。
-5. 读取 `.wave/STATUS.md` 和 `.wave/RUN_STATE.md`，检查三层状态是否一致：
+5. 读取 `.wave/STATUS.md`、`.wave/PLAN_STATE.md` 和 `.wave/RUN_STATE.md`：
+   - PLAN_STATE 为 RUNNING/PAUSED/BLOCKED 时，优先建议规划恢复命令。
+   - RUN_STATE 为 RUNNING/PAUSED/BLOCKED 时，优先建议执行恢复命令。
+   - 两者同时活动时报告状态冲突，不自动选择或覆盖。
+6. 检查规划状态一致性：
+   - 当前节点必须是 P1–P10，并与产物状态和恢复命令一致。
+   - MODULE_MAP 文档状态必须与实际文件存在性一致。
+   - PLAN_REPORT 只有 PASSED 才允许 STATUS 为 READY_TO_RUN。
+   - TRACEABILITY 中不能存在影响交接的未覆盖需求或断裂引用。
+   - 物料指纹变化时报告 STALE，并建议 `/sw-plan --resume`。
+7. 检查执行状态一致性：
    - 活动检查点的模块和任务必须存在。
    - `RUN_STATE.md` 阶段必须与 `TASKS.md` 生命周期匹配。
    - 当前节点必须是 N1–N10，并与阶段和恢复命令一致。
    - `STATUS.md` 的当前任务、模块计数和下一步命令必须可解释。
    - 物料指纹变化时报告为 `STALE`，并建议重新规划或重新运行 `/sw-task`。
    - 比较 `TASKS.md` 时忽略生命周期状态行的标记变化，只检查任务定义是否变化。
-6. 根据当前状态建议下一条 SweetWave 命令。活动检查点存在时，优先建议其中的恢复命令。
-7. 如果模块 `TASKS.md` 已存在，按模块统计：
+8. 根据当前状态建议下一条 SweetWave 命令：
+   - 文档未通过质量门：`/sw-plan` 或 PLAN_STATE 恢复命令。
+   - READY_TO_RUN：`/sw-run --all`。
+   - 活动执行检查点：RUN_STATE 恢复命令。
+9. 如果模块 `TASKS.md` 已存在，按模块统计：
    - 已完成任务 `[x]`
    - 待执行任务 `[ ]`
    - 实现中任务 `[IN_PROGRESS]`
@@ -71,10 +87,10 @@ allowed-tools:
    - 废弃任务 `[DROPPED]`
    - 当前执行角色、风险等级和 QA 策略
    - 距离上次完整 QA 的完成任务数
-8. 如果存在未完成任务且没有活动检查点，建议：
+10. 如果存在未完成任务且没有活动检查点，建议：
    - 完整推进：`/sw-run {module} TASK-ID` 或 `/sw-run --all`
    - 单阶段推进：`/sw-run {module} TASK-ID --stage implement|verify|review|qa`
-9. 检查 `.wave/qa/`、`.wave/security/` 报告和文档同步状态。
+11. 检查 `.wave/qa/`、`.wave/security/` 报告和文档同步状态。
 
 ## 输出格式
 
@@ -88,6 +104,8 @@ allowed-tools:
 ## 风险
 
 ## 建议下一步
+
+## 规划现场
 
 ## 恢复现场
 ```

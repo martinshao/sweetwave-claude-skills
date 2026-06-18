@@ -13,6 +13,15 @@
 
 ### Added
 
+- 新增节点化 `/sw-plan`，将恢复、PRD、模块地图、设计、UI、架构、规格、任务、
+  文档质量门和工程交接拆分为 P1–P10。
+- 新增 `/sw-product-engineer`、`/sw-domain-engineer`、`/sw-ux-engineer`、
+  `/sw-ui-design-engineer`、`/sw-architecture-engineer`、`/sw-spec-engineer`
+  和 `/sw-task-engineer`。
+- 新增 `.wave/PLAN_STATE.md`、`.wave/TRACEABILITY.md` 和
+  `.wave/PLAN_REPORT.md`，支持文档断点恢复、需求追踪和质量门。
+- 新增模块文档状态 `MISSING`、`DRAFT`、`REVIEWING`、`READY`、`BLOCKED`、
+  `STALE` 及上游变更传播规则。
 - 新增节点化 `/sw-run`，将恢复、调度、角色路由、实现、验证、审查、风险 QA、
   检查点、上下文重建和完成同步拆分为 N1–N10。
 - 新增 `/sw-frontend-engineer`、`/sw-backend-engineer`、
@@ -39,11 +48,12 @@
 
 ### Changed
 
+- `/sw-prd`、`/sw-map`、`/sw-design`、`/sw-ui`、`/sw-arch`、`/sw-spec`、
+  `/sw-task` 改为对应 `/sw-plan --stage` 的兼容入口。
+- `/sw-run` 只接受 `/sw-plan` P10 已交接且 PLAN_REPORT 为 `PASSED` 的物料。
 - `/sw-run` 成为三层运行状态的唯一写入者；`/sw-work`、`/sw-verify`、
   `/sw-review` 改为对应 `--stage` 模式的兼容入口。
 - 任务完成顺序调整为实现、验证、审查、按需 QA/安全门全部通过后再写入 `[x]`。
-- `/sw-task` 只生成任务定义；`/sw-run` 启动时生成 `READY_TO_RUN` 快照和物料
-  指纹，并优先恢复活动检查点。
 - 项目内工作区统一迁移到 `.wave/`，不再使用旧的 `docs/sweetwave/` 产物路径。
 - 文档产物改为按阶段与模块组织：brief、PRD 使用范围前缀命名，模块规格统一存放在
   `.wave/specs/{module}/`。

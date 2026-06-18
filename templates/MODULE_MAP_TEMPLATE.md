@@ -8,9 +8,9 @@
 
 ## 模块列表
 
-| 模块 ID | 模块名 | 业务域 | 优先级 | 状态 |
-|---|---|---|---|---|
-| example-module | 示例模块 | 示例业务域 | P0 | planned |
+| 模块 ID | 模块名 | 业务域 | 优先级 | Design | UI | Arch | Spec | Tasks | 总状态 |
+|---|---|---|---|---|---|---|---|---|---|
+| example-module | 示例模块 | 示例业务域 | P0 | MISSING | MISSING | MISSING | MISSING | MISSING | planned |
 
 ## 模块依赖
 
@@ -25,3 +25,8 @@
 ## 待确认问题
 
 - 
+
+## 状态说明
+
+- 文档状态：`MISSING`、`DRAFT`、`REVIEWING`、`READY`、`BLOCKED`、`STALE`
+- 模块总状态：`planned`、`active`、`ready`、`blocked`、`stale`

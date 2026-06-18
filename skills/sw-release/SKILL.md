@@ -28,6 +28,8 @@ $ARGUMENTS
 读取：
 
 - `.wave/MODULE_MAP.md`
+- `.wave/TRACEABILITY.md`
+- `.wave/PLAN_REPORT.md`
 - `.wave/specs/*/TASKS.md`
 - `.wave/specs/*/TEST_REPORT.md`
 - `.wave/qa/**/*-QA.md`

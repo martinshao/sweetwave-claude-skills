@@ -42,5 +42,6 @@ allowed-tools:
 - 剩余风险：
 ```
 
-不得修改 `.wave/STATUS.md`、`.wave/RUN_STATE.md` 或任何 `TASKS.md`；
+不得修改 `.wave/STATUS.md`、`.wave/PLAN_STATE.md`、`.wave/RUN_STATE.md`
+或任何 `TASKS.md`；
 不得自动提交、部署或发布。

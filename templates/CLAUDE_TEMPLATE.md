@@ -4,19 +4,14 @@
 
 对于非 trivial 的产品或工程任务，遵循：
 
-Idea → Brief → PRD → Module Map → Design → UI Prototype → Architecture → Dev Spec → Tasks → Run → QA → Release → Retro
+Idea → Brief → Plan → Run → QA → Release → Retro
 
 可使用以下 SweetWave 个人级 skills：
 
 ```txt
 /sw-brief
-/sw-prd
-/sw-map
-/sw-design [module]
-/sw-ui [module]
-/sw-arch [module]
-/sw-spec [module]
-/sw-task [module]
+/sw-plan
+/sw-plan --stage prd|map|design|ui|architecture|spec|task|quality
 /sw-run [module] TASK-001
 /sw-run --all
 /sw-run [module] TASK-001 --stage implement|verify|review|qa
@@ -40,7 +35,8 @@ Idea → Brief → PRD → Module Map → Design → UI Prototype → Architectu
 - 不要修改与当前任务无关的文件。
 - 未经明确批准，不要新增依赖。
 - 不要通过压制 TypeScript、lint、测试错误来让检查通过，必须先分析根因。
-- `/sw-run` 是 SweetWave 三层运行状态的唯一写入者。
+- `/sw-plan` 是文档规划状态的唯一写入者；`/sw-run` 是工程运行状态的唯一写入者。
+- `PLAN_REPORT.md` 未通过或规划物料 STALE 时，不进入 `/sw-run`。
 - 任务通过验证、审查和按需 QA/安全门后才可标记为 `[x]`。
 - 跨会话恢复以 `.wave/STATUS.md`、`.wave/RUN_STATE.md` 和模块 `TASKS.md` 为准，
   不依赖聊天历史猜测进度。

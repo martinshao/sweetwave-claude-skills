@@ -32,6 +32,12 @@
 
 - 
 
+## 文档状态
+
+| Design | UI | Arch | Spec | Tasks | 总状态 |
+|---|---|---|---|---|---|
+| MISSING | MISSING | MISSING | MISSING | MISSING | planned |
+
 ## 待生成文档
 
 - DESIGN.md

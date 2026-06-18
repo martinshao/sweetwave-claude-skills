@@ -48,8 +48,11 @@ CLAUDE.md
 .wave/
   LESSONS.md
   STATUS.md
+  PLAN_STATE.md
   RUN_STATE.md
   MODULE_MAP.md
+  TRACEABILITY.md
+  PLAN_REPORT.md
   idea/
     INIT-IDEA.md
   brief/
@@ -78,9 +81,10 @@ CLAUDE.md
    - 禁止操作
 4. 如果已有文档，不要粗暴覆盖；保留用户已有内容，并补充缺失章节。
 5. 最后总结创建或更新了哪些文件，并提示用户先填写 `.wave/idea/INIT-IDEA.md`，
-   再执行 `/sw-brief`。
+   再执行 `/sw-brief` 和 `/sw-plan`。
 6. `.wave/LESSONS.md` 用于沉淀跨任务仍然有效的架构决策、踩坑记录和业务规则确认，不写常规流水账。
-7. `.wave/STATUS.md` 保存项目级快照；`.wave/RUN_STATE.md` 保存当前任务执行检查点。
+7. `.wave/STATUS.md` 保存项目级快照；`.wave/PLAN_STATE.md` 保存文档编排检查点；
+   `.wave/RUN_STATE.md` 保存任务执行检查点。
 
 ## 新目录规范
 
@@ -91,7 +95,10 @@ CLAUDE.md
 - `.wave/specs/` 预留给后续模块化规格目录，例如 `.wave/specs/product-detail/`。
 - `.wave/MODULE_MAP.md` 预留给后续 `/sw-map` 生成模块拆分和依赖关系。
 - `.wave/STATUS.md` 记录阶段、模块进度、物料清单和下一步命令。
+- `.wave/PLAN_STATE.md` 初始化为 `IDLE`，记录 `/sw-plan` 当前节点和恢复现场。
 - `.wave/RUN_STATE.md` 初始化为 `IDLE`，只记录一个当前任务的执行现场。
+- `.wave/TRACEABILITY.md` 记录 F → Module → Design → UI → Arch → Spec → Task → AC。
+- `.wave/PLAN_REPORT.md` 记录文档质量门结论。
 - `.wave/release/` 和 `.wave/retro/` 按版本或发布对象继续分目录或文件管理。
 - `.wave/qa/` 保存任务、模块和发布级完整 QA 报告。
 - `.wave/security/` 保存任务级安全专项报告。
@@ -106,8 +113,11 @@ CLAUDE.md
 CLAUDE_TEMPLATE.md -> CLAUDE.md
 LESSONS_TEMPLATE.md -> .wave/LESSONS.md
 STATUS_TEMPLATE.md -> .wave/STATUS.md
+PLAN_STATE_TEMPLATE.md -> .wave/PLAN_STATE.md
 RUN_STATE_TEMPLATE.md -> .wave/RUN_STATE.md
 MODULE_MAP_TEMPLATE.md -> .wave/MODULE_MAP.md
+TRACEABILITY_TEMPLATE.md -> .wave/TRACEABILITY.md
+PLAN_REPORT_TEMPLATE.md -> .wave/PLAN_REPORT.md
 IDEA_TEMPLATE.md -> .wave/idea/INIT-IDEA.md
 BRIEF_TEMPLATE.md -> .wave/brief/INIT-BRIEF.md
 PRD_TEMPLATE.md -> .wave/prd/INIT-PRD.md

@@ -1,7 +1,7 @@
 # SweetWave Status
 
-记录项目级工作流快照、已准备物料和下一步入口。任务执行现场单独记录在
-`.wave/RUN_STATE.md`。
+记录项目级工作流快照、已准备物料和下一步入口。文档规划现场记录在
+`.wave/PLAN_STATE.md`，任务执行现场记录在 `.wave/RUN_STATE.md`。
 
 ## 工作流快照
 
@@ -25,6 +25,7 @@
 | Module Map | 未开始 |  |
 | Module Specs | 未开始 |  |
 | Tasks | 未开始 |  |
+| Plan Quality Gate | 未开始 | `.wave/PLAN_REPORT.md` |
 | QA | 未开始 |  |
 | Release | 未开始 |  |
 | Retro | 未开始 |  |
@@ -48,7 +49,15 @@
 - 建议命令：
 - 原因：
 
-## 最近检查点
+## 规划检查点
+
+- 状态：IDLE
+- Scope：
+- 模块：
+- 当前节点：
+- 恢复命令：
+
+## 执行检查点
 
 - 状态：IDLE
 - 模块：
@@ -63,6 +72,6 @@
 
 ## 状态值
 
-- 工作流阶段：`INITIALIZED`、`DOCUMENTING`、`READY_TO_RUN`、`RUNNING`、
+- 工作流阶段：`INITIALIZED`、`PLANNING`、`READY_TO_RUN`、`RUNNING`、
   `BLOCKED`、`READY_TO_RELEASE`、`RELEASED`。
-- 物料状态：`MISSING`、`DRAFT`、`READY`、`STALE`。
+- 物料状态：`MISSING`、`DRAFT`、`REVIEWING`、`READY`、`BLOCKED`、`STALE`。
