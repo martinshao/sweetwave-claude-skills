@@ -33,7 +33,7 @@ $ARGUMENTS
 
 包和配置文件：
 
-!`find . -maxdepth 3 \( -name package.json -o -name pnpm-workspace.yaml -o -name turbo.json -o -name vite.config.* -o -name next.config.* -o -name tsconfig.json -o -name pyproject.toml -o -name go.mod -o -name Cargo.toml \) 2>/dev/null | sort | head -200`
+!`find . -maxdepth 3 \( -name package.json -o -name pnpm-workspace.yaml -o -name turbo.json -o -name 'vite.config.*' -o -name 'next.config.*' -o -name tsconfig.json -o -name pyproject.toml -o -name go.mod -o -name Cargo.toml \) 2>/dev/null | sort | head -200`
 
 Git 状态：
 
