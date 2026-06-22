@@ -47,6 +47,7 @@
 - 返回角色：
 - 返回状态：
 - 返回修改文件：
+- 控制权标记：
 - 派发异常：
 
 ### Engineer 执行结果
@@ -106,7 +107,9 @@
 - 派发状态只允许：`NOT_STARTED`、`CALLING`、`RESULT_RETURNED`、
   `RESULT_VALIDATED`、`DIRECT_GENERIC`、`FAILED`。
 - 非 `generic` 任务进入 N4 前，派发状态必须为 `RESULT_VALIDATED`。
+- Engineer 结构化结果的控制权标记必须为 `RETURN_TO_SW_RUN_N3`。
 - `DIRECT_GENERIC` 只允许解析角色明确为 `generic` 的任务。
+- `ALL_MODULE_TASKS`、`ALL_PROJECT_TASKS` 中间任务完成时不得结束当前调用。
 - 每次进入新阶段、暂停、阻塞或完成时立即更新。
 - 新任务开始前覆盖旧的 `COMPLETED` 现场；不要同时记录多个活动任务。
 - `TASKS.md` 使用任务定义指纹：比较时忽略 `[ ]`、`[IN_PROGRESS]`、

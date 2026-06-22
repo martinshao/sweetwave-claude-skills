@@ -26,6 +26,14 @@ for name in sw-frontend-engineer sw-backend-engineer sw-database-engineer sw-sec
   fi
 done
 
+for name in sw-frontend-engineer sw-backend-engineer sw-database-engineer; do
+  file="$HOME/.claude/skills/$name/SKILL.md"
+  if [ -f "$file" ] && ! grep -q 'RETURN_TO_SW_RUN_N3' "$file"; then
+    echo "错误：/$name 缺少返回 /sw-run 的控制权协议。" >&2
+    missing=1
+  fi
+done
+
 if [ "$missing" -ne 0 ]; then
   echo "部分 SweetWave skills 缺失。" >&2
   exit 1

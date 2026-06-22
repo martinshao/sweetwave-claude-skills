@@ -32,10 +32,13 @@ allowed-tools:
 
 ## 输出
 
+以下同步结果是当前 `/sw-run` N10 的内部交接数据，不是面向用户的最终答复。
+
 ```md
 ## 同步结果
 
 - 状态：COMPLETED / BLOCKED
+- 控制权：RETURN_TO_SW_RUN_N10
 - README：
 - CLAUDE.md：
 - LESSONS：
@@ -48,3 +51,4 @@ allowed-tools:
 不得修改 `.wave/STATUS.md`、`.wave/PLAN_STATE.md`、`.wave/RUN_STATE.md`
 或任何 `TASKS.md`；
 不得自动提交、部署或发布。
+生成结果后必须立即恢复 `/sw-run` N10，不得结束当前 assistant turn。

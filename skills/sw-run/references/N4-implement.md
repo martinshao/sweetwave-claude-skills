@@ -15,6 +15,8 @@
 6. `BLOCKED` 时同步任务和项目阻塞状态，保存恢复命令。
    scaffold 任务同时将前端骨架写为 `BLOCKED`。
 7. `COMPLETED` 时将任务写为 `[VERIFYING]`，下一节点设为 N5。
+8. 无 `--stage` 时立即进入 N5；不得在 `[VERIFYING]` 或 Engineer 的执行结果处停止。
+   `ALL_MODULE_TASKS`、`ALL_PROJECT_TASKS` 尤其不得向用户输出中间任务总结。
 
 `--stage implement` 在写入 `[VERIFYING]` 后停止，恢复命令为：
 

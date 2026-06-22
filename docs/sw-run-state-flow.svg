@@ -132,8 +132,8 @@
 
   <rect class="node work" x="1150" y="738" width="250" height="96"/>
   <text class="node-title" x="1172" y="766">Skill 调用 Engineer</text>
-  <text class="node-sub" x="1172" y="791">结构化返回执行结果</text>
-  <text class="node-sub" x="1172" y="813">失败阻塞，不降级 generic</text>
+  <text class="node-sub" x="1172" y="791">结构化结果返回 sw-run</text>
+  <text class="node-sub" x="1172" y="813">不结束 turn；失败才阻塞</text>
 
   <path class="arrow" d="M590 598 C590 645, 245 645, 245 738"/>
   <path class="arrow" d="M370 786 C405 786, 445 786, 480 786"/>

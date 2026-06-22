@@ -69,8 +69,11 @@ allowed-tools:
    - `RUN_STATE.md` 阶段必须与 `TASKS.md` 生命周期匹配。
    - 当前节点必须是 N1–N10，并与阶段和恢复命令一致。
    - 非 `generic` 活动任务处于 N4 或更晚节点时，派发状态必须为
-     `RESULT_VALIDATED`，返回角色必须与解析角色一致。
+     `RESULT_VALIDATED`，返回角色必须与解析角色一致，控制权标记必须为
+     `RETURN_TO_SW_RUN_N3`。
    - `DIRECT_GENERIC` 只能用于解析角色明确为 `generic` 的任务。
+   - `ALL_MODULE_TASKS` 或 `ALL_PROJECT_TASKS` 有后续可执行任务时，不得显示为
+     已结束；恢复命令应继续原批量范围。
    - `STATUS.md` 的当前任务、模块计数和下一步命令必须可解释。
    - 物料指纹变化时报告为 `STALE`，并建议重新规划或重新运行 `/sw-task`。
    - 比较 `TASKS.md` 时忽略生命周期状态行的标记变化，只检查任务定义是否变化。

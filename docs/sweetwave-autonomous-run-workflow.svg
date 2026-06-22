@@ -82,13 +82,13 @@
   <text class="cmd" x="417" y="510">sw-backend-engineer</text>
   <text class="cmd" x="417" y="533">sw-database-engineer</text>
   <text class="cmd" x="417" y="556">generic → 通用实现</text>
-  <text class="t" x="417" y="579">Skill 工具调用；结构化返回</text>
+  <text class="t" x="417" y="579">结构化返回；控制权回到 N3</text>
 
   <rect class="node work" x="780" y="443" width="260" height="136"/>
   <text class="h" x="802" y="471">N4 Implement</text>
   <text class="t" x="802" y="497">要求 RESULT_VALIDATED</text>
   <text class="t" x="802" y="520">复核角色 / diff / 范围</text>
-  <text class="t" x="802" y="543">非 generic 禁止代写</text>
+  <text class="t" x="802" y="543">非 generic 禁止代写/早停</text>
   <text class="t" x="802" y="566">完成 → [VERIFYING]</text>
 
   <rect class="node memory" x="1125" y="443" width="260" height="136"/>

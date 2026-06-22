@@ -6,7 +6,8 @@
    `[IN_PROGRESS]`、`[VERIFYING]`、`[REVIEWING]` 或 `[BLOCKED]`。
 2. 必要时通过 `Skill` 工具调用 release 级 `/sw-qa-engineer`。
 3. 通过 `Skill` 工具调用 `/sw-doc-sync` 同步 README、CLAUDE.md、LESSONS 和规格文档。
-4. 校验文档同步结果，不允许 `sw-doc-sync` 修改三层状态。
+4. 校验文档同步结果及 `RETURN_TO_SW_RUN_N10` 控制权标记，不允许 `sw-doc-sync`
+   修改三层状态。专业 Skill 输出后不得提前结束当前调用。
 5. 由 `/sw-run` 将 `STATUS.md` 写为 `READY_TO_RELEASE`。
 6. 将 `RUN_STATE.md` 重置为 `IDLE`，保留最近完成摘要。
 7. 输出模块、任务、QA、安全和文档同步总结。

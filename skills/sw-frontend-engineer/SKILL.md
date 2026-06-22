@@ -93,12 +93,16 @@ allowed-tools:
 
 ## 输出
 
+以下“执行结果”是返回给当前 `/sw-run` 编排流程的内部交接数据，不是面向用户的最终答复。
+生成后必须立即恢复 `/sw-run` 的 N3 强制派发协议，不得结束当前 assistant turn。
+
 ```md
 ## 执行结果
 
 - 角色：frontend-engineer
 - 模式：feature / scaffold
 - 状态：COMPLETED / BLOCKED
+- 控制权：RETURN_TO_SW_RUN_N3
 - 目标前端应用：
 - 入口识别证据：
 - 清理的示例文件：
@@ -113,3 +117,4 @@ allowed-tools:
 ```
 
 不得标记任务完成，不得自动提交、部署或发布。
+不得在输出本结果后停止；由 `/sw-run` 继续 N3 校验、N4、N5–N9 及批量调度。

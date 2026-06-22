@@ -37,11 +37,14 @@ allowed-tools:
 
 ## 结构化结果
 
+以下结果是当前 `/sw-run` N7 的内部交接数据，不是面向用户的最终答复。
+
 ```md
 ## 执行结果
 
 - 角色：security-engineer
 - 状态：COMPLETED / BLOCKED
+- 控制权：RETURN_TO_SW_RUN_N7
 - 修改文件：仅安全报告
 - 完成内容：
 - 执行命令：
@@ -51,3 +54,4 @@ allowed-tools:
 ```
 
 不得修改业务代码或三层状态；发现问题时返回 `BLOCKED` 给 `/sw-run`。
+生成结果后必须立即恢复 `/sw-run` N7，不得结束当前 assistant turn。

@@ -45,11 +45,14 @@ allowed-tools:
 
 ## 结构化结果
 
+以下结果是当前 `/sw-run` N7 或 N10 的内部交接数据，不是面向用户的最终答复。
+
 ```md
 ## 执行结果
 
 - 角色：qa-engineer
 - 状态：COMPLETED / BLOCKED
+- 控制权：RETURN_TO_SW_RUN
 - 修改文件：仅 QA 报告
 - 完成内容：
 - 执行命令：
@@ -59,3 +62,4 @@ allowed-tools:
 ```
 
 不得修改业务代码或三层状态；失败项返回 `/sw-run` 处理。
+生成结果后必须立即恢复调用它的 `/sw-run` 节点，不得结束当前 assistant turn。

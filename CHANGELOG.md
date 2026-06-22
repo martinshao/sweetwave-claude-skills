@@ -52,6 +52,10 @@
 
 ### Changed
 
+- 修复 `{module} --all` 在 Engineer 输出后提前结束：明确 Skill 调用属于同一
+  `/sw-run` 调用，Engineer 结构化结果是内部交接数据，必须携带控制权标记并续跑。
+- N3、N4、N7、N9、N10 新增最终输出门禁；批量模式只允许在范围完成、阻塞、
+  必须用户确认或环境无法继续时结束，不得停在单任务 `[VERIFYING]` 或 `[x]`。
 - 修复 `/sw-run` 角色派发契约：增加 `Skill` 调用权限，并允许运行期 Engineer、
   QA、安全和文档同步 Skills 被编排器调用。
 - N3 现在必须完成实际 Skill 调用并保存 `RESULT_VALIDATED` 派发凭证；N4 对
