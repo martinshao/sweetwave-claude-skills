@@ -115,7 +115,7 @@
 
   <rect class="node work" x="120" y="738" width="250" height="96"/>
   <text class="node-title" x="142" y="766">N3 解析角色</text>
-  <text class="node-sub" x="142" y="791">选择 Engineer Skill</text>
+  <text class="node-sub" x="142" y="791">选择前台 Engineer Agent</text>
   <text class="node-sub" x="142" y="813">记录调用输入与派发状态</text>
 
   <rect class="node gate" x="480" y="724" width="230" height="124"/>
@@ -131,9 +131,9 @@
   <text class="node-sub" x="837" y="822">拒绝则停止或重规划</text>
 
   <rect class="node work" x="1150" y="738" width="250" height="96"/>
-  <text class="node-title" x="1172" y="766">Skill 调用 Engineer</text>
-  <text class="node-sub" x="1172" y="791">结构化结果返回 sw-run</text>
-  <text class="node-sub" x="1172" y="813">不结束 turn；失败才阻塞</text>
+  <text class="node-title" x="1172" y="766">Agent 执行 Engineer</text>
+  <text class="node-sub" x="1172" y="791">结果写入 handoff</text>
+  <text class="node-sub" x="1172" y="813">前台返回；失败才阻塞</text>
 
   <path class="arrow" d="M590 598 C590 645, 245 645, 245 738"/>
   <path class="arrow" d="M370 786 C405 786, 445 786, 480 786"/>
@@ -162,7 +162,7 @@
 
   <rect class="node done" x="1090" y="1030" width="220" height="72"/>
   <text class="node-title" x="1112" y="1058">N7 QA / Security</text>
-  <text class="path" x="1112" y="1081">通过 Skill 工具调用专项角色</text>
+  <text class="path" x="1112" y="1081">前台 Agent 调用专项角色</text>
 
   <rect class="node side" x="1390" y="1030" width="170" height="72"/>
   <text class="node-title" x="1412" y="1058">范围完成?</text>

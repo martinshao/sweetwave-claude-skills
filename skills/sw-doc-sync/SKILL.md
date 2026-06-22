@@ -1,6 +1,6 @@
 ---
 name: sw-doc-sync
-description: 在 SweetWave 全部任务完成后同步 README、CLAUDE.md、LESSONS 和模块规格，生成发布候选摘要并检查文档一致性。由 /sw-run 的完成节点调用。
+description: SweetWave 文档同步角色手册，同步 README、CLAUDE.md、LESSONS 和模块规格并生成发布候选摘要。由 sw-doc-sync-worker 预加载。
 disable-model-invocation: false
 allowed-tools:
   - Read
@@ -15,7 +15,8 @@ allowed-tools:
 
 # SweetWave 文档同步
 
-仅接受 `/sw-run` 在 N10 通过 `Skill` 工具传入的全项目完成摘要、QA/安全报告和
+作为 `sw-doc-sync-worker` 的预加载角色手册使用，只接受父流程传入的全项目完成摘要、
+QA/安全报告和
 目标文档范围。上下文不完整时返回 `BLOCKED`，不得修改三层运行状态。
 
 根据已完成任务和实际代码同步长期文档，不执行发布。
@@ -32,13 +33,12 @@ allowed-tools:
 
 ## 输出
 
-以下同步结果是当前 `/sw-run` N10 的内部交接数据，不是面向用户的最终答复。
+将以下同步结果写入 `.wave/handoffs/release/doc-sync.md`。
 
 ```md
 ## 同步结果
 
 - 状态：COMPLETED / BLOCKED
-- 控制权：RETURN_TO_SW_RUN_N10
 - README：
 - CLAUDE.md：
 - LESSONS：
@@ -51,4 +51,3 @@ allowed-tools:
 不得修改 `.wave/STATUS.md`、`.wave/PLAN_STATE.md`、`.wave/RUN_STATE.md`
 或任何 `TASKS.md`；
 不得自动提交、部署或发布。
-生成结果后必须立即恢复 `/sw-run` N10，不得结束当前 assistant turn。

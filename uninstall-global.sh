@@ -2,12 +2,19 @@
 set -euo pipefail
 
 SKILLS_TARGET="$HOME/.claude/skills"
+AGENTS_TARGET="$HOME/.claude/agents"
 TEMPLATES_TARGET="$HOME/.claude/sweetwave/templates"
 
 echo "正在移除 SweetWave skills：$SKILLS_TARGET"
 for name in sw-help sw-status sw-init sw-brief sw-plan sw-prd sw-map sw-design sw-ui sw-arch sw-spec sw-task sw-scaffold sw-product-engineer sw-domain-engineer sw-ux-engineer sw-ui-design-engineer sw-architecture-engineer sw-spec-engineer sw-task-engineer sw-work sw-verify sw-review sw-run sw-frontend-engineer sw-backend-engineer sw-database-engineer sw-security-engineer sw-qa-engineer sw-doc-sync sw-release sw-retro; do
   rm -rf "$SKILLS_TARGET/$name"
   echo "  已移除 /$name"
+done
+
+echo "正在移除 SweetWave agents：$AGENTS_TARGET"
+for name in sw-frontend-worker sw-backend-worker sw-database-worker sw-security-worker sw-qa-worker sw-doc-sync-worker; do
+  rm -f "$AGENTS_TARGET/$name.md"
+  echo "  已移除 Agent：$name"
 done
 
 read -r -p "是否删除 SweetWave 模板目录 $TEMPLATES_TARGET？[y/N] " answer

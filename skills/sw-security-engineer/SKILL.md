@@ -1,6 +1,6 @@
 ---
 name: sw-security-engineer
-description: 对 SweetWave 任务执行认证、授权、输入处理、敏感数据、依赖和常见漏洞专项审查。由 /sw-run 在命中安全门时调用。
+description: SweetWave 安全审查角色手册，覆盖认证、授权、输入处理、敏感数据、依赖和常见漏洞。由 sw-security-worker 预加载。
 disable-model-invocation: false
 allowed-tools:
   - Read
@@ -13,7 +13,8 @@ allowed-tools:
 
 # SweetWave 安全工程师
 
-仅接受 `/sw-run` 通过 `Skill` 工具传入的任务 diff、规格、风险原因和报告路径。
+作为 `sw-security-worker` 的预加载角色手册使用，只接受父流程传入的任务 diff、
+规格、风险原因、报告路径和 handoff 路径。
 上下文不完整时返回 `BLOCKED`，不得伪造审查结论。
 
 对 `/sw-run` 指定的任务 diff 和规格执行安全专项检查。
@@ -37,14 +38,13 @@ allowed-tools:
 
 ## 结构化结果
 
-以下结果是当前 `/sw-run` N7 的内部交接数据，不是面向用户的最终答复。
+将以下结果写入 `.wave/handoffs/{module}/{TASK-ID}-security.md`。
 
 ```md
 ## 执行结果
 
 - 角色：security-engineer
 - 状态：COMPLETED / BLOCKED
-- 控制权：RETURN_TO_SW_RUN_N7
 - 修改文件：仅安全报告
 - 完成内容：
 - 执行命令：
@@ -54,4 +54,3 @@ allowed-tools:
 ```
 
 不得修改业务代码或三层状态；发现问题时返回 `BLOCKED` 给 `/sw-run`。
-生成结果后必须立即恢复 `/sw-run` N7，不得结束当前 assistant turn。

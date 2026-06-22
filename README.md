@@ -1,6 +1,7 @@
 # SweetWave Claude Skills 中文版 V0
 
-SweetWave 是一套基于 Claude Code `~/.claude/skills` 的个人级 AI Coding Workflow。
+SweetWave 是一套基于 Claude Code `~/.claude/skills` 与 `~/.claude/agents`
+的个人级 AI Coding Workflow。
 
 这一版的特点是：**Skill 命令跨项目复用，文档产物沉淀到当前项目。**
 
@@ -56,6 +57,7 @@ cd sweetwave-claude-skills
 
 ```txt
 ~/.claude/skills/sw-*
+~/.claude/agents/sw-*-worker.md
 ~/.claude/sweetwave/templates/*
 ```
 
@@ -89,7 +91,9 @@ git pull
 ./update-global.sh
 ```
 
-`update-global.sh` 会复用 `install-global.sh update`，覆盖更新 `~/.claude/skills/sw-*` 和 `~/.claude/sweetwave/templates/*`。
+`update-global.sh` 会复用 `install-global.sh update`，覆盖更新
+`~/.claude/skills/sw-*`、`~/.claude/agents/sw-*-worker.md` 和
+`~/.claude/sweetwave/templates/*`。
 
 `install-global.sh` 本身也是幂等的；重复执行也会刷新本机已安装的 SweetWave skills。
 
@@ -146,6 +150,7 @@ CLAUDE.md
     README.md
   qa/
   security/
+  handoffs/
   release/
     README.md
   retro/
@@ -194,17 +199,18 @@ SweetWave 使用双编排检查点支持跨会话恢复：
 完整流转见
 [SweetWave 断点记忆与恢复流程图](./docs/sweetwave-checkpoint-recovery-workflow.svg)。
 
-`/sw-run` 已升级为 N1–N10 节点化自治编排器，会根据任务元数据调用同级
-Engineer Skills，并在验证、审查、风险 QA 和安全门全部满足后写入 `[x]`。
+`/sw-run` 已升级为 N1–N10 节点化自治编排器，会根据任务元数据调用前台
+Engineer Subagents，并在验证、审查、风险 QA 和安全门全部满足后写入 `[x]`。
 `/sw-scaffold` 是前端骨架友好入口；`/sw-work`、`/sw-verify`、`/sw-review`
 仅作为兼容入口。
 
-角色派发是强制边界：N3 必须通过 `Skill` 工具调用任务声明或推断出的
-`sw-frontend-engineer`、`sw-backend-engineer` 或 `sw-database-engineer`。
+角色派发是强制边界：N3 必须通过前台 `Agent` 工具调用任务声明或推断出的
+`sw-frontend-worker`、`sw-backend-worker` 或 `sw-database-worker`。
 非 `generic` 任务没有 `RESULT_VALIDATED` 派发凭证时不能进入 N4；上下文压缩或
 跨会话恢复也必须重新校验该凭证。`sw-run` 不得把调用失败降级成自行实现。
-Engineer Skill 与 `sw-run` 运行在同一次调用中；Engineer 输出是内部交接数据，
-必须携带 `RETURN_TO_SW_RUN_N3` 并继续 N4–N9，不能直接作为最终答复结束。
+Engineer Subagent 使用前台阻塞模式，完成后把结果写入
+`.wave/handoffs/{module}/{TASK-ID}.md` 并返回主流程；`sw-run` 从文件读取结果，
+继续 N4–N9。批量执行不使用后台 Agent。
 
 `/sw-run` 的执行范围由命令显式决定：
 
@@ -248,13 +254,13 @@ architecture、spec 和 task Engineer Skills。上游变化会按依赖传播 `S
 
 1. **双编排器**：`/sw-plan` 负责文档规划，`/sw-run` 负责工程执行。
 2. **状态所有权**：`/sw-plan` 独占规划状态，`/sw-run` 独占运行状态，
-   Engineer Skills 只写目标产物或返回结果。
+   Engineer Subagents 只写目标产物和 handoff，不写运行状态。
 3. **人工交接**：规划完成只进入 `READY_TO_RUN`；前端项目先人工启动并检查骨架，
    再人工启动普通工程任务。
 4. **先计划后实现**：复杂开发必须先输出实现计划，再进行代码修改。
 5. **验证闭环**：开发完成必须报告 typecheck / lint / test / build 的执行结果。
-6. **角色路由**：任务按 frontend、backend、database 等角色进入专业 Engineer Skill。
-7. **派发凭证**：非 generic 任务必须留下实际 Skill 调用和结构化返回证据，
+6. **角色路由**：任务按 frontend、backend、database 等角色进入专业前台 Subagent。
+7. **派发凭证**：非 generic 任务必须留下实际 Agent 调用和 handoff 文件证据，
    N4 只验收结果，不代替专业角色写业务代码。
 8. **自治状态机**：`/sw-run` 节点化推进实现、验证、审查、QA、安全和文档同步。
 9. **范围锁定**：单任务、模块和全项目模式使用不同停止条件，恢复时不得越界扩展范围。
@@ -265,15 +271,15 @@ architecture、spec 和 task Engineer Skills。上游变化会按依赖传播 `S
 14. **安全并行边界**：当前只识别并行候选，仍采用串行执行。
 15. **发布谨慎**：`/sw-release` 默认只生成发布清单、变更日志和回滚方案，不执行生产部署。
 16. **骨架门禁**：前端页面项目必须先完成 `APP-SHELL-001`，普通任务才能运行。
-17. **个人级复用**：skills 安装在 `~/.claude/skills`，项目产物留在当前 repo。
+17. **个人级复用**：skills 与 agents 安装在 `~/.claude/`，项目产物留在当前 repo。
 
 ## 8. V0 边界
 
 这一版是个人级 skills 工作流，适合跨项目复用和个人方法论验证。后续可以升级为：
 
 ```txt
-V0：~/.claude/skills
-V1：~/.claude/skills + ~/.claude/agents
+V0：~/.claude/skills + ~/.claude/agents
+V1：更强的隔离 worktree、多 Agent 并行和结果合并协议
 V2：项目级 .claude/settings.json + hooks
 V3：SweetWave plugin，支持 /sw:prd /sw:work /sw:release
 ```

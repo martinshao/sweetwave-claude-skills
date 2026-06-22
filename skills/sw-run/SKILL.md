@@ -5,7 +5,7 @@ argument-hint: >-
   可选：module-id、TASK-ID、--all，或 --stage scaffold|implement|verify|review|qa
 disable-model-invocation: true
 allowed-tools:
-  - Skill
+  - Agent
   - Read
   - Write
   - Edit
@@ -62,8 +62,8 @@ $ARGUMENTS
 
 ## 定位
 
-`/sw-run` 是 SweetWave 唯一的运行期状态写入者和自治编排入口。它调用 Engineer Skills
-完成专业工作，并负责把结果推进到下一质量门。
+`/sw-run` 是 SweetWave 唯一的运行期状态写入者和自治编排入口。它通过前台
+Engineer Subagents 完成专业工作，并负责把结果推进到下一质量门。
 
 除 `/sw-init` 初始化文件、`/sw-task` 创建任务定义外，只有 `/sw-run` 可以修改：
 
@@ -73,7 +73,8 @@ $ARGUMENTS
 .wave/specs/{module}/TASKS.md
 ```
 
-Engineer Skills、`/sw-work`、`/sw-verify`、`/sw-review` 不得修改以上文件。
+Engineer Subagents、Engineer Skills、`/sw-work`、`/sw-verify`、`/sw-review`
+不得修改以上文件。
 
 `/sw-run` 只接受 `/sw-plan` P10 已交接的物料：`STATUS.md` 必须为
 `READY_TO_RUN`，且 `.wave/PLAN_REPORT.md` 必须为 `PASSED`。
@@ -191,14 +192,14 @@ N1 必须将本次调用归一化为以下一种范围，并写入 `RUN_STATE.md
 
 - 默认串行执行。第一版只识别并行候选，不派发并行修改。
 - 前端骨架是条件强制门；状态为 PENDING、BLOCKED 或 STALE 时不得调度普通任务。
-- Engineer Skill 只返回结构化结果；`/sw-run` 验证结果后再写状态。
-- 非 `generic` 任务必须通过 `Skill` 工具调用 N3 选中的 Engineer Skill；
+- Engineer Subagent 必须把结构化结果写入 `.wave/handoffs/`；`/sw-run`
+  等待前台 Agent 返回并读取 handoff 后再写状态。
+- 非 `generic` 任务必须通过前台 `Agent` 工具调用 N3 选中的 Engineer Subagent；
   `/sw-run` 不得在 N4 代替该角色修改业务代码。
-- `Skill` 工具调用是在当前 `/sw-run` 调用内加载并执行专业流程，不是独立子进程。
-  Engineer 的“执行结果”是内部交接数据，不是面向用户的最终答复；结果生成后必须
-  立即恢复 `/sw-run` 对应节点。
-- `disable-model-invocation: false` 是内部 Engineer Skills 的调用契约；如果目标 Skill
-  不可调用、调用失败或没有返回结构化结果，任务必须阻塞，不得降级为 `generic`。
+- Agent 必须以前台模式运行，主流程在 Agent 完成前阻塞；不得使用
+  `run_in_background: true`，避免权限自动拒绝、结果轮询和任务间竞态。
+- Engineer Skills 作为 Subagent 预加载的角色手册，不再由 `/sw-run` 嵌套调用。
+  Agent 不可用、调用失败或 handoff 缺失时，任务必须阻塞，不得降级为 `generic`。
 - 从 N4 或更晚节点恢复非 `generic` 任务时，必须存在已验证的派发凭证；
   缺失时先退回 N3，禁止凭聊天记忆直接继续实现。
 - `ALL_MODULE_TASKS` 和 `ALL_PROJECT_TASKS` 是持续批量调用。单个 Engineer 完成、

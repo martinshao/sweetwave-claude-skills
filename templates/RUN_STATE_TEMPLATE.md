@@ -41,13 +41,14 @@
 - 任务声明角色：
 - 解析角色：
 - 角色推断理由：
-- 目标 Skill：
+- 目标 Agent：
+- 预加载 Skill：
+- handoff 路径：
 - 调用输入摘要：
 - 派发状态：NOT_STARTED
 - 返回角色：
 - 返回状态：
 - 返回修改文件：
-- 控制权标记：
 - 派发异常：
 
 ### Engineer 执行结果
@@ -107,7 +108,7 @@
 - 派发状态只允许：`NOT_STARTED`、`CALLING`、`RESULT_RETURNED`、
   `RESULT_VALIDATED`、`DIRECT_GENERIC`、`FAILED`。
 - 非 `generic` 任务进入 N4 前，派发状态必须为 `RESULT_VALIDATED`。
-- Engineer 结构化结果的控制权标记必须为 `RETURN_TO_SW_RUN_N3`。
+- 非 `generic` 任务的 handoff 文件必须存在且通过角色、状态、范围和 Git 基线校验。
 - `DIRECT_GENERIC` 只允许解析角色明确为 `generic` 的任务。
 - `ALL_MODULE_TASKS`、`ALL_PROJECT_TASKS` 中间任务完成时不得结束当前调用。
 - 每次进入新阶段、暂停、阻塞或完成时立即更新。

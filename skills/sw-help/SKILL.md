@@ -53,12 +53,12 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 | `/sw-work TASK-001` | 兼容入口，提示改用 `/sw-run --stage implement` |
 | `/sw-verify TASK-001` | 兼容入口，提示改用 `/sw-run --stage verify` |
 | `/sw-review TASK-001` | 兼容入口，提示改用 `/sw-run --stage review` |
-| `/sw-frontend-engineer` | 由 `/sw-run` 调用的前端实现角色 |
-| `/sw-backend-engineer` | 由 `/sw-run` 调用的后端实现角色 |
-| `/sw-database-engineer` | 由 `/sw-run` 调用的数据库实现角色 |
-| `/sw-security-engineer` | 由 `/sw-run` 调用的安全专项角色 |
-| `/sw-qa-engineer` | 由 `/sw-run` 调用的完整 QA 角色 |
-| `/sw-doc-sync` | 全部任务完成后的文档同步能力 |
+| `/sw-frontend-engineer` | `sw-frontend-worker` 预加载的前端角色手册 |
+| `/sw-backend-engineer` | `sw-backend-worker` 预加载的后端角色手册 |
+| `/sw-database-engineer` | `sw-database-worker` 预加载的数据库角色手册 |
+| `/sw-security-engineer` | `sw-security-worker` 预加载的安全角色手册 |
+| `/sw-qa-engineer` | `sw-qa-worker` 预加载的 QA 角色手册 |
+| `/sw-doc-sync` | `sw-doc-sync-worker` 预加载的文档同步手册 |
 | `/sw-product-engineer` | 由 `/sw-plan` 调用的 PRD 角色 |
 | `/sw-domain-engineer` | 由 `/sw-plan` 调用的模块领域角色 |
 | `/sw-ux-engineer` | 由 `/sw-plan` 调用的产品体验角色 |
@@ -77,9 +77,9 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 3. 开始编码前必须先输出实现计划。
 4. 声称完成前必须给出验证证据。
 5. 任务必须通过验证、审查和按需 QA/安全门后才能标记为 `[x]`。
-6. 非 `generic` 任务必须由 `/sw-run` 通过 `Skill` 工具派发给对应 Engineer；
+6. 非 `generic` 任务必须由 `/sw-run` 通过前台 `Agent` 派发给对应 Engineer worker；
    没有 `RESULT_VALIDATED` 派发凭证时不得进入 N4 或由编排器代写业务代码。
-7. Engineer 的结构化结果是内部交接数据，必须返回 `/sw-run` 继续后续节点；
+7. Engineer 的结构化结果必须写入 `.wave/handoffs/`，由 `/sw-run` 读取并继续后续节点；
    `{module} --all` 不得在单个任务或单个 Engineer 完成时结束。
 8. `.wave/STATUS.md` 记录项目级进度和物料，`.wave/RUN_STATE.md` 记录当前执行现场，
    `TASKS.md` 记录任务生命周期。

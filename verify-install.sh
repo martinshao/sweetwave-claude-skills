@@ -13,23 +13,25 @@ for name in sw-help sw-status sw-init sw-brief sw-plan sw-prd sw-map sw-design s
 done
 
 run_skill="$HOME/.claude/skills/sw-run/SKILL.md"
-if [ -f "$run_skill" ] && ! grep -q '^  - Skill$' "$run_skill"; then
-  echo "错误：/sw-run 缺少 Skill 调用权限，无法派发 Engineer Skills。" >&2
+if [ -f "$run_skill" ] && ! grep -q '^  - Agent$' "$run_skill"; then
+  echo "错误：/sw-run 缺少 Agent 调用权限，无法派发 Engineer Subagents。" >&2
   missing=1
 fi
 
-for name in sw-frontend-engineer sw-backend-engineer sw-database-engineer sw-security-engineer sw-qa-engineer sw-doc-sync; do
-  file="$HOME/.claude/skills/$name/SKILL.md"
-  if [ -f "$file" ] && ! grep -q '^disable-model-invocation: false$' "$file"; then
-    echo "错误：/$name 未允许由 /sw-run 调用。" >&2
+for name in sw-frontend-worker sw-backend-worker sw-database-worker sw-security-worker sw-qa-worker sw-doc-sync-worker; do
+  file="$HOME/.claude/agents/$name.md"
+  if [ -f "$file" ]; then
+    echo "OK：Agent $name -> $file"
+  else
+    echo "缺失：Agent $name -> $file"
     missing=1
   fi
 done
 
-for name in sw-frontend-engineer sw-backend-engineer sw-database-engineer; do
-  file="$HOME/.claude/skills/$name/SKILL.md"
-  if [ -f "$file" ] && ! grep -q 'RETURN_TO_SW_RUN_N3' "$file"; then
-    echo "错误：/$name 缺少返回 /sw-run 的控制权协议。" >&2
+for name in sw-frontend-worker sw-backend-worker sw-database-worker; do
+  file="$HOME/.claude/agents/$name.md"
+  if [ -f "$file" ] && ! grep -q '\.wave/handoffs/' "$file"; then
+    echo "错误：Agent $name 缺少 handoff 落盘协议。" >&2
     missing=1
   fi
 done
@@ -39,4 +41,4 @@ if [ "$missing" -ne 0 ]; then
   exit 1
 fi
 
-echo "全部 SweetWave skills 已安装。"
+echo "全部 SweetWave skills 和 agents 已安装。"

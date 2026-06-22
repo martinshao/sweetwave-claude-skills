@@ -63,6 +63,7 @@ CLAUDE.md
     README.md
   qa/
   security/
+  handoffs/
   release/
     README.md
   retro/
@@ -103,6 +104,8 @@ CLAUDE.md
 - `.wave/release/` 和 `.wave/retro/` 按版本或发布对象继续分目录或文件管理。
 - `.wave/qa/` 保存任务、模块和发布级完整 QA 报告。
 - `.wave/security/` 保存任务级安全专项报告。
+- `.wave/handoffs/` 保存前台 Engineer/QA/Security/Doc Subagents 返回给 `/sw-run`
+  的结构化交接文件；它是可恢复的内部执行证据，不是长期产品文档。
 - 文件名前缀使用 `{SCOPE}-{TYPE}.md`，例如 `INIT-IDEA.md`、`INIT-BRIEF.md`、`CHECKOUT-PRD.md`。
 - `INIT-IDEA.md` 只提供最小提示，保留给用户粘贴原始想法；初始化时不要替用户扩写或结构化。
 
@@ -116,6 +119,7 @@ LESSONS_TEMPLATE.md -> .wave/LESSONS.md
 STATUS_TEMPLATE.md -> .wave/STATUS.md
 PLAN_STATE_TEMPLATE.md -> .wave/PLAN_STATE.md
 RUN_STATE_TEMPLATE.md -> .wave/RUN_STATE.md
+HANDOFF_TEMPLATE.md -> .wave/handoffs/{module}/{TASK-ID}.md，由运行期 Agent 按任务创建
 MODULE_MAP_TEMPLATE.md -> .wave/MODULE_MAP.md
 TRACEABILITY_TEMPLATE.md -> .wave/TRACEABILITY.md
 PLAN_REPORT_TEMPLATE.md -> .wave/PLAN_REPORT.md

@@ -3,13 +3,16 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SKILLS_SRC="$SCRIPT_DIR/skills"
+AGENTS_SRC="$SCRIPT_DIR/agents"
 TEMPLATES_SRC="$SCRIPT_DIR/templates"
 
 SKILLS_TARGET="$HOME/.claude/skills"
+AGENTS_TARGET="$HOME/.claude/agents"
 TEMPLATES_TARGET="$HOME/.claude/sweetwave/templates"
 MODE="${1:-install}"
 
 mkdir -p "$SKILLS_TARGET"
+mkdir -p "$AGENTS_TARGET"
 mkdir -p "$TEMPLATES_TARGET"
 
 if [ ! -d "$SKILLS_SRC" ]; then
@@ -41,6 +44,15 @@ for skill_dir in "$SKILLS_SRC"/sw-*; do
   echo "  已${ACTION} /$skill_name"
 done
 
+if [ -d "$AGENTS_SRC" ]; then
+  for agent_file in "$AGENTS_SRC"/sw-*.md; do
+    [ -f "$agent_file" ] || continue
+    agent_name="$(basename "$agent_file")"
+    cp "$agent_file" "$AGENTS_TARGET/$agent_name"
+    echo "  已${ACTION} Agent：$agent_name"
+  done
+fi
+
 if [ -d "$TEMPLATES_SRC" ]; then
   cp -R "$TEMPLATES_SRC"/. "$TEMPLATES_TARGET"/
   echo "已${ACTION} SweetWave 中文模板到：$TEMPLATES_TARGET"
@@ -48,7 +60,7 @@ fi
 
 cat <<'EOM'
 
-SweetWave 个人级 skills 中文版已安装/更新完成。
+SweetWave 个人级 skills、agents 和模板已安装/更新完成。
 
 下一步：
   1. cd /path/to/your-project

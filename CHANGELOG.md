@@ -13,6 +13,8 @@
 
 ### Added
 
+- 新增可安装到 `~/.claude/agents/` 的前台 Engineer、QA、安全和文档同步 Subagents。
+- 新增 `.wave/handoffs/` 结构化交接目录，支持主流程读取、校验和跨会话恢复。
 - 新增 `/sw-scaffold` 和 `/sw-run --stage scaffold`，在正式业务实现前受控建立
   前端应用壳、导航、路由和模块占位页面。
 - 新增保留技术模块 `app-shell`、唯一骨架任务 `APP-SHELL-001` 和前端骨架状态，
@@ -47,22 +49,23 @@
   支持显式模块参数，也可无参数处理全部 planned/active 模块。
 - 新增 `/sw-run` 任务状态机，支持任务选择、断点恢复、验证质量门、审查质量门和
   `.wave/LESSONS.md` 长期经验沉淀。
-- 新增 `update-global.sh`，支持团队成员拉取仓库更新后刷新全局安装的 skills 和模板。
+- 新增 `update-global.sh`，支持团队成员拉取仓库更新后刷新全局安装的 skills、
+  agents 和模板。
 - 新增 SweetWave 主流程、模块化流程、`/sw-run` 状态流转和敏捷迭代流程图。
 
 ### Changed
 
-- 修复 `{module} --all` 在 Engineer 输出后提前结束：明确 Skill 调用属于同一
-  `/sw-run` 调用，Engineer 结构化结果是内部交接数据，必须携带控制权标记并续跑。
-- N3、N4、N7、N9、N10 新增最终输出门禁；批量模式只允许在范围完成、阻塞、
-  必须用户确认或环境无法继续时结束，不得停在单任务 `[VERIFYING]` 或 `[x]`。
-- 修复 `/sw-run` 角色派发契约：增加 `Skill` 调用权限，并允许运行期 Engineer、
-  QA、安全和文档同步 Skills 被编排器调用。
-- N3 现在必须完成实际 Skill 调用并保存 `RESULT_VALIDATED` 派发凭证；N4 对
-  非 `generic` 任务只验收返回结果，禁止跳过路由后由 `/sw-run` 直接实现。
+- 重构 `/sw-run` 运行期派发：不再嵌套调用 Engineer Skills，改用前台阻塞式
+  Subagent。Agent 完成后结果写入 handoff，主流程读取后继续 N4–N9。
+- `{module} --all` 明确禁止后台 Agent；每个前台 Agent 返回后立即继续当前模块，
+  直到模块完成、阻塞或必须用户确认。
+- N3、N4、N7、N9、N10 使用 Agent 返回与 handoff 作为内部边界；批量模式只允许在
+  范围完成、阻塞、必须用户确认或环境无法继续时结束。
+- N3 现在必须完成实际前台 Agent 调用并保存 `RESULT_VALIDATED` 派发凭证；N4 对
+  非 `generic` 任务只验收 handoff，禁止跳过路由后由 `/sw-run` 直接实现。
 - 恢复 N4 或更晚检查点时强制校验派发凭证；上下文压缩导致凭证缺失时退回 N3，
   已存在无法归属的业务改动时进入阻塞而不是冒充 Engineer 结果。
-- `verify-install.sh` 新增运行期 Skill 派发权限检查，防止安装后出现不可调用配置。
+- `verify-install.sh` 新增运行期 Agent 文件、Agent 调用权限和 handoff 协议检查。
 - 明确 `/sw-run` 的执行范围：无参数或模块参数只完成一个任务，指定 TASK-ID
   只完成该任务，`{module} --all` 只完成该模块，只有项目级 `--all` 跨模块并进入 N10。
 - `.wave/RUN_STATE.md` 新增范围模式、目标模块和目标任务，恢复时保持原范围，

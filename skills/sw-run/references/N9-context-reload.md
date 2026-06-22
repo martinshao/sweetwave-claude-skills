@@ -48,5 +48,5 @@
 - 出现必须由用户决定的业务歧义、破坏性操作或范围扩大；
 - 工具或环境错误导致无法继续。
 
-Engineer Skill 的 `COMPLETED`、任务进入 `[VERIFYING]`、单任务写入 `[x]`、
+Engineer Agent 的 `COMPLETED`、任务进入 `[VERIFYING]`、单任务写入 `[x]`、
 生成上下文恢复摘要，都不允许结束批量调用。

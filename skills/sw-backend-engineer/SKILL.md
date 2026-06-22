@@ -1,6 +1,6 @@
 ---
 name: sw-backend-engineer
-description: 实现 SweetWave 后端任务，包括 API、服务层、领域逻辑、集成、错误处理和服务端测试。由 /sw-run 在执行角色为 backend-engineer 时调用。
+description: SweetWave 后端角色手册，包括 API、服务层、领域逻辑、集成、错误处理和服务端测试。由 sw-backend-worker 预加载。
 disable-model-invocation: false
 allowed-tools:
   - Read
@@ -24,7 +24,7 @@ allowed-tools:
 
 根据 `/sw-run` 提供的单个任务上下文完成后端实现。
 
-仅接受 `/sw-run` 通过 `Skill` 工具传入的完整派发上下文。缺少 module、TASK-ID、
+作为 `sw-backend-worker` 的预加载角色手册使用。缺少 module、TASK-ID、
 任务正文、允许修改范围或 Git 基线时返回 `BLOCKED`，不得自行扩大范围。
 
 ## 工作流程
@@ -39,15 +39,14 @@ allowed-tools:
 
 ## 输出
 
-以下“执行结果”是返回给当前 `/sw-run` 编排流程的内部交接数据，不是面向用户的最终答复。
-生成后必须立即恢复 `/sw-run` 的 N3 强制派发协议，不得结束当前 assistant turn。
+将以下执行结果写入父流程指定的 `.wave/handoffs/{module}/{TASK-ID}.md`。
+Agent 对话返回只包含 handoff 路径和一句状态摘要。
 
 ```md
 ## 执行结果
 
 - 角色：backend-engineer
 - 状态：COMPLETED / BLOCKED
-- 控制权：RETURN_TO_SW_RUN_N3
 - 修改文件：
 - 完成内容：
 - 执行命令：
@@ -57,4 +56,3 @@ allowed-tools:
 ```
 
 不得标记任务完成，不得自动提交、部署或发布。
-不得在输出本结果后停止；由 `/sw-run` 继续 N3 校验、N4、N5–N9 及批量调度。
