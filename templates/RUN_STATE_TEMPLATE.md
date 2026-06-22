@@ -36,6 +36,19 @@
 - 冲突原因：
 - 范围外任务：不调度
 
+### 路由与派发凭证
+
+- 任务声明角色：
+- 解析角色：
+- 角色推断理由：
+- 目标 Skill：
+- 调用输入摘要：
+- 派发状态：NOT_STARTED
+- 返回角色：
+- 返回状态：
+- 返回修改文件：
+- 派发异常：
+
 ### Engineer 执行结果
 
 - 任务类型：
@@ -90,6 +103,10 @@
 - 当前节点只允许：`N1_RESTORE` 至 `N10_FINISH`。
 - 范围模式只允许：`NEXT_PROJECT_TASK`、`NEXT_MODULE_TASK`、`SINGLE_TASK`、
   `ALL_MODULE_TASKS`、`ALL_PROJECT_TASKS`、`SCAFFOLD_ONLY`。
+- 派发状态只允许：`NOT_STARTED`、`CALLING`、`RESULT_RETURNED`、
+  `RESULT_VALIDATED`、`DIRECT_GENERIC`、`FAILED`。
+- 非 `generic` 任务进入 N4 前，派发状态必须为 `RESULT_VALIDATED`。
+- `DIRECT_GENERIC` 只允许解析角色明确为 `generic` 的任务。
 - 每次进入新阶段、暂停、阻塞或完成时立即更新。
 - 新任务开始前覆盖旧的 `COMPLETED` 现场；不要同时记录多个活动任务。
 - `TASKS.md` 使用任务定义指纹：比较时忽略 `[ ]`、`[IN_PROGRESS]`、

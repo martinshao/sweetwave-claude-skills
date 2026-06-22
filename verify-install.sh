@@ -12,6 +12,20 @@ for name in sw-help sw-status sw-init sw-brief sw-plan sw-prd sw-map sw-design s
   fi
 done
 
+run_skill="$HOME/.claude/skills/sw-run/SKILL.md"
+if [ -f "$run_skill" ] && ! grep -q '^  - Skill$' "$run_skill"; then
+  echo "错误：/sw-run 缺少 Skill 调用权限，无法派发 Engineer Skills。" >&2
+  missing=1
+fi
+
+for name in sw-frontend-engineer sw-backend-engineer sw-database-engineer sw-security-engineer sw-qa-engineer sw-doc-sync; do
+  file="$HOME/.claude/skills/$name/SKILL.md"
+  if [ -f "$file" ] && ! grep -q '^disable-model-invocation: false$' "$file"; then
+    echo "错误：/$name 未允许由 /sw-run 调用。" >&2
+    missing=1
+  fi
+done
+
 if [ "$missing" -ne 0 ]; then
   echo "部分 SweetWave skills 缺失。" >&2
   exit 1

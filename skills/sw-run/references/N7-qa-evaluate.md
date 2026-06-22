@@ -10,7 +10,7 @@
 - 新增第三方依赖
 - Review 发现安全疑点
 
-触发时调用 `/sw-security-engineer`，报告写入：
+触发时必须通过 `Skill` 工具调用 `/sw-security-engineer`，报告写入：
 
 ```txt
 .wave/security/{module}/{TASK-ID}-SECURITY.md
@@ -19,7 +19,7 @@
 ## QA 评分
 
 变更范围、业务风险、累积任务、契约影响、用户流程影响各评 1–5 分，总分 `>= 10`
-触发 `/sw-qa-engineer`。
+触发时必须通过 `Skill` 工具调用 `/sw-qa-engineer`。
 
 以下情况无条件触发：
 
@@ -42,3 +42,5 @@
 `APP-SHELL-001` 固定使用 `required`，QA 必须检查导航可达性、路由完整性、
 响应式壳层、404/错误边界和存量功能保留情况。
 任何必需门禁失败都写为 `[BLOCKED]`，不得进入 N8。
+目标 Skill 不可调用、调用失败或没有返回结构化结果，也视为门禁失败；
+不得由 `/sw-run` 自行模拟安全或 QA 报告。

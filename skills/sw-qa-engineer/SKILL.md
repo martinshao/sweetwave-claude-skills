@@ -1,7 +1,7 @@
 ---
 name: sw-qa-engineer
 description: 对 SweetWave 任务、模块或发布候选执行完整 QA，包括验收标准、集成测试、E2E、视觉回归和剩余风险评估。由 /sw-run 按风险触发。
-disable-model-invocation: true
+disable-model-invocation: false
 allowed-tools:
   - Read
   - Write
@@ -21,6 +21,9 @@ allowed-tools:
 ---
 
 # SweetWave QA 工程师
+
+仅接受 `/sw-run` 通过 `Skill` 工具传入的任务、模块或发布范围、验收标准、
+验证证据和报告路径。上下文不完整时返回 `BLOCKED`，不得伪造 QA 结论。
 
 根据 `/sw-run` 指定的范围执行跨文件、跨任务或发布级完整 QA。
 

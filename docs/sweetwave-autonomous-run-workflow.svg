@@ -72,9 +72,9 @@
 
   <rect class="node dispatch" x="92" y="455" width="220" height="112"/>
   <text class="h" x="114" y="483">N3 Dispatch</text>
-  <text class="t" x="114" y="509">读取执行角色</text>
-  <text class="t" x="114" y="532">缺失时临时推断</text>
-  <text class="t" x="114" y="555">跨主角色任务阻塞拆分</text>
+  <text class="t" x="114" y="509">解析角色 + Skill</text>
+  <text class="t" x="114" y="532">实际调用并记录凭证</text>
+  <text class="t" x="114" y="555">失败则 BLOCKED，不降级</text>
 
   <rect class="node dispatch" x="395" y="433" width="300" height="156"/>
   <text class="h" x="417" y="461">Engineer Skills</text>
@@ -82,13 +82,13 @@
   <text class="cmd" x="417" y="510">sw-backend-engineer</text>
   <text class="cmd" x="417" y="533">sw-database-engineer</text>
   <text class="cmd" x="417" y="556">generic → 通用实现</text>
-  <text class="t" x="417" y="579">scaffold / feature；只返回结果</text>
+  <text class="t" x="417" y="579">Skill 工具调用；结构化返回</text>
 
   <rect class="node work" x="780" y="443" width="260" height="136"/>
   <text class="h" x="802" y="471">N4 Implement</text>
-  <text class="t" x="802" y="497">[IN_PROGRESS]</text>
-  <text class="t" x="802" y="520">校验修改范围</text>
-  <text class="t" x="802" y="543">记录 Engineer 结果</text>
+  <text class="t" x="802" y="497">要求 RESULT_VALIDATED</text>
+  <text class="t" x="802" y="520">复核角色 / diff / 范围</text>
+  <text class="t" x="802" y="543">非 generic 禁止代写</text>
   <text class="t" x="802" y="566">完成 → [VERIFYING]</text>
 
   <rect class="node memory" x="1125" y="443" width="260" height="136"/>

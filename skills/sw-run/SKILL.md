@@ -5,6 +5,7 @@ argument-hint: >-
   可选：module-id、TASK-ID、--all，或 --stage scaffold|implement|verify|review|qa
 disable-model-invocation: true
 allowed-tools:
+  - Skill
   - Read
   - Write
   - Edit
@@ -191,6 +192,12 @@ N1 必须将本次调用归一化为以下一种范围，并写入 `RUN_STATE.md
 - 默认串行执行。第一版只识别并行候选，不派发并行修改。
 - 前端骨架是条件强制门；状态为 PENDING、BLOCKED 或 STALE 时不得调度普通任务。
 - Engineer Skill 只返回结构化结果；`/sw-run` 验证结果后再写状态。
+- 非 `generic` 任务必须通过 `Skill` 工具调用 N3 选中的 Engineer Skill；
+  `/sw-run` 不得在 N4 代替该角色修改业务代码。
+- `disable-model-invocation: false` 是内部 Engineer Skills 的调用契约；如果目标 Skill
+  不可调用、调用失败或没有返回结构化结果，任务必须阻塞，不得降级为 `generic`。
+- 从 N4 或更晚节点恢复非 `generic` 任务时，必须存在已验证的派发凭证；
+  缺失时先退回 N3，禁止凭聊天记忆直接继续实现。
 - QA 和安全门禁在 `[x]` 之前执行。
 - 物料过期、Git 现场冲突、业务歧义、高风险破坏性变更必须暂停。
 - 暂停时保存精确恢复命令、已完成步骤、修改文件和阻塞原因。

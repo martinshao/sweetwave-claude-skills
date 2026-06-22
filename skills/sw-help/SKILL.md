@@ -77,15 +77,17 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 3. 开始编码前必须先输出实现计划。
 4. 声称完成前必须给出验证证据。
 5. 任务必须通过验证、审查和按需 QA/安全门后才能标记为 `[x]`。
-6. `.wave/STATUS.md` 记录项目级进度和物料，`.wave/RUN_STATE.md` 记录当前执行现场，
+6. 非 `generic` 任务必须由 `/sw-run` 通过 `Skill` 工具派发给对应 Engineer；
+   没有 `RESULT_VALIDATED` 派发凭证时不得进入 N4 或由编排器代写业务代码。
+7. `.wave/STATUS.md` 记录项目级进度和物料，`.wave/RUN_STATE.md` 记录当前执行现场，
    `TASKS.md` 记录任务生命周期。
-7. 恢复任务时先校验 Git 现场和物料指纹，规格变化后不得沿用旧验证结果。
-8. 重要经验写入 `.wave/LESSONS.md`，供后续任务读取。
-9. `.wave/idea/*-IDEA.md` 保留用户原始输入，后续 skill 不应覆盖。
-10. 模块级产物写入 `.wave/specs/{module}/`，只使用 `.wave/*` 作为 SweetWave 工作区。
-11. 发布类 skill 默认不执行生产部署命令。
-12. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。
-13. 第一版只识别并行候选，实际任务仍串行执行。
-14. 文档质量门未通过或物料 STALE 时，不得进入 `/sw-run`。
-15. 前端骨架为 PENDING、BLOCKED 或 STALE 时，不得执行普通 `/sw-run --all`。
-16. `/sw-run` 必须锁定调用范围；单任务、模块和项目全量模式不得相互自动升级。
+8. 恢复任务时先校验 Git 现场、物料指纹和派发凭证，规格变化后不得沿用旧验证结果。
+9. 重要经验写入 `.wave/LESSONS.md`，供后续任务读取。
+10. `.wave/idea/*-IDEA.md` 保留用户原始输入，后续 skill 不应覆盖。
+11. 模块级产物写入 `.wave/specs/{module}/`，只使用 `.wave/*` 作为 SweetWave 工作区。
+12. 发布类 skill 默认不执行生产部署命令。
+13. 当前 skills 是个人级能力，项目产物沉淀在当前 repo。
+14. 第一版只识别并行候选，实际任务仍串行执行。
+15. 文档质量门未通过或物料 STALE 时，不得进入 `/sw-run`。
+16. 前端骨架为 PENDING、BLOCKED 或 STALE 时，不得执行普通 `/sw-run --all`。
+17. `/sw-run` 必须锁定调用范围；单任务、模块和项目全量模式不得相互自动升级。

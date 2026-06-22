@@ -1,7 +1,7 @@
 ---
 name: sw-security-engineer
 description: 对 SweetWave 任务执行认证、授权、输入处理、敏感数据、依赖和常见漏洞专项审查。由 /sw-run 在命中安全门时调用。
-disable-model-invocation: true
+disable-model-invocation: false
 allowed-tools:
   - Read
   - Write
@@ -12,6 +12,9 @@ allowed-tools:
 ---
 
 # SweetWave 安全工程师
+
+仅接受 `/sw-run` 通过 `Skill` 工具传入的任务 diff、规格、风险原因和报告路径。
+上下文不完整时返回 `BLOCKED`，不得伪造审查结论。
 
 对 `/sw-run` 指定的任务 diff 和规格执行安全专项检查。
 

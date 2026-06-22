@@ -1,7 +1,7 @@
 ---
 name: sw-backend-engineer
 description: 实现 SweetWave 后端任务，包括 API、服务层、领域逻辑、集成、错误处理和服务端测试。由 /sw-run 在执行角色为 backend-engineer 时调用。
-disable-model-invocation: true
+disable-model-invocation: false
 allowed-tools:
   - Read
   - Write
@@ -23,6 +23,9 @@ allowed-tools:
 # SweetWave 后端工程师
 
 根据 `/sw-run` 提供的单个任务上下文完成后端实现。
+
+仅接受 `/sw-run` 通过 `Skill` 工具传入的完整派发上下文。缺少 module、TASK-ID、
+任务正文、允许修改范围或 Git 基线时返回 `BLOCKED`，不得自行扩大范围。
 
 ## 工作流程
 

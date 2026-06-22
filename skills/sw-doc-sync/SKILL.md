@@ -1,7 +1,7 @@
 ---
 name: sw-doc-sync
 description: 在 SweetWave 全部任务完成后同步 README、CLAUDE.md、LESSONS 和模块规格，生成发布候选摘要并检查文档一致性。由 /sw-run 的完成节点调用。
-disable-model-invocation: true
+disable-model-invocation: false
 allowed-tools:
   - Read
   - Write
@@ -14,6 +14,9 @@ allowed-tools:
 ---
 
 # SweetWave 文档同步
+
+仅接受 `/sw-run` 在 N10 通过 `Skill` 工具传入的全项目完成摘要、QA/安全报告和
+目标文档范围。上下文不完整时返回 `BLOCKED`，不得修改三层运行状态。
 
 根据已完成任务和实际代码同步长期文档，不执行发布。
 
