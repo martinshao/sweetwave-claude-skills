@@ -148,10 +148,10 @@
   <text class="node-title" x="522" y="1086">同步三层状态 / 骨架状态</text>
 
   <rect class="node run" x="910" y="1055" width="270" height="50"/>
-  <text class="node-title" x="932" y="1086">骨架后人工确认 / 下一任务</text>
+  <text class="node-title" x="932" y="1086">范围完成则停止 / 范围内续跑</text>
 
   <rect class="node done" x="1290" y="1055" width="250" height="50"/>
-  <text class="node-title" x="1312" y="1086">全部完成 → READY_TO_RELEASE</text>
+  <text class="node-title" x="1312" y="1086">项目 --all → READY_TO_RELEASE</text>
 
   <path class="ok" d="M835 902 C835 970, 260 970, 260 1055"/>
   <path class="arrow" d="M390 1080 C425 1080, 465 1080, 500 1080"/>
@@ -159,5 +159,5 @@
   <path class="ok" d="M1180 1080 C1215 1080, 1255 1080, 1290 1080"/>
   <path class="soft" d="M1045 1055 C1045 980, 195 980, 195 578"/>
 
-  <text class="small" x="72" y="1158">核心原则：STATUS.md 额外记录骨架门禁；PENDING/BLOCKED/STALE 不放行普通任务，READY 后仍需用户手动启动。</text>
+  <text class="small" x="72" y="1158">核心原则：RUN_STATE 持久化范围；单任务、模块与项目 --all 按各自边界恢复和停止，不自动扩大范围。</text>
 </svg>

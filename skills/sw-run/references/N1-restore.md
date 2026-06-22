@@ -8,7 +8,14 @@
 2. 新任务启动前，要求 PLAN_REPORT 为 `PASSED` 且 PLAN_STATE 已完成 P10。
 3. 如果规划物料为 STALE、质量门未通过或追踪矩阵存在阻塞，拒绝执行并建议
    `/sw-plan --resume`。
-4. 解析 module、TASK-ID、`--all` 和 `--stage`。
+4. 解析 module、TASK-ID、`--all` 和 `--stage`，并归一化执行范围：
+   - 无 module、无 TASK-ID、无 `--all`：`NEXT_PROJECT_TASK`
+   - 只有 module：`NEXT_MODULE_TASK`
+   - TASK-ID（可带 module）：`SINGLE_TASK`
+   - module + `--all`：`ALL_MODULE_TASKS`
+   - 只有 `--all`：`ALL_PROJECT_TASKS`
+   - `--stage scaffold`：`SCAFFOLD_ONLY`
+   TASK-ID 未带 module 时必须在全部 TASKS 中唯一匹配，否则阻塞并要求补充 module。
 5. 读取 `STATUS.md` 的前端骨架状态：
    - `--stage scaffold` 只接受 `PENDING`、`BLOCKED` 或同任务活动检查点。
    - `STALE` 时拒绝沿用旧骨架，建议 `/sw-plan --change` 刷新物料后重新执行。
@@ -16,11 +23,13 @@
    - `READY` 时普通调度跳过已完成的 `APP-SHELL-001`。
 6. 检查当前 Git commit、工作区状态和检查点基准提交。
 7. 比较 MODULE、DESIGN、UI、ARCH、SPEC 和任务定义指纹；TASKS 比较忽略生命周期标记。
-8. 活动检查点优先于新任务。显式切换任务时先暂停确认。
+8. 活动检查点优先于新任务，并沿用 `RUN_STATE.md` 已保存的范围模式、目标模块和
+   目标任务。显式切换任务或扩大、缩小范围时先暂停确认。
 9. 物料变化时停止工程执行；涉及 scaffold 时将前端骨架写为 `STALE`，并建议返回
    `/sw-plan --change`；
    不由 `/sw-run` 重写规划文档。
 10. 无法归属当前任务的工作区改动必须阻塞。
-11. 将 `RUN_STATE.md` 当前节点写为 `N1_RESTORE`，记录恢复判断。
+11. 将 `RUN_STATE.md` 当前节点写为 `N1_RESTORE`，记录范围模式、目标模块、
+    目标任务和恢复判断。
 
 输出：有效检查点、可执行范围、风险和下一节点。

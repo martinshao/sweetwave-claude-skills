@@ -79,6 +79,7 @@ allowed-tools:
    - READY_TO_RUN + 前端骨架 STALE：`/sw-plan --change`。
    - READY_TO_RUN + 前端骨架 READY/NOT_REQUIRED：`/sw-run --all`。
    - 活动执行检查点：RUN_STATE 恢复命令。
+   - 恢复命令必须保留 RUN_STATE 中的范围模式、目标模块和目标任务。
 9. 如果模块 `TASKS.md` 已存在，按模块统计：
    - 已完成任务 `[x]`
    - 待执行任务 `[ ]`
@@ -92,7 +93,11 @@ allowed-tools:
    - 当前执行角色、风险等级和 QA 策略
    - 距离上次完整 QA 的完成任务数
 10. 如果存在未完成任务且没有活动检查点，建议：
-   - 完整推进：`/sw-run {module} TASK-ID` 或 `/sw-run --all`
+   - 下一个全项目任务：`/sw-run`
+   - 下一个模块任务：`/sw-run {module}`
+   - 指定任务：`/sw-run {module} TASK-ID`
+   - 完成指定模块：`/sw-run {module} --all`
+   - 完成全项目：`/sw-run --all`
    - 单阶段推进：`/sw-run {module} TASK-ID --stage implement|verify|review|qa`
    - 前端骨架：`/sw-scaffold` 或 `/sw-run --stage scaffold`
 11. 检查 `.wave/qa/`、`.wave/security/` 报告和文档同步状态。

@@ -45,7 +45,11 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 | `/sw-plan` | 自治生成 PRD、模块地图、设计、UI、架构、规格和任务 |
 | `/sw-prd` 至 `/sw-task` | 兼容入口，提示改用对应 `/sw-plan --stage` |
 | `/sw-scaffold` | 条件强制的前端应用壳入口，转交 `/sw-run --stage scaffold` |
-| `/sw-run TASK-001` | 自治执行任务，包含角色路由、断点恢复、质量门和状态写回 |
+| `/sw-run` | 执行全项目下一个可执行任务，完成一个任务后停止 |
+| `/sw-run {module}` | 执行指定模块下一个可执行任务，完成一个任务后停止 |
+| `/sw-run {module} TASK-001` | 只执行指定任务的完整质量闭环 |
+| `/sw-run {module} --all` | 串行完成指定模块，完成后停止且不进入其他模块 |
+| `/sw-run --all` | 串行完成全项目，结束后进入发布收尾 |
 | `/sw-work TASK-001` | 兼容入口，提示改用 `/sw-run --stage implement` |
 | `/sw-verify TASK-001` | 兼容入口，提示改用 `/sw-run --stage verify` |
 | `/sw-review TASK-001` | 兼容入口，提示改用 `/sw-run --stage review` |
@@ -84,3 +88,4 @@ SweetWave 是一套 Spec-Driven AI Coding Workflow，用来把软件开发从“
 13. 第一版只识别并行候选，实际任务仍串行执行。
 14. 文档质量门未通过或物料 STALE 时，不得进入 `/sw-run`。
 15. 前端骨架为 PENDING、BLOCKED 或 STALE 时，不得执行普通 `/sw-run --all`。
+16. `/sw-run` 必须锁定调用范围；单任务、模块和项目全量模式不得相互自动升级。

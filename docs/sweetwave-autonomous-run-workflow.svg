@@ -159,10 +159,10 @@
   <text class="t" x="114" y="1150">Git 基线 / 风险 / 命令</text>
 
   <rect class="node restore" x="465" y="1050" width="250" height="112"/>
-  <text class="h" x="487" y="1078">还有任务?</text>
-  <text class="t" x="487" y="1104">是：回到 N2</text>
-  <text class="t" x="487" y="1127">否：进入 N10</text>
-  <text class="t" x="487" y="1150">活动检查点优先恢复</text>
+  <text class="h" x="487" y="1078">范围完成?</text>
+  <text class="t" x="487" y="1104">范围内有任务：回到 N2</text>
+  <text class="t" x="487" y="1127">单任务/模块完成：停止</text>
+  <text class="t" x="487" y="1150">仅项目 --all 进入 N10</text>
 
   <rect class="node done" x="818" y="1040" width="290" height="132"/>
   <text class="h" x="840" y="1068">N10 Finish</text>
@@ -182,6 +182,6 @@
   <path class="ok" d="M1108 1106 C1138 1106,1180 1106,1210 1106"/>
   <path class="soft" d="M590 1050 C590 990,870 990,870 312"/>
 
-  <text class="small" x="72" y="1270">兼容入口：/sw-scaffold 转交 /sw-run --stage scaffold；/sw-work、/sw-verify、/sw-review 转交对应阶段。</text>
+  <text class="small" x="72" y="1270">范围边界：单任务完成即停；module --all 只完成目标模块；仅项目级 --all 可跨模块进入 N10。</text>
   <text class="small" x="72" y="1292">并行边界：当前版本只输出 parallel candidate；真正多 Agent 并行需独立 worktree、diff 归属与合并协议。</text>
 </svg>
